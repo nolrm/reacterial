@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Button from "./components/buttons/buttons";
 
 function App() {
   return (
@@ -8,8 +9,10 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          React + Material UI
+          <strong>Reacterial</strong> <br/>
+          React JS + Material Material design
         </p>
+        <Button name="label goes here" class="btn-primary"></Button>
       </header>
     </div>
   );
