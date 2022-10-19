@@ -1,16 +1,11 @@
 import React from 'react';
 
-interface DashboardProps {
-  name: string;
-  class?: string;
-}
-
-function Dashboard(props: DashboardProps) {
-    return (
-        <div className={props.class}>
-            {props.name}
-        </div>
-    );
+function Dashboard() {
+  return (
+    <div>
+        <h1>Dashboard</h1>
+    </div>
+  );
 }
 
 export default Dashboard;

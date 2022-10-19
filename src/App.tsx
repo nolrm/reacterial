@@ -1,19 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Button from "./components/buttons/buttons";
+import { Routes, Route } from "react-router-dom"
+import Home from "./pages/Home"
+import Dashboard from "./pages/Dashboard"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          <strong>Reacterial</strong> <br/>
-          React JS + Material Material design
-        </p>
-        <Button name="label goes here" class="btn-primary"></Button>
-      </header>
+      <Routes>
+        <Route path="/" element={ <Home/> } />
+        <Route path="dashboard" element={ <Dashboard/> } />
+      </Routes>
     </div>
   );
 }
