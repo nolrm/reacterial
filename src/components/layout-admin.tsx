@@ -161,5 +161,5 @@ const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
     );
 };
 
-LayoutAdmin.displayName = 'Layout';
+LayoutAdmin.displayName = 'LayoutAdmin';
 export default withAuth(LayoutAdmin);

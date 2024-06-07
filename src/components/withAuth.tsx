@@ -1,24 +1,34 @@
-import { useSession } from 'next-auth/react';
+import React, { ComponentType, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useSession } from 'next-auth/react';
 
-const withAuth = (WrappedComponent: React.ComponentType) => {
-    return (props: any) => {
+const withAuth = (WrappedComponent: ComponentType) => {
+
+    const WithAuthComponent: React.FC = (props) => {
         const { data: session, status } = useSession();
         const router = useRouter();
 
         useEffect(() => {
-            if (status === 'unauthenticated' && router.pathname !== '/signin') {
+            if (status === 'loading') return; // Do nothing while loading
+            if (!session && router.pathname !== '/signin') {
                 router.push('/signin');
             }
-        }, [status, router]);
+        }, [session, status, router]);
 
-        // if (status === 'loading') {
-        //     return <div>Loading...</div>;
-        // }
+        if (status === 'loading' || !session) {
+            return <div>Loading...</div>; // Show loading while checking authentication
+        }
 
         return <WrappedComponent {...props} />;
     };
+
+    WithAuthComponent.displayName = `WithAuth(${getDisplayName(WrappedComponent)})`;
+
+    return WithAuthComponent;
 };
+
+function getDisplayName(WrappedComponent: ComponentType) {
+    return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
 
 export default withAuth;
