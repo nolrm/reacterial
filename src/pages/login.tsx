@@ -2,7 +2,7 @@ import withAuth from '../components/withAuth';
 import { Button, Container, Typography, Box, TextField, Grid, Paper } from '@mui/material';
 import {signIn, signOut} from 'next-auth/react';
 
-const AdminPage = () => {
+const LoginPage = () => {
     return (
     <Container component="main" maxWidth="xs">
         <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
@@ -30,4 +30,4 @@ const AdminPage = () => {
     );
 };
 
-export default withAuth(AdminPage);
+export default withAuth(LoginPage);
