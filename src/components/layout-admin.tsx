@@ -1,6 +1,7 @@
-import withAuth from '../components/withAuth';
-import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, CssBaseline, Container, IconButton } from '@mui/material';
+import withAuth from '@/components/withAuth';
+import React, { useState, ReactNode } from 'react';
+import { useRouter } from 'next/router';
+import { Box, Avatar, Menu, MenuItem, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, CssBaseline, Container, IconButton } from '@mui/material';
 import { Dashboard as DashboardIcon, AccountCircle as AccountCircleIcon, Settings as SettingsIcon, Menu as MenuIcon, ChevronLeft as ChevronLeftIcon } from '@mui/icons-material';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 
@@ -31,18 +32,35 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     justifyContent: 'flex-end',
 }));
 
+interface LayoutProps {
+    children: ReactNode;
+}
 
-const AdminPage = () => {
+
+const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
     const [open, setOpen] = useState<boolean>(true);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const theme = useTheme<Theme>();
+    const router = useRouter();
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
+    const toggleDrawer = () => {
+        setOpen(!open);
     };
 
-    const handleDrawerClose = () => {
-        setOpen(false);
+
+    const handleMenuOpen = (event: MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
     };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleRedirectClick = (link) => {
+        router.push(link);
+    };
+
+    const menuId = 'primary-search-account-menu';
 
     return (
         <div style={{display: 'flex'}}>
@@ -58,15 +76,46 @@ const AdminPage = () => {
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={handleDrawerOpen}
+                        onClick={toggleDrawer}
                         edge="start"
-                        sx={{marginRight: 2, ...(open && {display: 'none'})}}
+                        sx={{ marginRight: 2, ...(open && { display: 'none' }) }}
                     >
-                        <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
+                    <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
                         Admin Dashboard
                     </Typography>
+                    <Box>
+                        <IconButton
+                            edge="end"
+                            aria-label="account of current user"
+                            aria-controls={menuId}
+                            aria-haspopup="true"
+                            onClick={handleMenuOpen}
+                            color="inherit"
+                        >
+                            <Avatar alt="User Avatar" src="/static/images/avatar/1.jpg" />
+                        </IconButton>
+                        <Menu
+                            id={menuId}
+                            anchorEl={anchorEl}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={Boolean(anchorEl)}
+                            onClose={toggleDrawer}
+                        >
+                            <MenuItem onClick={handleRedirectClick('/admin/profile')}>Profile</MenuItem>
+                            <MenuItem onClick={handleRedirectClick('/admin/profile')}>My account</MenuItem>
+                            <MenuItem>Logout</MenuItem>
+                        </Menu>
+                    </Box>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -83,20 +132,20 @@ const AdminPage = () => {
                 open={open}
             >
                 <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton onClick={toggleDrawer}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronLeftIcon/>}
                     </IconButton>
                 </DrawerHeader>
                 <List>
-                    <ListItem button>
+                    <ListItem button onClick={handleRedirectClick('/admin')}>
                         <ListItemIcon><DashboardIcon/></ListItemIcon>
                         <ListItemText primary="Dashboard"/>
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={handleRedirectClick('/admin/profile')}>
                         <ListItemIcon><AccountCircleIcon/></ListItemIcon>
                         <ListItemText primary="Profile"/>
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={handleRedirectClick('/admin/settings')}>
                         <ListItemIcon><SettingsIcon/></ListItemIcon>
                         <ListItemText primary="Settings"/>
                     </ListItem>
@@ -105,14 +154,12 @@ const AdminPage = () => {
             <Main open={open}>
                 <DrawerHeader/>
                 <Container maxWidth="lg">
-                    {/* Content Goes Here */}
-                    <Typography paragraph>
-                        Dashboard Content
-                    </Typography>
+                    {children}
                 </Container>
             </Main>
         </div>
     );
 };
 
-export default withAuth(AdminPage);
+LayoutAdmin.displayName = 'Layout';
+export default withAuth(LayoutAdmin);
