@@ -5,6 +5,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import type { AppProps } from 'next/app';
 import theme from '../theme';
+import withAuth from '@/components/withAuth';
+
 
 function Auth({ children }: { children: JSX.Element }) {
     const { data: session, status } = useSession();
@@ -23,14 +25,17 @@ function Auth({ children }: { children: JSX.Element }) {
     return children;
 }
 
+const AuthWithHOC = withAuth(Auth);
+
+
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     return (
         <SessionProvider session={session}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <Auth>
+                <AuthWithHOC>
                     <Component {...pageProps} />
-                </Auth>
+                </AuthWithHOC>
             </ThemeProvider>
         </SessionProvider>
     );

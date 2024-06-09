@@ -1,4 +1,3 @@
-import withAuth from '@/components/withAuth';
 import React, { useState, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { Box, Avatar, Menu, MenuItem, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, CssBaseline, Container, IconButton } from '@mui/material';
@@ -48,15 +47,15 @@ const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
     };
 
 
-    const handleMenuOpen = (event: MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
+    const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+        // Your event handling logic here
     };
 
     const handleMenuClose = () => {
         setAnchorEl(null);
     };
 
-    const handleRedirectClick = (link) => {
+    const handleRedirectClick = (link: string) => {
         router.push(link);
     };
 
@@ -111,8 +110,9 @@ const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
                             open={Boolean(anchorEl)}
                             onClose={toggleDrawer}
                         >
-                            <MenuItem onClick={handleRedirectClick('/admin/profile')}>Profile</MenuItem>
-                            <MenuItem onClick={handleRedirectClick('/admin/profile')}>My account</MenuItem>
+
+                            <MenuItem onClick={() => handleRedirectClick('/admin/profile')}>Profile</MenuItem>
+                            <MenuItem onClick={() => handleRedirectClick('/admin/profile')}>My account</MenuItem>
                             <MenuItem>Logout</MenuItem>
                         </Menu>
                     </Box>
@@ -137,15 +137,15 @@ const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
                     </IconButton>
                 </DrawerHeader>
                 <List>
-                    <ListItem button onClick={handleRedirectClick('/admin')}>
+                    <ListItem button onClick={() => handleRedirectClick('/admin')}>
                         <ListItemIcon><DashboardIcon/></ListItemIcon>
                         <ListItemText primary="Dashboard"/>
                     </ListItem>
-                    <ListItem button onClick={handleRedirectClick('/admin/profile')}>
+                    <ListItem button onClick={() => handleRedirectClick('/admin/profile')}>
                         <ListItemIcon><AccountCircleIcon/></ListItemIcon>
                         <ListItemText primary="Profile"/>
                     </ListItem>
-                    <ListItem button onClick={handleRedirectClick('/admin/settings')}>
+                    <ListItem button onClick={() => handleRedirectClick('/admin/settings')}>
                         <ListItemIcon><SettingsIcon/></ListItemIcon>
                         <ListItemText primary="Settings"/>
                     </ListItem>
@@ -162,4 +162,4 @@ const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
 };
 
 LayoutAdmin.displayName = 'LayoutAdmin';
-export default withAuth(LayoutAdmin);
+export default LayoutAdmin;

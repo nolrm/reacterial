@@ -1,10 +1,10 @@
+// src/components/withAuth.tsx
 import React, { ComponentType, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 
-const withAuth = (WrappedComponent: ComponentType) => {
-
-    const WithAuthComponent: React.FC = (props) => {
+const withAuth = <P extends object>(WrappedComponent: ComponentType<P>): React.FC<P> => {
+    const WithAuthComponent: React.FC<P> = (props) => {
         const { data: session, status } = useSession();
         const router = useRouter();
 
@@ -27,7 +27,7 @@ const withAuth = (WrappedComponent: ComponentType) => {
     return WithAuthComponent;
 };
 
-function getDisplayName(WrappedComponent: ComponentType) {
+function getDisplayName<P>(WrappedComponent: ComponentType<P>): string {
     return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import withAuth from '@/components/withAuth';
 import LayoutAdmin from '@/components/layout-admin';
 import Typography from '@mui/material/Typography';
 
@@ -17,4 +16,4 @@ const ProfilePage: React.FC = () => {
     );
 };
 
-export default withAuth(ProfilePage);
+export default ProfilePage;
