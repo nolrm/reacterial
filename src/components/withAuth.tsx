@@ -10,14 +10,14 @@ const withAuth = <P extends object>(WrappedComponent: ComponentType<P>): React.F
 
         useEffect(() => {
             if (status === 'loading') return; // Do nothing while loading
-            if (!session && router.pathname !== '/signin') {
-                router.push('/signin');
+            if (!session && router.pathname !== '/login') {
+                router.push('/login');
             }
         }, [session, status, router]);
 
-        if (status === 'loading' || !session) {
-            return <div>Loading...</div>; // Show loading while checking authentication
-        }
+        // if (status === 'loading' || !session) {
+        //     return <div>Loading...</div>; // Show loading while checking authentication
+        // }
 
         return <WrappedComponent {...props} />;
     };
