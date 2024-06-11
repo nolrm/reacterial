@@ -2,7 +2,7 @@ import { signIn } from 'next-auth/react';
 import { Button, Container, Typography } from '@mui/material';
 import { NextPage } from 'next';
 
-const SignIn: NextPage = () => {
+const Login: NextPage = () => {
     return (
         <Container maxWidth="sm">
             <Typography variant="h4" component="h1" gutterBottom>
@@ -15,4 +15,4 @@ const SignIn: NextPage = () => {
     );
 };
 
-export default SignIn;
+export default Login;

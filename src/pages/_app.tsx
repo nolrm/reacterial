@@ -14,13 +14,13 @@ function Auth({ children }: { children: JSX.Element }) {
 
     useEffect(() => {
         if (status === 'unauthenticated') {
-            router.push('/api/auth/signin'); // Redirect to sign-in page if not authenticated
+            router.push('/api/auth/login'); // Redirect to sign-in page if not authenticated
         }
     }, [status, router]);
 
-    if (status === 'loading') {
-        return <div>Loading...</div>; // Show a loading state while checking authentication status
-    }
+    // if (status === 'loading') {
+    //     return <div>Loading...</div>; // Show a loading state while checking authentication status
+    // }
 
     return children;
 }

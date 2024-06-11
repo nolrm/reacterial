@@ -11,7 +11,7 @@ export default NextAuth({
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
         async session({ session, token }) {
-            session.userId = token.sub;
+            // session.user = token.sub;
             return session;
         },
         async jwt({ token, user }) {
