@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import type { AppProps } from 'next/app';
 import theme from '../theme';
 import withAuth from '@/components/withAuth';
+import '../styles/styles.scss';
 
 
 function Auth({ children }: { children: JSX.Element }) {
