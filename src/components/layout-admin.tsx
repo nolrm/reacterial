@@ -37,13 +37,13 @@ interface LayoutProps {
 
 
 const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
-    const [open, setOpen] = useState<boolean>(true);
+    const [isDrawerOpen, setOpen] = useState<boolean>(true);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const theme = useTheme<Theme>();
     const router = useRouter();
 
     const toggleDrawer = () => {
-        setOpen(!open);
+        setOpen(!isDrawerOpen);
     };
 
 
@@ -69,15 +69,17 @@ const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
                 transition: theme.transitions.create(['width', 'margin'], {
                     easing: theme.transitions.easing.sharp,
                     duration: theme.transitions.duration.leavingScreen
-                })
+                }),
+                width: isDrawerOpen ? `calc(100% - ${drawerWidth}px)` : '100%'
             }}>
-                <Toolbar>
+                <Toolbar
+                >
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
                         onClick={toggleDrawer}
                         edge="start"
-                        sx={{ marginRight: 2, ...(open && { display: 'none' }) }}
+                        sx={{ marginRight: 2, ...(isDrawerOpen && { display: 'none' }) }}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -93,7 +95,8 @@ const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
                             onClick={handleMenuOpen}
                             color="inherit"
                         >
-                            <Avatar alt="User Avatar" src="/static/images/avatar/1.jpg" />
+                            {/*<Avatar alt="User Avatar" src="/static/images/avatar/1.jpg" />*/}
+                            <Avatar alt="User Avatar" src="//ionicframework.com/docs/img/demos/avatar.svg" />
                         </IconButton>
                         <Menu
                             id={menuId}
@@ -129,7 +132,7 @@ const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
                 }}
                 variant="persistent"
                 anchor="left"
-                open={open}
+                open={isDrawerOpen}
             >
                 <DrawerHeader>
                     <IconButton onClick={toggleDrawer}>
@@ -151,7 +154,7 @@ const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
                     </ListItem>
                 </List>
             </Drawer>
-            <Main open={open}>
+            <Main open={isDrawerOpen}>
                 <DrawerHeader/>
                 <Container maxWidth="lg">
                     {children}

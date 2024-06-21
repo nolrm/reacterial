@@ -9,9 +9,10 @@ const DashboardPage: React.FC = () => {
             <Typography variant="h4" component="h1" gutterBottom>
                 Welcome to the Admin Dashboard
             </Typography>
-            <Typography paragraph>
-                This is the home page content.
-            </Typography>
+            <p>This is the home page content.</p>
+            <div className="test">
+                Test
+            </div>
         </LayoutAdmin>
     );
 };
