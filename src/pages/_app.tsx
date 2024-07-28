@@ -13,11 +13,11 @@ function Auth({ children }: { children: JSX.Element }) {
     const { data: session, status } = useSession();
     const router = useRouter();
 
-    useEffect(() => {
-        if (status === 'unauthenticated') {
-            router.push('/api/auth/login'); // Redirect to sign-in page if not authenticated
-        }
-    }, [status, router]);
+    // useEffect(() => {
+    //     if (status === 'unauthenticated') {
+    //         router.push('/login'); // Redirect to sign-in page if not authenticated
+    //     }
+    // }, [status, router]);
 
     // if (status === 'loading') {
     //     return <div>Loading...</div>; // Show a loading state while checking authentication status
@@ -31,7 +31,7 @@ const AuthWithHOC = withAuth(Auth);
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     return (
-        <SessionProvider session={session}>
+        <SessionProvider session={pageProps.session}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <AuthWithHOC>
