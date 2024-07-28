@@ -1,6 +1,7 @@
 import React from 'react';
 import LayoutAdmin from '@/components/layout-admin';
-import Typography from '@mui/material/Typography';
+import { Button, Typography } from '@mui/material';
+import { signOut } from 'next-auth/react';
 
 
 const SettingsPage: React.FC = () => {
@@ -12,6 +13,7 @@ const SettingsPage: React.FC = () => {
             <Typography paragraph>
                 This is the Settings page content.
             </Typography>
+            <Button onClick={() => signOut()}>Sign out</Button>
         </LayoutAdmin>
     );
 };
