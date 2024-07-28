@@ -1,8 +1,10 @@
 import React, { useState, ReactNode } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Box, Avatar, Menu, MenuItem, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, CssBaseline, Container, IconButton } from '@mui/material';
 import { Dashboard as DashboardIcon, AccountCircle as AccountCircleIcon, Settings as SettingsIcon, Menu as MenuIcon, ChevronLeft as ChevronLeftIcon } from '@mui/icons-material';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
+import styles from "@/app/page.module.css";
 
 const drawerWidth: number = 240;
 
@@ -70,16 +72,18 @@ const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
                     easing: theme.transitions.easing.sharp,
                     duration: theme.transitions.duration.leavingScreen
                 }),
+                boxShadow: '0',
+                borderBottom: '1px solid #333',
+                backgroundColor: theme.palette.background.default,
                 width: isDrawerOpen ? `calc(100% - ${drawerWidth}px)` : '100%'
             }}>
                 <Toolbar
                 >
                     <IconButton
-                        color="inherit"
                         aria-label="open drawer"
                         onClick={toggleDrawer}
                         edge="start"
-                        sx={{ marginRight: 2, ...(isDrawerOpen && { display: 'none' }) }}
+                        sx={{ marginRight: 2 }}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -134,7 +138,14 @@ const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
                 anchor="left"
                 open={isDrawerOpen}
             >
-                <DrawerHeader>
+                <DrawerHeader className="sidebar-header">
+                    <Link className="logo" href="/admin">
+                        <Image
+                            src="/logo.svg"
+                            alt="Marlon Maniti Logo"
+                        />
+                    </Link>
+
                     <IconButton onClick={toggleDrawer}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronLeftIcon/>}
                     </IconButton>
