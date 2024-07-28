@@ -1,18 +1,21 @@
-import withAuth from '../components/withAuth';
+// import withAuth from '../components/withAuth';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import { Typography, Button, Container } from '@mui/material';
+import Header from '@/components/landing/header';
+import Banner from '@/components/landing/banner';
+import Footer from '@/components/landing/footer';
 
 const HomePage = () => {
     const { data: session, status } = useSession();
 
     return (
-        <Container>
-            <Typography variant="h4">Welcome to the Home Page</Typography>
-            <Typography variant="h6">Signed in as {session?.user?.name}</Typography>
-            <Button onClick={() => signOut()}>Sign out</Button>
-            {/* Add your admin dashboard components here */}
-        </Container>
+        <div>
+            <Header/>
+            <main>
+                <Banner/>
+            </main>
+            <Footer/>
+        </div>
     );
 };
 
-export default withAuth(HomePage);
+export default HomePage;

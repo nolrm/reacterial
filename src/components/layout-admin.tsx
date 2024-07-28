@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { Box, Avatar, Menu, MenuItem, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, CssBaseline, Container, IconButton } from '@mui/material';
 import { Dashboard as DashboardIcon, AccountCircle as AccountCircleIcon, Settings as SettingsIcon, Menu as MenuIcon, ChevronLeft as ChevronLeftIcon } from '@mui/icons-material';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
+import Image from 'next/image';
 import styles from "@/app/page.module.css";
 
 const drawerWidth: number = 240;
@@ -143,6 +144,8 @@ const LayoutAdmin: React.FC<LayoutProps> = ({ children }) => {
                         <Image
                             src="/logo.svg"
                             alt="Marlon Maniti Logo"
+                            width={50}
+                            height={50}
                         />
                     </Link>
 

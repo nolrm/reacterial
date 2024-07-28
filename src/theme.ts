@@ -10,7 +10,7 @@ const theme = createTheme({
         },
         background: {
             default: '#fff',
-            paper: '#2d333b'
+            // paper: '#2d333b'
         }
     }
 });
