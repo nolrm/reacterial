@@ -74,40 +74,40 @@ const LoginPage = ({ providers, session }: SignInProps) => {
                     <Typography component="h1" variant="h5" align="center">
                         Welcome to Reacterial!
                     </Typography>
-                    
-                    {/*{Object.values(providers).map((provider) => (*/}
-                    {/*    provider.name === 'Credentials' ? (*/}
-                    {/*        <form onSubmit={handleSubmit} method="post" key={provider.id}>*/}
-                    {/*            <input name="csrfToken" type="hidden" defaultValue={provider.csrfToken} />*/}
-                    {/*            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>*/}
-                    {/*                <div>*/}
-                    {/*                    Admin / Admin*/}
-                    {/*                </div>*/}
-                    {/*                <TextField name="username" type="text" placeholder="Username" fullWidth margin="normal" />*/}
-                    {/*                <TextField name="password" type="password" placeholder="Password" fullWidth margin="normal" />*/}
-                    {/*                <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>*/}
-                    {/*                    Sign in with Credentials*/}
-                    {/*                </Button>*/}
-                    {/*            </Box>*/}
-                    {/*        </form>*/}
-                    {/*    ) : (*/}
-                    {/*        <Box mt={4} mb={2} key={provider.id}>*/}
-                    {/*            <p style={{marginBottom: '15px'}}>*/}
-                    {/*                Sign in using your google account*/}
-                    {/*            </p>*/}
 
-                    {/*            <Button*/}
-                    {/*                fullWidth*/}
-                    {/*                variant="outlined"*/}
-                    {/*                color="primary"*/}
-                    {/*                onClick={() => signIn('google', {callbackUrl: `${window.location.origin}/admin`})}*/}
-                    {/*            >*/}
-                    {/*                Sign in with {provider.name}*/}
-                    {/*            </Button>*/}
-                    {/*            /!*onClick={() => signIn(provider.id)}*!/*/}
-                    {/*        </Box>*/}
-                    {/*    )*/}
-                    {/*))}*/}
+                    {Object.values(providers).map((provider) => (
+                        provider.name === 'Credentials' ? (
+                            <form onSubmit={handleSubmit} method="post" key={provider.id}>
+                                <input name="csrfToken" type="hidden" defaultValue={provider.csrfToken} />
+                                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <div>
+                                        Admin / Admin
+                                    </div>
+                                    <TextField name="username" type="text" placeholder="Username" fullWidth margin="normal" />
+                                    <TextField name="password" type="password" placeholder="Password" fullWidth margin="normal" />
+                                    <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+                                        Sign in with Credentials
+                                    </Button>
+                                </Box>
+                            </form>
+                        ) : (
+                            <Box mt={4} mb={2} key={provider.id}>
+                                <p style={{marginBottom: '15px'}}>
+                                    Sign in using your google account
+                                </p>
+
+                                <Button
+                                    fullWidth
+                                    variant="outlined"
+                                    color="primary"
+                                    onClick={() => signIn('google', {callbackUrl: `${window.location.origin}/admin`})}
+                                >
+                                    Sign in with {provider.name}
+                                </Button>
+                                {/*onClick={() => signIn(provider.id)}*/}
+                            </Box>
+                        )
+                    ))}
 
 
                 </Paper>
