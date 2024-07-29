@@ -1,4 +1,3 @@
-// src/components/withAuth.tsx
 import React, { ComponentType, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
@@ -11,7 +10,9 @@ const withAuth = <P extends object>(WrappedComponent: ComponentType<P>): React.F
         useEffect(() => {
             if (status === 'loading') return; // Do nothing while loading
             if (!session && router.pathname !== '/login') {
-                router.push('/login');
+                if (router.pathname != '/') {
+                    router.push('/login');
+                }
             }
         }, [session, status, router]);
 
