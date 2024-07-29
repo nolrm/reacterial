@@ -12,7 +12,7 @@ This project is a modern web application built with Next.js, React, and Material
 
 https://next-admin-pi-dusky.vercel.app/
 
-## Getting Started
+## Local development
 
 First, run the development server:
 
