@@ -75,10 +75,10 @@ const LoginPage = ({ providers, session }: SignInProps) => {
                         Welcome to Reacterial!
                     </Typography>
 
-                    {Object.values(providers).map((provider) => (
+                    {providers &&   Object.values(providers).map((provider) => (
                         provider.name === 'Credentials' ? (
                             <form onSubmit={handleSubmit} method="post" key={provider.id}>
-                                <input name="csrfToken" type="hidden" defaultValue={provider.csrfToken} />
+                                {/*<input name="csrfToken" type="hidden" defaultValue={provider.csrfToken} />*/}
                                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                     <div>
                                         Admin / Admin

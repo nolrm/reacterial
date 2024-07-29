@@ -4,8 +4,6 @@ import Banner from '@/components/landing/banner';
 import Footer from '@/components/landing/footer';
 
 const HomePage = () => {
-    const { data: session, status } = useSession();
-
     return (
         <div className="page-landing">
             <Header/>

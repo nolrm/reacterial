@@ -13,11 +13,13 @@ function Auth({ children }: { children: JSX.Element }) {
     const { data: session, status } = useSession();
     const router = useRouter();
 
-    // useEffect(() => {
-    //     if (status === 'unauthenticated') {
-    //         router.push('/login'); // Redirect to sign-in page if not authenticated
-    //     }
-    // }, [status, router]);
+    useEffect(() => {
+        if ( status === 'unauthenticated' && router.pathname != '/login') {
+            if (router.pathname != '/') {
+                router.push('/login'); // Redirect to sign-in page if not authenticated
+            }
+        }
+    }, [status, router]);
 
     // if (status === 'loading') {
     //     return <div>Loading...</div>; // Show a loading state while checking authentication status
