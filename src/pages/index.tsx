@@ -1,4 +1,3 @@
-// import withAuth from '../components/withAuth';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import Header from '@/components/landing/header';
 import Banner from '@/components/landing/banner';
@@ -8,7 +7,7 @@ const HomePage = () => {
     const { data: session, status } = useSession();
 
     return (
-        <div>
+        <div className="page-landing">
             <Header/>
             <main>
                 <Banner/>

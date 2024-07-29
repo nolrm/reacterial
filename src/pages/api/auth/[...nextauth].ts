@@ -2,6 +2,14 @@ import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+type User = {
+    id: number;
+    name: string;
+    email: string;
+    username: string;
+    password: string;
+};
+
 export default NextAuth({
     providers: [
         CredentialsProvider({
@@ -11,7 +19,13 @@ export default NextAuth({
                 password: { label: 'Password', type: 'password' }
             },
             authorize: async (credentials) => {
-                const user = { id: 1, name: 'John Wick', email: 'john@wick.com', username: 'admin', password: 'admin' };
+                const user: User = {
+                    id: 1,
+                    name: 'John Wick',
+                    email: 'john@wick.com',
+                    username: 'admin',
+                    password: 'admin',
+                };
 
                 if (credentials?.username === user.username && credentials?.password === user.password) {
                     return Promise.resolve(user) as any;
