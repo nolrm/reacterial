@@ -10,7 +10,7 @@ This project is a modern web application built with Next.js, React, and Material
 
 ## Deployed on Vercel
 
-https://next-admin-pi-dusky.vercel.app/
+https://nextjs-mui-admin.vercel.app/
 
 ## Local development
 
