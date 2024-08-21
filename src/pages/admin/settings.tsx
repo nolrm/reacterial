@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutAdmin from '@/components/layout-admin';
+import LayoutAdmin from '@/components/LayoutAdmin';
 import { Button, Typography } from '@mui/material';
 import { signOut } from 'next-auth/react';
 

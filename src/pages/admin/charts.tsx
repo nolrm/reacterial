@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutAdmin from '@/components/layout-admin';
+import LayoutAdmin from '@/components/LayoutAdmin';
 import Typography from '@mui/material/Typography';
 import BarChartComponent from '@/components/BarChartComponent';
 import LineChartComponent from '@/components/LineChartComponent';
