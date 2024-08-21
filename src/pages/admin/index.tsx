@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSession } from 'next-auth/react';
-import LayoutAdmin from '@/components/layout-admin';
+import LayoutAdmin from '@/components/LayoutAdmin';
 import Typography from '@mui/material/Typography';
 
 
