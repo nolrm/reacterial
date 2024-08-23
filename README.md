@@ -1,6 +1,9 @@
 # The next admin
 This project is a modern web application built with Next.js, React, and Material-UI (MUI), and is deployed on Vercel.
 
+## Deployed on Vercel
+https://nextjs-mui-admin.vercel.app/
+
 ## Stacks
 - Next.js
 - React
@@ -8,9 +11,12 @@ This project is a modern web application built with Next.js, React, and Material
 - Vercel
 - TypeScript
 
-## Deployed on Vercel
-
-https://nextjs-mui-admin.vercel.app/
+### TODO
+- Jest: Unit Test 
+- Playwright: UI Automated test 
+- Redux
+- Presentable landing page
+- Theming: Light/Dark theme in UI
 
 ## Local development
 
