@@ -12,3 +12,13 @@
     margin-left: 10px;
   }
 }
+
+.page-landing {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  main {
+    flex: 1 1 auto;
+  }
+}
