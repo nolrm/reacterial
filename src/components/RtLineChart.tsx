@@ -13,7 +13,7 @@ const xLabels = [
     'Page G',
 ];
 
-const LineChartComponent: React.FC = () => {
+const RtLineChart: React.FC = () => {
     return (
         <LineChart
             width={500}
@@ -44,4 +44,4 @@ const LineChartComponent: React.FC = () => {
     );
 };
 
-export default LineChartComponent;
+export default RtLineChart;

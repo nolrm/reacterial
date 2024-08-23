@@ -1,8 +1,8 @@
 import React from 'react';
-import LayoutAdmin from '@/components/LayoutAdmin';
+import LayoutAdmin from '@/layouts/LayoutAdmin';
 import Typography from '@mui/material/Typography';
-import BarChartComponent from '@/components/BarChartComponent';
-import LineChartComponent from '@/components/LineChartComponent';
+import RtBarChart from '@/components/RtBarChart';
+import RtLineChart from '@/components/RtLineChart';
 
 const ChartsPage: React.FC = () => {
     return (
@@ -10,8 +10,8 @@ const ChartsPage: React.FC = () => {
             <Typography variant="h4" component="h1" gutterBottom>
                 Charts
             </Typography>
-            <BarChartComponent/>
-            <LineChartComponent/>
+            <RtBarChart/>
+            <RtLineChart/>
         </LayoutAdmin>
     );
 };

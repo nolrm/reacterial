@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import MainContent from './MainContent';
+import Header from '@/components/Header';
+import Sidebar from '@/components/Sidebar';
+import MainContent from '@/components/MainContent';
 
 const LayoutAdmin: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isDrawerOpen, setOpen] = useState<boolean>(true);

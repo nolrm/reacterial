@@ -1,7 +1,7 @@
 import React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 
-const BarChartComponent: React.FC = () => {
+const RtBarChart: React.FC = () => {
     return (
         <BarChart
             series={[
@@ -17,4 +17,4 @@ const BarChartComponent: React.FC = () => {
     );
 };
 
-export default BarChartComponent;
+export default RtBarChart;

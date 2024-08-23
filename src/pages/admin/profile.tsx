@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutAdmin from '@/components/LayoutAdmin';
+import LayoutAdmin from '@/layouts/LayoutAdmin';
 import Typography from '@mui/material/Typography';
 
 
