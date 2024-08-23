@@ -1,4 +1,3 @@
-import { useSession, signIn, signOut } from 'next-auth/react';
 import Header from '@/components/landing/header';
 import Banner from '@/components/landing/banner';
 import Footer from '@/components/landing/footer';

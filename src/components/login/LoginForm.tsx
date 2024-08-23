@@ -1,13 +1,12 @@
-// components/SignInForm.tsx
 import { useState } from 'react';
 import { Box, TextField, Button } from '@mui/material';
 import { signIn } from 'next-auth/react';
 
-interface SignInFormProps {
+interface LoginProps {
     setError: (message: string | null) => void;
 }
 
-const SignInForm: React.FC<SignInFormProps> = ({ setError }) => {
+const LoginForm: React.FC<LoginProps> = ({ setError }) => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -49,4 +48,4 @@ const SignInForm: React.FC<SignInFormProps> = ({ setError }) => {
     );
 };
 
-export default SignInForm;
+export default LoginForm;

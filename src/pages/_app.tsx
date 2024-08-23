@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import type { AppProps } from 'next/app';
 import theme from '../theme';
-import withAuth from '@/components/withAuth';
+import withAuth from '@/components/login/withAuth';
 import '../styles/styles.scss';
 
 

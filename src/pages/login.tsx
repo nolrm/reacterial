@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import { getSession, getProviders, ClientSafeProvider, signIn } from 'next-auth/react';
 import { Button, Container, Typography, Box, TextField, Paper, Alert } from '@mui/material';
 import RtError from '@/components/RtError';
-import SignInForm from '../components/SignInForm';
+import LoginForm from '../components/login/LoginForm';
 
 
 const containerStyle = {
@@ -59,7 +59,7 @@ const LoginPage = ({ providers }: SignInProps) => {
                     {providers &&
                         Object.values(providers).map((provider) =>
                             provider.name === 'Credentials' ? (
-                                <SignInForm key={provider.id} setError={setError} />
+                                <LoginForm key={provider.id} setError={setError} />
                             ) : (
                                 <Box mt={4} mb={2} key={provider.id}>
                                     <Typography variant="body1" gutterBottom>

@@ -1,8 +1,7 @@
 import React from 'react';
 import { useSession } from 'next-auth/react';
-import LayoutAdmin from '@/components/LayoutAdmin';
+import LayoutAdmin from '@/layouts/LayoutAdmin';
 import Typography from '@mui/material/Typography';
-
 
 const DashboardPage: React.FC = () => {
     const { data: session, status } = useSession();
