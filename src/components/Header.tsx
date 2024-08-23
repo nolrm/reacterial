@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Typography, IconButton, Box, Avatar, Menu, MenuItem } 
 import { Menu as MenuIcon, ChevronLeft as ChevronLeftIcon } from '@mui/icons-material';
 import { styled, useTheme } from '@mui/material/styles';
 import { useRouter } from 'next/router';
+import { signOut } from "next-auth/react";
 
 const drawerWidth: number = 240;
 
@@ -61,7 +62,7 @@ const Header: React.FC<{ isDrawerOpen: boolean; toggleDrawer: () => void; anchor
                     >
                         <MenuItem onClick={() => handleRedirectClick('/admin/profile')}>Profile</MenuItem>
                         <MenuItem onClick={() => handleRedirectClick('/admin/profile')}>My account</MenuItem>
-                        <MenuItem>Logout</MenuItem>
+                        <MenuItem onClick={() => signOut()}>Logout</MenuItem>
                     </Menu>
                 </Box>
             </Toolbar>
