@@ -4,36 +4,39 @@ import { styled } from '@mui/material/styles';
 
 const drawerWidth: number = 240;
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{ open?: boolean }>(({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
+  open?: boolean;
+}>(({ theme, open }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(3),
+  transition: theme.transitions.create('margin', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  marginLeft: `-${drawerWidth}px`,
+  ...(open && {
     transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
-    }),
+    marginLeft: 0,
+  }),
 }));
 
 interface MainContentProps {
-    isDrawerOpen: boolean;
-    children: ReactNode;
+  isDrawerOpen: boolean;
+  children: ReactNode;
 }
 
-const MainContent: React.FC<MainContentProps> = ({ isDrawerOpen, children }) => {
-    return (
-        <Main open={isDrawerOpen}>
-            <Container maxWidth="lg">
-                {children}
-            </Container>
-        </Main>
-    );
+const MainContent: React.FC<MainContentProps> = ({
+  isDrawerOpen,
+  children,
+}) => {
+  return (
+    <Main open={isDrawerOpen}>
+      <Container maxWidth="lg">{children}</Container>
+    </Main>
+  );
 };
 
 export default MainContent;
