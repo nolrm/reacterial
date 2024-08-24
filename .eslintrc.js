@@ -1,0 +1,10 @@
+module.exports = {
+  extends: ['next', 'next/core-web-vitals', 'plugin:prettier/recommended'],
+  globals: {
+    JSX: 'readonly',
+  },
+  rules: {
+    '@typescript-eslint/no-unused-vars': 'off',
+    'no-unused-vars': 'off',
+  },
+};
