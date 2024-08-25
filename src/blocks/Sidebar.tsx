@@ -8,15 +8,10 @@ import {
   ListItemText,
   IconButton,
 } from '@mui/material';
-import {
-  ChevronLeft as ChevronLeftIcon,
-  Dashboard as DashboardIcon,
-  AccountCircle as AccountCircleIcon,
-  Settings as SettingsIcon,
-  BarChart as BarChart,
-} from '@mui/icons-material';
+import { ChevronLeft as ChevronLeftIcon } from '@mui/icons-material';
 import { styled, useTheme } from '@mui/material/styles';
 import Image from 'next/image';
+import sidebarItems from '@/data/sidebarItems';
 
 const drawerWidth: number = 240;
 
@@ -66,30 +61,12 @@ const Sidebar: React.FC<{
         </IconButton>
       </DrawerHeader>
       <List>
-        <ListItem button component="a" href="/admin">
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </ListItem>
-        <ListItem button component="a" href="/admin/profile">
-          <ListItemIcon>
-            <AccountCircleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Profile" />
-        </ListItem>
-        <ListItem button component="a" href="/admin/settings">
-          <ListItemIcon>
-            <SettingsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Settings" />
-        </ListItem>
-        <ListItem button component="a" href="/admin/charts">
-          <ListItemIcon>
-            <BarChart />
-          </ListItemIcon>
-          <ListItemText primary="Charts" />
-        </ListItem>
+        {sidebarItems.map((item) => (
+          <ListItem button component="a" href={item.link} key={item.text}>
+            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemText primary={item.text} />
+          </ListItem>
+        ))}
       </List>
     </Drawer>
   );
