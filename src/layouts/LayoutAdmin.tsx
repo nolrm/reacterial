@@ -3,6 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Header from '@/blocks/Header';
 import Sidebar from '@/blocks/Sidebar';
 import MainContent from '@/blocks/MainContent';
+import styles from './LayoutAdmin.module.css';
 
 const LayoutAdmin: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isDrawerOpen, setOpen] = useState<boolean>(true);
@@ -37,7 +38,7 @@ const LayoutAdmin: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <Sidebar isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
       </div>
 
-      <div className="app-content">
+      <div className={styles['app-content']}>
         <MainContent isDrawerOpen={isDrawerOpen}>{children}</MainContent>
       </div>
     </div>

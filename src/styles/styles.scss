@@ -1,7 +1,51 @@
 
-
 // TODO Structure with
 // ITCSS / SMACSS
+
+$color-primary: #A05AFF;
+$color-secondary: #1BCFB4;
+$color-support-1: #4BCBEB;
+$color-support-2: #FE9496;
+$color-support-3: #9E58FF;
+
+:root {
+  /* Primary Colors */
+  --color-primary: $color-primary;
+  --color-secondary: $color-secondary;
+
+  /* Support Colors */
+  --color-support-1: $color-support-1;
+  --color-support-2: $color-support-2;
+  --color-support-3: $color-support-3;
+}
+
+// var variables doesn't work for rgba
+.bg-gradient-support-1 {
+  color: #fff;
+  background: linear-gradient(
+                  to right,
+                  rgba($color-support-1, 0.8),
+                  rgba($color-support-1, 1)
+  );
+}
+
+.bg-gradient-support-2 {
+  color: #fff;
+  background: linear-gradient(
+                  to right,
+                  rgba($color-support-2, 0.8),
+                  rgba($color-support-2, 1)
+  );
+}
+
+.bg-gradient-support-3 {
+  color: #fff;
+  background: linear-gradient(
+                  to right,
+                  rgba($color-support-3, 0.8),
+                  rgba($color-support-3, 1)
+  );
+}
 
 .sidebar-header {
   display: flex;
