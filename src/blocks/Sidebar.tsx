@@ -43,21 +43,21 @@ const Sidebar: React.FC<{
       anchor="left"
       open={isDrawerOpen}
     >
-      <DrawerHeader >
+      <DrawerHeader>
         <div className="sidebar-header">
           <Link className="logo" href="/admin">
             <Image
-                src="/logo.svg"
-                alt="Marlon Maniti Logo"
-                width={50}
-                height={50}
+              src="/logo.svg"
+              alt="Marlon Maniti Logo"
+              width={50}
+              height={50}
             />
           </Link>
           <IconButton onClick={toggleDrawer}>
             {theme.direction === 'ltr' ? (
-                <ChevronLeftIcon />
+              <ChevronLeftIcon />
             ) : (
-                <ChevronLeftIcon />
+              <ChevronLeftIcon />
             )}
           </IconButton>
         </div>
