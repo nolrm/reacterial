@@ -5,26 +5,28 @@ import { setUser, clearUser, setLoading } from '@/redux/userSlice';
 import { AppDispatch } from '@/redux/store';
 
 const UserSessionHandler: React.FC = () => {
-    const { data: session, status } = useSession();
-    const dispatch = useDispatch<AppDispatch>();
+  const { data: session, status } = useSession();
+  const dispatch = useDispatch<AppDispatch>();
 
-    useEffect(() => {
-        if (status === 'loading') {
-            dispatch(setLoading(true));
-        }
+  useEffect(() => {
+    if (status === 'loading') {
+      dispatch(setLoading(true));
+    }
 
-        if (status === 'authenticated' && session?.user) {
-            dispatch(setUser({
-                email: session.user.email || '',
-                image: session.user.image || '',
-                name: session.user.name || '',
-            }));
-        } else if (status === 'unauthenticated') {
-            dispatch(clearUser());
-        }
-    }, [status, session, dispatch]);
+    if (status === 'authenticated' && session?.user) {
+      dispatch(
+        setUser({
+          email: session.user.email || '',
+          image: session.user.image || '',
+          name: session.user.name || '',
+        })
+      );
+    } else if (status === 'unauthenticated') {
+      dispatch(clearUser());
+    }
+  }, [status, session, dispatch]);
 
-    return null;
+  return null;
 };
 
 export default UserSessionHandler;
