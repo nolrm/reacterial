@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux';
-import { store } from '@/redux/store';
+import { store, persistor } from '@/redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 import { SessionProvider, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -36,13 +37,15 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <Provider store={store}>
       <SessionProvider session={pageProps.session}>
-        <UserSessionHandler />
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <AuthWithHOC>
-            <Component {...pageProps} />
-          </AuthWithHOC>
-        </ThemeProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <UserSessionHandler />
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <AuthWithHOC>
+              <Component {...pageProps} />
+            </AuthWithHOC>
+          </ThemeProvider>
+        </PersistGate>
       </SessionProvider>
     </Provider>
   );
