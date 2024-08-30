@@ -50,15 +50,19 @@ export default NextAuth({
   // },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async session({ session }) {
-      // if (token) {
-      //     session.id = token.id;
-      // }
+    async session({ session, token }) {
+      if (token && session.user) {
+        // session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+      }
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
+        token.name = user.name;
         token.email = user.email;
+        token.image = user.image;
       }
       return token;
     },

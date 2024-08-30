@@ -1,18 +1,21 @@
 import React from 'react';
-import { useSession } from 'next-auth/react';
 import LayoutAdmin from '@/layouts/LayoutAdmin';
 import Typography from '@mui/material/Typography';
 import { Card, CardContent, Grid, Paper } from '@mui/material';
 import styles from './index.module.css';
 import RtBarChart from '@/components/RtBarChart';
 import RtPieChart from '@/components/RtPieChart';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 const DashboardPage: React.FC = () => {
-  const { data: session, status } = useSession();
+  const user = useSelector((state: RootState) => state.user);
 
   return (
     <LayoutAdmin>
-      <div className="test">Welcome, {session?.user?.name}!</div>
+      <div className="test">
+        Welcome, {user.name}!<p>Email: {user.email}</p>
+      </div>
 
       <div className={styles.container}>
         <Typography variant="h4" gutterBottom>
