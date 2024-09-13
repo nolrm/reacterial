@@ -24,14 +24,8 @@ const pieData = [
 ];
 
 const DashboardPage: React.FC = () => {
-  const user = useSelector((state: RootState) => state.user);
-
   return (
     <LayoutAdmin>
-      <div className="test">
-        Welcome, {user.name}!<p>Email: {user.email}</p>
-      </div>
-
       <div className={styles.container}>
         <Typography variant="h4" gutterBottom>
           Dashboard
