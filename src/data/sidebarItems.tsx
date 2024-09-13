@@ -3,6 +3,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import BarChart from '@mui/icons-material/BarChart';
+import DescriptionIcon from '@mui/icons-material/Description';
 
 interface SidebarItem {
   text: string;
@@ -21,6 +22,11 @@ const sidebarItems: SidebarItem[] = [
     text: 'Profile',
     icon: <AccountCircleIcon />,
     link: '/admin/profile',
+  },
+  {
+    text: 'Invoice',
+    icon: <DescriptionIcon />,
+    link: '/admin/invoice',
   },
   {
     text: 'Settings',
