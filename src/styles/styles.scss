@@ -20,32 +20,32 @@ $color-support-3: #9E58FF;
 }
 
 // var variables doesn't work for rgba
-.bg-gradient-support-1 {
-  color: #fff;
-  background: linear-gradient(
-                  to right,
-                  rgba($color-support-1, 0.8),
-                  rgba($color-support-1, 1)
-  );
-}
-
-.bg-gradient-support-2 {
-  color: #fff;
-  background: linear-gradient(
-                  to right,
-                  rgba($color-support-2, 0.8),
-                  rgba($color-support-2, 1)
-  );
-}
-
-.bg-gradient-support-3 {
-  color: #fff;
-  background: linear-gradient(
-                  to right,
-                  rgba($color-support-3, 0.8),
-                  rgba($color-support-3, 1)
-  );
-}
+//.bg-gradient-support-1 {
+//  color: #fff;
+//  background: linear-gradient(
+//                  to right,
+//                  rgba($color-support-1, 0.8),
+//                  rgba($color-support-1, 1)
+//  );
+//}
+//
+//.bg-gradient-support-2 {
+//  color: #fff;
+//  background: linear-gradient(
+//                  to right,
+//                  rgba($color-support-2, 0.8),
+//                  rgba($color-support-2, 1)
+//  );
+//}
+//
+//.bg-gradient-support-3 {
+//  color: #fff;
+//  background: linear-gradient(
+//                  to right,
+//                  rgba($color-support-3, 0.8),
+//                  rgba($color-support-3, 1)
+//  );
+//}
 
 .sidebar-header {
   display: flex;

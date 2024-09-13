@@ -13,6 +13,7 @@ import { Menu as MenuIcon } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import { useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
+import RTProfileDropdown from '@/components/RTProfileDropdown';
 
 const drawerWidth: number = 240;
 
@@ -30,12 +31,6 @@ const Header: React.FC<{
   handleMenuClose,
 }) => {
   const theme = useTheme();
-  const router = useRouter();
-  const menuId = 'primary-search-account-menu';
-
-  const handleRedirectClick = (link: string) => {
-    router.push(link);
-  };
 
   return (
     <AppBar
@@ -47,7 +42,7 @@ const Header: React.FC<{
           duration: theme.transitions.duration.leavingScreen,
         }),
         boxShadow: '0',
-        borderBottom: '1px solid #333',
+        borderBottom: '1px solid #0000001f',
         backgroundColor: theme.palette.background.default,
         width: isDrawerOpen ? `calc(100% - ${drawerWidth}px)` : '100%',
       }}
@@ -65,36 +60,7 @@ const Header: React.FC<{
           Admin Dashboard
         </Typography>
         <Box>
-          <IconButton
-            edge="end"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-            onClick={handleMenuOpen}
-            color="inherit"
-          >
-            <Avatar
-              alt="User Avatar"
-              src="//ionicframework.com/docs/img/demos/avatar.svg"
-            />
-          </IconButton>
-          <Menu
-            id={menuId}
-            anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={Boolean(anchorEl)}
-            onClose={handleMenuClose}
-          >
-            <MenuItem onClick={() => handleRedirectClick('/admin/profile')}>
-              Profile
-            </MenuItem>
-            <MenuItem onClick={() => handleRedirectClick('/admin/profile')}>
-              My account
-            </MenuItem>
-            <MenuItem onClick={() => signOut()}>Logout</MenuItem>
-          </Menu>
+          <RTProfileDropdown />
         </Box>
       </Toolbar>
     </AppBar>
