@@ -10,11 +10,11 @@ https://nextjs-mui-admin.vercel.app/
 - MUI
 - Vercel
 - TypeScript
+- Redux
 
 ### TODO
 - Jest: Unit Test 
-- Playwright: UI Automated test 
-- Redux
+- Playwright: UI Automated test
 - Presentable landing page
 - Theming: Light/Dark theme in UI
 

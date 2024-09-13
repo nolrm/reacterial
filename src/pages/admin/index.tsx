@@ -8,6 +8,21 @@ import RtPieChart from '@/components/RtPieChart';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 
+const barData = [
+  { data: [35, 44, 24, 34] },
+  { data: [51, 6, 49, 30] },
+  { data: [15, 25, 30, 50] },
+  { data: [60, 50, 15, 25] },
+];
+
+const barXAxis = ['Q1', 'Q2', 'Q3', 'Q4'];
+
+const pieData = [
+  { id: 0, value: 10, label: 'series A' },
+  { id: 1, value: 15, label: 'series B' },
+  { id: 2, value: 20, label: 'series C' },
+];
+
 const DashboardPage: React.FC = () => {
   const user = useSelector((state: RootState) => state.user);
 
@@ -58,13 +73,13 @@ const DashboardPage: React.FC = () => {
 
           <Grid item xs={12} sm={12} md={7}>
             <Paper className={styles.paper}>
-              <RtBarChart />
+              <RtBarChart series={barData} xAxis={barXAxis} />
             </Paper>
           </Grid>
 
           <Grid item xs={12} sm={12} md={5}>
             <Paper className={styles.paper}>
-              <RtPieChart />
+              <RtPieChart series={pieData} />
             </Paper>
           </Grid>
         </Grid>
