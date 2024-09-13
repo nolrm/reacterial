@@ -31,7 +31,7 @@ const StyledMenu = styled(Menu)(({ theme }) => ({
   },
 }));
 
-const RTProfileDropdown: React.FC = () => {
+const RtProfileDropdown: React.FC = () => {
   const user = useSelector((state: RootState) => state.user);
   const userImg =
     user.image || '//ionicframework.com/docs/img/demos/avatar.svg';
@@ -95,10 +95,10 @@ const RTProfileDropdown: React.FC = () => {
           <Settings sx={{ mr: 2 }} />
           Settings
         </MenuItem>
-        <MenuItem component="a" href="/admin/billing">
+        <MenuItem component="a" href="/admin/invoice">
           <AttachMoney sx={{ mr: 2 }} />
           <div style={{ position: 'relative', width: '100%' }}>
-            Billing
+            Invoice
             <Badge
               badgeContent={3}
               color="error"
@@ -125,4 +125,4 @@ const RTProfileDropdown: React.FC = () => {
   );
 };
 
-export default RTProfileDropdown;
+export default RtProfileDropdown;

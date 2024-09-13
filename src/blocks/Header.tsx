@@ -13,7 +13,7 @@ import { Menu as MenuIcon } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import { useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
-import RTProfileDropdown from '@/components/RTProfileDropdown';
+import RtProfileDropdown from '@/components/RtProfileDropdown';
 
 const drawerWidth: number = 240;
 
@@ -60,7 +60,7 @@ const Header: React.FC<{
           Admin Dashboard
         </Typography>
         <Box>
-          <RTProfileDropdown />
+          <RtProfileDropdown />
         </Box>
       </Toolbar>
     </AppBar>

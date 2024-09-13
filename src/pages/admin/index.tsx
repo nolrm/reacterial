@@ -30,6 +30,7 @@ const DashboardPage: React.FC = () => {
         <Typography variant="h4" gutterBottom>
           Dashboard
         </Typography>
+
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={4}>
             <Card className="bg-gradient-support-1" sx={{ padding: 1.3 }}>
@@ -42,6 +43,7 @@ const DashboardPage: React.FC = () => {
               </CardContent>
             </Card>
           </Grid>
+
           <Grid item xs={12} sm={6} md={4}>
             <Card className="bg-gradient-support-2" sx={{ padding: 1.3 }}>
               <CardContent>
@@ -53,6 +55,7 @@ const DashboardPage: React.FC = () => {
               </CardContent>
             </Card>
           </Grid>
+
           <Grid item xs={12} sm={6} md={4}>
             <Card className="bg-gradient-support-3" sx={{ padding: 1.3 }}>
               <CardContent>
