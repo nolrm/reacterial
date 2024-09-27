@@ -29,6 +29,11 @@ const sidebarItems: SidebarItem[] = [
     link: '/admin/invoice',
   },
   {
+    text: 'Products',
+    icon: <DescriptionIcon />,
+    link: '/admin/products',
+  },
+  {
     text: 'Settings',
     icon: <SettingsIcon />,
     link: '/admin/settings',
