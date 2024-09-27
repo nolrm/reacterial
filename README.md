@@ -11,6 +11,7 @@ https://nextjs-mui-admin.vercel.app/
 - Vercel
 - TypeScript
 - Redux
+- Auth (NextAuth and Google API Oauth)
 
 ### TODO
 - Jest: Unit Test 
