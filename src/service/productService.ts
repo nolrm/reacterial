@@ -25,9 +25,13 @@ export const fetchAllProducts = async (): Promise<Product[]> => {
 };
 
 // Search products by keyword
-export const searchProducts = async (searchTerm: string): Promise<Product[]> => {
+export const searchProducts = async (
+  searchTerm: string
+): Promise<Product[]> => {
   try {
-    const response = await fetch(`https://dummyjson.com/products/search?q=${encodeURIComponent(searchTerm)}`);
+    const response = await fetch(
+      `https://dummyjson.com/products/search?q=${encodeURIComponent(searchTerm)}`
+    );
     if (!response.ok) {
       throw new Error('Failed to fetch products');
     }

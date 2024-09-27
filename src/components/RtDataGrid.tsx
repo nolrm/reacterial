@@ -13,18 +13,22 @@ const RtDataGrid: React.FC<RtDataGridProps> = ({ items, loading, columns }) => {
   return (
     <div style={{ height: 600, width: '100%' }}>
       {loading ? (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+          }}
+        >
           <CircularProgress />
         </div>
       ) : items.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '20px' }}>No results found</div>
+        <div style={{ textAlign: 'center', padding: '20px' }}>
+          No results found
+        </div>
       ) : (
-        <DataGrid
-          rows={items}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-        />
+        <DataGrid rows={items} columns={columns} />
       )}
     </div>
   );

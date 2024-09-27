@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import LayoutAdmin from '@/layouts/LayoutAdmin';
 import { Container, TextField, CircularProgress } from '@mui/material';
-import { fetchAllProducts, searchProducts, Product } from '@/service/productService';
+import {
+  fetchAllProducts,
+  searchProducts,
+  Product,
+} from '@/service/productService';
 import RtDataGrid from '@/components/RtDataGrid';
 import { GridColDef } from '@mui/x-data-grid';
 
@@ -16,7 +20,7 @@ const ProductList = (): JSX.Element => {
     { field: 'description', headerName: 'Description', width: 300 },
     { field: 'price', headerName: 'Price', width: 150 },
     { field: 'category', headerName: 'Category', width: 150 },
-    { field: 'sku', headerName: 'SKU', width: 150 }
+    { field: 'sku', headerName: 'SKU', width: 150 },
   ];
 
   useEffect(() => {
@@ -34,7 +38,9 @@ const ProductList = (): JSX.Element => {
   const loadProducts = async (search: string = ''): Promise<void> => {
     setLoading(true);
     try {
-      const data = search ? await searchProducts(search) : await fetchAllProducts();
+      const data = search
+        ? await searchProducts(search)
+        : await fetchAllProducts();
       setItems(data);
     } catch (error) {
       console.error('Error loading products:', error);
