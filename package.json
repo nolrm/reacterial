@@ -1,5 +1,7 @@
 {
-  "name": "next-admin",
+  "name": "reacterial",
+  "description": "Reacterial is a modern admin web application built with Next.js, React, and Material-UI (MUI)",
+  "author": "Marlon M",
   "version": "0.1.0",
   "private": true,
   "scripts": {

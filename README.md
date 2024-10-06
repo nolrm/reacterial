@@ -1,5 +1,5 @@
 # The next admin
-This project is a modern web application built with Next.js, React, and Material-UI (MUI), and is deployed on Vercel.
+This project is a modern web admin application built with Next.js, React, and Material-UI (MUI), and is deployed on Vercel.
 
 ## Deployed on Vercel
 https://nextjs-mui-admin.vercel.app/
@@ -12,9 +12,10 @@ https://nextjs-mui-admin.vercel.app/
 - TypeScript
 - Redux
 - Auth (NextAuth and Google API Oauth)
+- Jest: Unit Test
 
 ### TODO
-- Jest: Unit Test 
+- Storybook
 - Playwright: UI Automated test
 - Presentable landing page
 - Theming: Light/Dark theme in UI
@@ -24,12 +25,9 @@ https://nextjs-mui-admin.vercel.app/
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. npm install
+2. npm run dev
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 ```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
