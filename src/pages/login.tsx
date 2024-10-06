@@ -7,7 +7,7 @@ import {
   signIn,
 } from 'next-auth/react';
 import { Button, Container, Typography, Box, Paper } from '@mui/material';
-import RtError from '@/components/RtError';
+import RtError from '@/components/RtError/RtError';
 import LoginForm from '../components/login/LoginForm';
 
 const containerStyle = {
