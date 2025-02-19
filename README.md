@@ -1,8 +1,10 @@
-# The next admin
-This project is a modern web admin application built with Next.js, React, and Material-UI (MUI), and is deployed on Vercel.
+# Reacterial
+
+Reacterial is a versatile boilerplate for building modern web applications like CRM systems, admin dashboards, and enterprise portals. Built with Next.js, React, Material-UI (MUI), and Redux for scalable state management.
+
 
 ## Deployed on Vercel
-https://nextjs-mui-admin.vercel.app/
+https://www.reacterial.com/
 
 ## Stacks
 - Next.js
