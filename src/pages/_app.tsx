@@ -11,6 +11,7 @@ import theme from '../theme';
 import withAuth from '@/components/login/withAuth';
 import UserSessionHandler from '@/components/login/UserSessionHandler';
 import '../styles/styles.scss';
+import CustomThemeProvider from '@/components/ThemeProvider';
 
 function Auth({ children }: { children: JSX.Element }) {
   const { data: session, status } = useSession();
@@ -39,12 +40,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <SessionProvider session={pageProps.session}>
         <PersistGate loading={null} persistor={persistor}>
           <UserSessionHandler />
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
+          <CustomThemeProvider>
             <AuthWithHOC>
               <Component {...pageProps} />
             </AuthWithHOC>
-          </ThemeProvider>
+          </CustomThemeProvider>
         </PersistGate>
       </SessionProvider>
     </Provider>
