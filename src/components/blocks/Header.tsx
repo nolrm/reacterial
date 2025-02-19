@@ -8,12 +8,17 @@ import {
   Avatar,
   Menu,
   MenuItem,
+  Tooltip,
 } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import { useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
 import RtProfileDropdown from '@/components/RtProfileDropdown';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTheme, selectTheme } from '@/redux/store';
+import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
+import NightlightRoundIcon from '@mui/icons-material/NightlightRound';
 
 const drawerWidth: number = 240;
 
@@ -30,6 +35,8 @@ const Header: React.FC<{
   handleMenuOpen,
   handleMenuClose,
 }) => {
+  const dispatch = useDispatch();
+  const themeMode = useSelector(selectTheme);
   const theme = useTheme();
 
   return (
@@ -59,8 +66,29 @@ const Header: React.FC<{
         <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
           Admin Dashboard
         </Typography>
-        <Box>
-          <RtProfileDropdown />
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Tooltip
+            title={`Switch to ${themeMode === 'light' ? 'dark' : 'light'} mode`}
+          >
+            <IconButton
+              onClick={() => dispatch(toggleTheme())}
+              color="inherit"
+              size="large"
+              sx={{
+                transition: 'transform 0.3s ease-in-out',
+                '&:hover': { transform: 'rotate(30deg)' },
+              }}
+            >
+              {themeMode === 'light' ? (
+                <NightlightRoundIcon sx={{ fontSize: 24 }} />
+              ) : (
+                <WbSunnyRoundedIcon sx={{ fontSize: 24 }} />
+              )}
+            </IconButton>
+          </Tooltip>
+          <Box>
+            <RtProfileDropdown />
+          </Box>
         </Box>
       </Toolbar>
     </AppBar>
