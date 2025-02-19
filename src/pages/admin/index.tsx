@@ -7,6 +7,8 @@ import RtBarChart from '@/components/RtBarChart';
 import RtPieChart from '@/components/RtPieChart';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { useTheme } from '@mui/material';
+import PageTitle from '@/components/PageTitle';
 
 const barData = [
   { data: [35, 44, 24, 34] },
@@ -24,12 +26,12 @@ const pieData = [
 ];
 
 const DashboardPage: React.FC = () => {
+  const theme = useTheme();
+
   return (
     <LayoutAdmin>
       <div className={styles.container}>
-        <Typography variant="h4" gutterBottom>
-          Dashboard
-        </Typography>
+        <PageTitle>Dashboard</PageTitle>
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={4}>
@@ -69,13 +71,27 @@ const DashboardPage: React.FC = () => {
           </Grid>
 
           <Grid item xs={12} sm={12} md={7}>
-            <Paper className={styles.paper}>
+            <Paper
+              elevation={0}
+              sx={{
+                p: 2,
+                backgroundColor: theme.palette.background.paper,
+                transition: 'background-color 0.2s ease-in-out',
+              }}
+            >
               <RtBarChart series={barData} xAxis={barXAxis} />
             </Paper>
           </Grid>
 
           <Grid item xs={12} sm={12} md={5}>
-            <Paper className={styles.paper}>
+            <Paper
+              elevation={0}
+              sx={{
+                p: 2,
+                backgroundColor: theme.palette.background.paper,
+                transition: 'background-color 0.2s ease-in-out',
+              }}
+            >
               <RtPieChart series={pieData} />
             </Paper>
           </Grid>
