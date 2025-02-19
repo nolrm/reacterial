@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import type { AppProps } from 'next/app';
-import theme from '../theme';
 import withAuth from '@/components/login/withAuth';
 import UserSessionHandler from '@/components/login/UserSessionHandler';
 import '../styles/styles.scss';

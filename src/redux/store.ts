@@ -36,7 +36,10 @@ const themePersistConfig = {
 };
 
 const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
-const persistedThemeReducer = persistReducer(themePersistConfig, themeSlice.reducer);
+const persistedThemeReducer = persistReducer(
+  themePersistConfig,
+  themeSlice.reducer
+);
 
 // Store configuration
 export const store = configureStore({
