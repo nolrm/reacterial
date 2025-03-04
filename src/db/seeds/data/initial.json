@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "name": "Admin User",
+      "email": "admin@reacterial.dev",
+      "role": "admin",
+      "image": "https://ui-avatars.com/api/?name=Admin+User&background=0D8ABC&color=fff"
+    },
+    {
+      "name": "Test User",
+      "email": "user@reacterial.dev",
+      "role": "user",
+      "image": "https://ui-avatars.com/api/?name=Test+User&background=FF6B6B&color=fff"
+    }
+  ]
+} 
