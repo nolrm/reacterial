@@ -1,39 +1,76 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { User as UserModel } from '@/db/models';
+import bcrypt from 'bcryptjs';
+import dbConnect from '@/db/config/connection';
 
 type User = {
-  id: number;
+  id: string;
   name: string;
   email: string;
-  username: string;
-  password: string;
+  role: string;
+  image: string;
+  address: string;
+  phone: string;
 };
+
+declare module 'next-auth' {
+  interface User {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+    image: string;
+    address: string;
+    phone: string;
+  }
+
+  interface Session {
+    user: User;
+  }
+}
 
 export default NextAuth({
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        username: { label: 'Username', type: 'text' },
+        email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
       authorize: async (credentials) => {
-        const user: User = {
-          id: 1,
-          name: 'John Wick',
-          email: 'john@wick.com',
-          username: 'admin',
-          password: 'admin',
-        };
+        try {
+          await dbConnect();
+          
+          const user = await UserModel.findOne({ email: credentials?.email });
+          
+          if (!user) {
+            return null;
+          }
 
-        if (
-          credentials?.username === user.username &&
-          credentials?.password === user.password
-        ) {
-          return Promise.resolve(user) as any;
-        } else {
-          return Promise.resolve(null) as any;
+          // Verify password
+          const isValid = await bcrypt.compare(
+            credentials?.password || '',
+            user.password
+          );
+
+          if (!isValid) {
+            return null;
+          }
+
+          return {
+            id: user._id.toString(),
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            image: user.image,
+            address: user.address,
+            phone: user.phone
+          } as any;
+        } catch (error) {
+          console.error('Auth error:', error);
+          return null;
         }
       },
     }),
@@ -52,17 +89,25 @@ export default NextAuth({
   callbacks: {
     async session({ session, token }) {
       if (token && session.user) {
-        // session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
+        session.user.id = token.sub as string;
+        session.user.name = token.name as string;
+        session.user.email = token.email as string;
+        session.user.role = token.role as string;
+        session.user.image = token.image as string;
+        session.user.address = token.address as string;
+        session.user.phone = token.phone as string;
       }
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
+        token.sub = user.id;
         token.name = user.name;
         token.email = user.email;
+        token.role = user.role;
         token.image = user.image;
+        token.address = user.address;
+        token.phone = user.phone;
       }
       return token;
     },
