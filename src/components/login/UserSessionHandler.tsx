@@ -16,6 +16,7 @@ const UserSessionHandler: React.FC = () => {
     if (status === 'authenticated' && session?.user) {
       dispatch(
         setUser({
+          id: session.user.id || '',
           email: session.user.email || '',
           image: session.user.image || '',
           name: session.user.name || '',

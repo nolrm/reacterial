@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type UserState = {
+  id: string;
   name: string;
   email: string;
   image: string;
@@ -10,6 +11,7 @@ type UserState = {
 };
 
 const initialState: UserState = {
+  id: '',
   name: '',
   email: '',
   image: '',
@@ -23,6 +25,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<Omit<UserState, 'isLoading'>>) => {
+      state.id = action.payload.id;
       state.name = action.payload.name;
       state.email = action.payload.email;
       state.image = action.payload.image;
@@ -31,6 +34,7 @@ const userSlice = createSlice({
       state.isLoading = false;
     },
     clearUser: (state) => {
+      state.id = '';
       state.name = '';
       state.email = '';
       state.image = '';
