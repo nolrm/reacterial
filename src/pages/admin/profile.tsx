@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LayoutAdmin from '@/layouts/LayoutAdmin';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
@@ -33,6 +33,28 @@ const ProfilePage: React.FC = () => {
     image: user.image || '',
   });
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('/api/users');
+        if (response.ok) {
+          const data = await response.json();
+          // Assuming the API returns an array of users, find the current user
+          const currentUser = data.find((u: UserProfile) => u.email === user.email);
+          if (currentUser) {
+            setProfileData(currentUser);
+          }
+        } else {
+          console.error('Failed to fetch user data');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [user.email]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setProfileData((prev) => ({
@@ -41,9 +63,29 @@ const ProfilePage: React.FC = () => {
     }));
   };
 
-  const handleSave = () => {
-    // TODO: Implement API call to save profile changes
-    console.log('Saving profile:', profileData);
+  const handleSave = async () => {
+    try {
+      console.log('profileData', profileData)
+      console.log('user', user)
+      
+      const response = await fetch(`/api/users/${user.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profileData),
+      });
+
+      if (response.ok) {
+        const updatedUser = await response.json();
+        setProfileData(updatedUser);
+        console.log('Profile updated successfully:', updatedUser);
+      } else {
+        console.error('Failed to update profile');
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
     setIsEditing(false);
   };
 
