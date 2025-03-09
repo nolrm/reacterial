@@ -3,7 +3,7 @@
     {
       "name": "Admin User",
       "email": "admin@reacterial.dev",
-      "password": "$2a$10$XOPbrlUPQdwdJUpSrIF6X.LbE14qsMmKGhM1A8W9PqbHU1F5K6OCi",
+      "password": "$2b$10$F9UN1W2r0EpO0BOLIEDU4OJc1BZk9LXcFzHSXDMAKQvRkxlmc4x2i",
       "role": "admin",
       "image": "https://ui-avatars.com/api/?name=Admin+User&background=0D8ABC&color=fff",
       "address": "123 Admin Street, Auckland City, NZ 12345",
@@ -12,7 +12,7 @@
     {
       "name": "Test User",
       "email": "user@reacterial.dev",
-      "password": "$2a$10$XOPbrlUPQdwdJUpSrIF6X.LbE14qsMmKGhM1A8W9PqbHU1F5K6OCi",
+      "password": "$2b$10$F9UN1W2r0EpO0BOLIEDU4OJc1BZk9LXcFzHSXDMAKQvRkxlmc4x2i",
       "role": "user",
       "image": "https://ui-avatars.com/api/?name=Test+User&background=FF6B6B&color=fff",
       "address": "456 User Avenue, Angeles City, PH 67890",

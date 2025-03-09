@@ -19,6 +19,8 @@ const UserSessionHandler: React.FC = () => {
           email: session.user.email || '',
           image: session.user.image || '',
           name: session.user.name || '',
+          phone: session.user.phone || '',
+          address: session.user.address || '',
         })
       );
     } else if (status === 'unauthenticated') {

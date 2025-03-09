@@ -4,6 +4,8 @@ type UserState = {
   name: string;
   email: string;
   image: string;
+  phone: string;
+  address: string;
   isLoading: boolean;
 };
 
@@ -11,6 +13,8 @@ const initialState: UserState = {
   name: '',
   email: '',
   image: '',
+  phone: '',
+  address: '',
   isLoading: false,
 };
 
@@ -22,12 +26,16 @@ const userSlice = createSlice({
       state.name = action.payload.name;
       state.email = action.payload.email;
       state.image = action.payload.image;
+      state.phone = action.payload.phone;
+      state.address = action.payload.address;
       state.isLoading = false;
     },
     clearUser: (state) => {
       state.name = '';
       state.email = '';
       state.image = '';
+      state.phone = '';
+      state.address = '';
       state.isLoading = false;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {

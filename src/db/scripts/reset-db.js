@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { User } = require('../models');
 const fs = require('fs').promises;
 const path = require('path');
-const connectDB = require('../config/database');
+const connectDB = require('../config/database-seed');
 
 async function resetDatabase() {
   try {
