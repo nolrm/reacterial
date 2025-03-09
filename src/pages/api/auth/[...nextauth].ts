@@ -91,7 +91,7 @@ export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({ session, token }) {
-      console.log('async session')
+      console.log('async session');
       if (token && session.user) {
         session.user.id = token.sub as string;
         session.user.name = token.name as string;
@@ -104,7 +104,7 @@ export default NextAuth({
       return session;
     },
     async jwt({ token, user, account }) {
-      console.log('async jwt')
+      console.log('async jwt');
       // Initial sign in
       if (account && user) {
         try {
@@ -112,11 +112,11 @@ export default NextAuth({
           
           // Check if user exists in our database
           let dbUser = await UserModel.findOne({ email: user.email });
-          console.log('dbUser', dbUser)
+          console.log('dbUser', dbUser);
           
           // If user doesn't exist, create a new one
           if (!dbUser && user.email) {
-            console.log('Creating....')
+            console.log('Creating....');
             // For OAuth users, we'll set a special password field to indicate OAuth authentication
             dbUser = await UserModel.create({
               name: user.name,
@@ -130,6 +130,7 @@ export default NextAuth({
           }
 
           if (dbUser) {
+            // Save user details to token
             token.sub = dbUser._id.toString();
             token.name = dbUser.name;
             token.email = dbUser.email;
@@ -145,4 +146,10 @@ export default NextAuth({
       return token;
     },
   },
+});
+
+// Example Redux action to set user data
+export const setUser = (userData) => ({
+  type: 'SET_USER',
+  payload: userData,
 });
