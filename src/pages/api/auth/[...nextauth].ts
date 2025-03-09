@@ -3,7 +3,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { User as UserModel } from '@/db/models';
 import bcrypt from 'bcryptjs';
-import dbConnect from '@/db/config/connection';
+import connectDB from '@/db/config/database';
 
 type User = {
   id: string;
@@ -41,9 +41,12 @@ export default NextAuth({
       },
       authorize: async (credentials) => {
         try {
-          await dbConnect();
+          console.log('test authuser')
+          await connectDB();
           
           const user = await UserModel.findOne({ email: credentials?.email });
+
+          console.log('user', user)
           
           if (!user) {
             return null;
@@ -88,6 +91,7 @@ export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({ session, token }) {
+      console.log('async session')
       if (token && session.user) {
         session.user.id = token.sub as string;
         session.user.name = token.name as string;
@@ -99,15 +103,44 @@ export default NextAuth({
       }
       return session;
     },
-    async jwt({ token, user }) {
-      if (user) {
-        token.sub = user.id;
-        token.name = user.name;
-        token.email = user.email;
-        token.role = user.role;
-        token.image = user.image;
-        token.address = user.address;
-        token.phone = user.phone;
+    async jwt({ token, user, account }) {
+      console.log('async jwt')
+      // Initial sign in
+      if (account && user) {
+        try {
+          await connectDB();
+          
+          // Check if user exists in our database
+          let dbUser = await UserModel.findOne({ email: user.email });
+          console.log('dbUser', dbUser)
+          
+          // If user doesn't exist, create a new one
+          if (!dbUser && user.email) {
+            console.log('Creating....')
+            // For OAuth users, we'll set a special password field to indicate OAuth authentication
+            dbUser = await UserModel.create({
+              name: user.name,
+              email: user.email,
+              image: user.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || '')}&background=random`,
+              password: 'OAUTH_USER', // Special marker for OAuth users
+              role: 'user', // Default role
+              address: '',
+              phone: ''
+            });
+          }
+
+          if (dbUser) {
+            token.sub = dbUser._id.toString();
+            token.name = dbUser.name;
+            token.email = dbUser.email;
+            token.role = dbUser.role;
+            token.image = dbUser.image;
+            token.address = dbUser.address;
+            token.phone = dbUser.phone;
+          }
+        } catch (error) {
+          console.error('Error in jwt callback:', error);
+        }
       }
       return token;
     },

@@ -1,5 +1,5 @@
 require('colors');
-const connectDB = require('../config/database');
+const connectDB = require('../config/database-seed');
 const mongoose = require('mongoose');
 const { User } = require('../models');
 const initialData = require('../seeds/data/initial.json');

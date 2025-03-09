@@ -1,25 +1,23 @@
-const mongoose = require('mongoose');
-const path = require('path');
-require('colors');
-require('dotenv').config({ path: path.join(__dirname, '../../../.env.local') });
+import mongoose from 'mongoose';
+
+let isConnected = false;
 
 const connectDB = async () => {
+  if (isConnected) {
+    return;
+  }
+
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI, {
+    await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    
-    console.log('\n================================='.blue);
-    console.log(`🌿 MongoDB Connected: ${conn.connection.host}`.green);
-    console.log(`📦 Database: reacterial_dev`.cyan);
-    console.log('=================================\n'.blue);
-    
-    return conn;
+    isConnected = true;
+    return mongoose.connection;
   } catch (error) {
-    console.error(`❌ Error: ${error.message}`.red);
-    process.exit(1);
+    console.error('MongoDB connection error:', error);
+    throw error;
   }
 };
 
-module.exports = connectDB; 
+export default connectDB; 

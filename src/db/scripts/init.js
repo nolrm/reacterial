@@ -1,5 +1,5 @@
 require('colors');
-const connectDB = require('../config/database');
+const connectDB = require('../config/database-seed');
 const mongoose = require('mongoose');
 
 const initDatabase = async () => {
