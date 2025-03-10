@@ -9,12 +9,12 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    
+
     console.log('\n================================='.blue);
     console.log(`🌿 MongoDB Connected: ${conn.connection.host}`.green);
     console.log(`📦 Database: reacterial_dev`.cyan);
     console.log('=================================\n'.blue);
-    
+
     return conn;
   } catch (error) {
     console.error(`❌ Error: ${error.message}`.red);
@@ -22,4 +22,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB; 
+module.exports = connectDB;

@@ -7,9 +7,9 @@ const initialData = require('../seeds/data/initial.json');
 const seedDatabase = async () => {
   try {
     console.log('\n🌱 Starting database seeding...'.yellow);
-    
+
     await connectDB();
-    
+
     // Clear existing data
     await User.deleteMany({});
     console.log('🧹 Cleared existing data'.cyan);
@@ -19,7 +19,7 @@ const seedDatabase = async () => {
     console.log('📥 Seed data inserted successfully'.green);
 
     console.log('\n✅ Database seeding completed!\n'.green);
-    
+
     await mongoose.disconnect();
   } catch (error) {
     console.error('❌ Error seeding database:'.red, error);
@@ -27,4 +27,4 @@ const seedDatabase = async () => {
   }
 };
 
-seedDatabase(); 
+seedDatabase();

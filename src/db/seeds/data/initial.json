@@ -2,7 +2,7 @@
   "users": [
     {
       "name": "Admin User",
-      "email": "admin@reacterial.dev",
+      "email": "admin@reacterial.com",
       "password": "$2b$10$F9UN1W2r0EpO0BOLIEDU4OJc1BZk9LXcFzHSXDMAKQvRkxlmc4x2i",
       "role": "admin",
       "image": "https://ui-avatars.com/api/?name=Admin+User&background=0D8ABC&color=fff",
@@ -11,7 +11,7 @@
     },
     {
       "name": "Test User",
-      "email": "user@reacterial.dev",
+      "email": "user@reacterial.com",
       "password": "$2b$10$F9UN1W2r0EpO0BOLIEDU4OJc1BZk9LXcFzHSXDMAKQvRkxlmc4x2i",
       "role": "user",
       "image": "https://ui-avatars.com/api/?name=Test+User&background=FF6B6B&color=fff",
