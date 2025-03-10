@@ -10,7 +10,7 @@ const LoginForm: React.FC<LoginProps> = ({ setError }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const username = (event.currentTarget.username as HTMLInputElement).value;
+    const email = (event.currentTarget.email as HTMLInputElement).value;
     const password = (event.currentTarget.password as HTMLInputElement).value;
 
     setError(null);
@@ -18,14 +18,14 @@ const LoginForm: React.FC<LoginProps> = ({ setError }) => {
     try {
       const result = await signIn('credentials', {
         redirect: false,
-        username,
+        email,
         password,
         callbackUrl: '/admin',
       });
 
       if (result?.error) {
         setError(
-          'Login failed! Please use the username: admin and the password: admin.'
+          'Login failed! Please use the email: admin@reacterial.com and the password: admin123'
         );
       } else if (result?.url) {
         window.location.href = result.url;
@@ -43,9 +43,9 @@ const LoginForm: React.FC<LoginProps> = ({ setError }) => {
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
       >
         <TextField
-          name="username"
+          name="email"
           type="text"
-          placeholder="Username"
+          placeholder="Email"
           fullWidth
           margin="normal"
         />

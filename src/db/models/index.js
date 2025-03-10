@@ -7,33 +7,33 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    trim: true
+    trim: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   role: {
     type: String,
     enum: ['user', 'admin'],
-    default: 'user'
+    default: 'user',
   },
   image: {
     type: String,
-    default: 'https://ui-avatars.com/api/?background=random' // Default avatar generator
+    default: 'https://ui-avatars.com/api/?background=random', // Default avatar generator
   },
   address: {
     type: String,
-    default: ''
+    default: '',
   },
   phone: {
     type: String,
-    default: ''
+    default: '',
   },
-  createdAt: { 
-    type: Date, 
-    default: Date.now 
-  }
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 // Create index for unique email
@@ -44,4 +44,4 @@ userSchema.index({ email: 1 }, { unique: true });
 module.exports = {
   User: mongoose.model('User', userSchema),
   // Add more models here as needed
-}; 
+};

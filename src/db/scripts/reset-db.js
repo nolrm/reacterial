@@ -27,14 +27,14 @@ async function resetDatabase() {
     // Insert seed data
     console.log('Inserting seed data...');
     await User.insertMany(seedData.users);
-    
+
     console.log('Database reset completed successfully!');
-    
   } catch (error) {
     console.error('Error resetting database:', error);
   } finally {
     // Close the connection
-    if (mongoose.connection.readyState === 1) { // Only close if connected
+    if (mongoose.connection.readyState === 1) {
+      // Only close if connected
       await mongoose.connection.close();
       console.log('Database connection closed');
     }
@@ -42,4 +42,4 @@ async function resetDatabase() {
 }
 
 // Run the reset
-resetDatabase(); 
+resetDatabase();
