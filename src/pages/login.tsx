@@ -62,7 +62,9 @@ const LoginPage = ({ providers }: SignInProps) => {
           <Typography component="h1" variant="h5" align="center">
             Welcome to Reacterial!
             <div>
-              <small>U: admin / PW: admin</small>
+              <small>
+                Email: admin@reacterial.com <br /> Password: admin123
+              </small>
             </div>
           </Typography>
 

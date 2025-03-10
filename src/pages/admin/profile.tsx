@@ -40,7 +40,9 @@ const ProfilePage: React.FC = () => {
         if (response.ok) {
           const data = await response.json();
           // Assuming the API returns an array of users, find the current user
-          const currentUser = data.find((u: UserProfile) => u.email === user.email);
+          const currentUser = data.find(
+            (u: UserProfile) => u.email === user.email
+          );
           if (currentUser) {
             setProfileData(currentUser);
           }
@@ -65,9 +67,9 @@ const ProfilePage: React.FC = () => {
 
   const handleSave = async () => {
     try {
-      console.log('profileData', profileData)
-      console.log('user', user)
-      
+      console.log('profileData', profileData);
+      console.log('user', user);
+
       const response = await fetch(`/api/users/${user.id}`, {
         method: 'PUT',
         headers: {
@@ -103,9 +105,19 @@ const ProfilePage: React.FC = () => {
   return (
     <LayoutAdmin>
       <Box sx={{ maxWidth: 800, margin: '0 auto', p: 3 }}>
-        <Card elevation={0} sx={{ border: '1px solid #dfdfdf', borderRadius: 2 }}>
+        <Card
+          elevation={0}
+          sx={{ border: '1px solid #dfdfdf', borderRadius: 2 }}
+        >
           <CardContent>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                mb: 3,
+              }}
+            >
               <Typography variant="h4" component="h1">
                 Profile
               </Typography>
@@ -145,7 +157,7 @@ const ProfilePage: React.FC = () => {
                   value={profileData.name}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  variant={isEditing ? "outlined" : "filled"}
+                  variant={isEditing ? 'outlined' : 'filled'}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -156,7 +168,7 @@ const ProfilePage: React.FC = () => {
                   value={profileData.email}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  variant={isEditing ? "outlined" : "filled"}
+                  variant={isEditing ? 'outlined' : 'filled'}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -167,7 +179,7 @@ const ProfilePage: React.FC = () => {
                   value={profileData.phone}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  variant={isEditing ? "outlined" : "filled"}
+                  variant={isEditing ? 'outlined' : 'filled'}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -178,14 +190,21 @@ const ProfilePage: React.FC = () => {
                   value={profileData.address}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  variant={isEditing ? "outlined" : "filled"}
+                  variant={isEditing ? 'outlined' : 'filled'}
                   multiline
                   rows={2}
                 />
               </Grid>
               {isEditing && (
                 <Grid item xs={12}>
-                  <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end', mt: 2 }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      gap: 2,
+                      justifyContent: 'flex-end',
+                      mt: 2,
+                    }}
+                  >
                     <Button
                       variant="outlined"
                       color="error"

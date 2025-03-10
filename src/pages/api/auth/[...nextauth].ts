@@ -4,6 +4,8 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { User as UserModel } from '@/db/models';
 import bcrypt from 'bcryptjs';
 import connectDB from '@/db/config/database';
+import { UserState } from '@/redux/userSlice';
+import axios from 'axios';
 
 type User = {
   id: string;
@@ -31,6 +33,39 @@ declare module 'next-auth' {
   }
 }
 
+async function findOrCreateUser(user: any) {
+  try {
+    await connectDB();
+
+    // Check if user exists in our database
+    let dbUser = await UserModel.findOne({ email: user.email });
+    console.log('dbUser', dbUser);
+
+    // If user doesn't exist, create a new one via the API
+    if (!dbUser && user.email) {
+      console.log('Creating....');
+      const response = await axios.post(`${process.env.BASE_URL}/api/users`, {
+        name: user.name,
+        email: user.email,
+        image:
+          user.image ||
+          `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || '')}&background=random`,
+        password: 'OAUTH_USER', // Special marker for OAuth users
+        role: 'admin', // Default role
+        address: '',
+        phone: '',
+      });
+
+      dbUser = response.data;
+    }
+
+    return dbUser;
+  } catch (error) {
+    console.error('Error in findOrCreateUser:', error);
+    throw error;
+  }
+}
+
 export default NextAuth({
   providers: [
     CredentialsProvider({
@@ -41,13 +76,12 @@ export default NextAuth({
       },
       authorize: async (credentials) => {
         try {
-          console.log('test authuser')
           await connectDB();
-          
+
           const user = await UserModel.findOne({ email: credentials?.email });
 
-          console.log('user', user)
-          
+          console.log('user', user);
+
           if (!user) {
             return null;
           }
@@ -69,7 +103,7 @@ export default NextAuth({
             role: user.role,
             image: user.image,
             address: user.address,
-            phone: user.phone
+            phone: user.phone,
           } as any;
         } catch (error) {
           console.error('Auth error:', error);
@@ -108,26 +142,7 @@ export default NextAuth({
       // Initial sign in
       if (account && user) {
         try {
-          await connectDB();
-          
-          // Check if user exists in our database
-          let dbUser = await UserModel.findOne({ email: user.email });
-          console.log('dbUser', dbUser);
-          
-          // If user doesn't exist, create a new one
-          if (!dbUser && user.email) {
-            console.log('Creating....');
-            // For OAuth users, we'll set a special password field to indicate OAuth authentication
-            dbUser = await UserModel.create({
-              name: user.name,
-              email: user.email,
-              image: user.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || '')}&background=random`,
-              password: 'OAUTH_USER', // Special marker for OAuth users
-              role: 'user', // Default role
-              address: '',
-              phone: ''
-            });
-          }
+          const dbUser = await findOrCreateUser(user);
 
           if (dbUser) {
             // Save user details to token
@@ -149,7 +164,7 @@ export default NextAuth({
 });
 
 // Example Redux action to set user data
-export const setUser = (userData) => ({
+export const setUser = (userData: Omit<UserState, 'isLoading'>) => ({
   type: 'SET_USER',
   payload: userData,
 });

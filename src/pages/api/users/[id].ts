@@ -2,7 +2,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { User as UserModel } from '@/db/models';
 import connectDB from '@/db/config/database';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   await connectDB();
 
   const { id } = req.query;
@@ -24,7 +27,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   } else if (req.method === 'PUT') {
     try {
       const { name, email, role, address, phone } = req.body;
-      const updatedUser = await UserModel.findByIdAndUpdate(id, { name, email, role, address, phone }, { new: true });
+      const updatedUser = await UserModel.findByIdAndUpdate(
+        id,
+        { name, email, role, address, phone },
+        { new: true }
+      );
       res.status(200).json(updatedUser);
     } catch (error) {
       res.status(500).json({ error: 'Error updating user' });
