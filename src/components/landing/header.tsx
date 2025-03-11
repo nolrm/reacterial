@@ -15,7 +15,7 @@ export default function Header() {
     >
       <Container>
         <Toolbar>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
             <Image
               src="/logo.svg"
               alt="Marlon Maniti Logo"
@@ -25,9 +25,29 @@ export default function Header() {
             <Typography
               variant="h6"
               component="div"
-              sx={{ flexGrow: 1, ml: 2 }}
+              sx={{ ml: 2, color: 'white' }}
             >
               Reacterial
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', gap: 3 }}>
+            <Typography
+              variant="body1"
+              component="a"
+              href="https://github.com/nolrm/reacterial"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ color: 'inherit', textDecoration: 'none' }}
+            >
+              Github
+            </Typography>
+            <Typography
+              variant="body1"
+              component="a"
+              href="/login"
+              sx={{ color: 'inherit', textDecoration: 'none' }}
+            >
+              Login
             </Typography>
           </Box>
         </Toolbar>

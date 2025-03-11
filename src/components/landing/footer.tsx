@@ -12,7 +12,7 @@ export default function Footer() {
     >
       <Container>
         <Typography variant="body1">
-          © 2024 My Company. All rights reserved.
+          © 2025 Reacterial. All rights reserved.
         </Typography>
       </Container>
     </Box>
