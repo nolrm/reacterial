@@ -25,7 +25,7 @@ export default function Banner() {
           }}
         >
           <Typography variant="h2" component="h1" gutterBottom>
-            Welcome to Reacterial
+            Discover the Power of Reacterial
           </Typography>
           <Typography variant="h5" component="p" gutterBottom>
             This project is a modern web application built with Next.js, React,
@@ -33,7 +33,7 @@ export default function Banner() {
           </Typography>
           <Link href="/login" passHref>
             <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-              Get Started
+              Demo
             </Button>
           </Link>
         </Box>
@@ -44,10 +44,10 @@ export default function Banner() {
           }}
         >
           <Image
-            src="https://placehold.co/800x500"
-            alt="Placeholder"
+            src="/reacterial.gif"
+            alt="Reacterial Demo"
             layout="responsive"
-            width={800}
+            width={1200}
             height={500}
           />
         </Box>
