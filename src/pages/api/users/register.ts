@@ -23,15 +23,8 @@ export default async function handler(
     } catch (error) {
       res.status(500).json({ error: 'Error creating user' });
     }
-  } else if (req.method === 'GET') {
-    try {
-      const users = await UserModel.find({});
-      res.status(200).json(users);
-    } catch (error) {
-      res.status(500).json({ error: 'Error fetching users' });
-    }
   } else {
-    res.setHeader('Allow', ['POST', 'GET']);
+    res.setHeader('Allow', ['POST']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }

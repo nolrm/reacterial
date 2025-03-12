@@ -36,16 +36,10 @@ const ProfilePage: React.FC = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('/api/users');
+        const response = await fetch(`/api/users/${user.id}`);
         if (response.ok) {
           const data = await response.json();
-          // Assuming the API returns an array of users, find the current user
-          const currentUser = data.find(
-            (u: UserProfile) => u.email === user.email
-          );
-          if (currentUser) {
-            setProfileData(currentUser);
-          }
+          setProfileData(data);
         } else {
           console.error('Failed to fetch user data');
         }
@@ -55,7 +49,7 @@ const ProfilePage: React.FC = () => {
     };
 
     fetchUserData();
-  }, [user.email]);
+  }, [user.id]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -75,6 +69,7 @@ const ProfilePage: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(profileData),
       });
 
@@ -149,28 +144,6 @@ const ProfilePage: React.FC = () => {
             <Divider sx={{ my: 3 }} />
 
             <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Full Name"
-                  name="name"
-                  value={profileData.name}
-                  onChange={handleInputChange}
-                  disabled={!isEditing}
-                  variant={isEditing ? 'outlined' : 'filled'}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Email"
-                  name="email"
-                  value={profileData.email}
-                  onChange={handleInputChange}
-                  disabled={!isEditing}
-                  variant={isEditing ? 'outlined' : 'filled'}
-                />
-              </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   fullWidth

@@ -33,7 +33,7 @@ declare module 'next-auth' {
   }
 }
 
-async function findOrCreateUser(user: any) {
+async function findOrCreateUser(user: any, sessionToken: string) {
   try {
     await connectDB();
 
@@ -44,17 +44,25 @@ async function findOrCreateUser(user: any) {
     // If user doesn't exist, create a new one via the API
     if (!dbUser && user.email) {
       console.log('Creating....');
-      const response = await axios.post(`${process.env.BASE_URL}/api/users`, {
-        name: user.name,
-        email: user.email,
-        image:
-          user.image ||
-          `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || '')}&background=random`,
-        password: 'OAUTH_USER', // Special marker for OAuth users
-        role: 'admin', // Default role
-        address: '',
-        phone: '',
-      });
+      const response = await axios.post(
+        `${process.env.BASE_URL}/api/users/register`,
+        {
+          name: user.name,
+          email: user.email,
+          image:
+            user.image ||
+            `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || '')}&background=random`,
+          password: 'OAUTH_USER', // Special marker for OAuth users
+          role: 'admin', // Default role
+          address: '',
+          phone: '',
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${sessionToken}`, // Include the session token or other auth method
+          },
+        }
+      );
 
       dbUser = response.data;
     }
@@ -119,15 +127,18 @@ export default NextAuth({
   pages: {
     signIn: '/auth/login',
   },
-  // session: {
-  //     jwt: true
+  session: {
+    maxAge: 30 * 60, // 30 minutes
+  },
+  // jwt: {
+  //   // Configure JWT settings here if needed
   // },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({ session, token }) {
       console.log('async session');
       if (token && session.user) {
-        session.user.id = token.sub as string;
+        session.user.id = token.id as string;
         session.user.name = token.name as string;
         session.user.email = token.email as string;
         session.user.role = token.role as string;
@@ -138,15 +149,16 @@ export default NextAuth({
       return session;
     },
     async jwt({ token, user, account }) {
-      console.log('async jwt');
+      console.log('async jwt token', token);
       // Initial sign in
       if (account && user) {
         try {
-          const dbUser = await findOrCreateUser(user);
+          const sessionToken = token.accessToken as string; // Ensure it's a string
+          const dbUser = await findOrCreateUser(user, sessionToken);
 
           if (dbUser) {
             // Save user details to token
-            token.sub = dbUser._id.toString();
+            token.id = dbUser._id.toString();
             token.name = dbUser.name;
             token.email = dbUser.email;
             token.role = dbUser.role;
