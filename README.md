@@ -15,6 +15,7 @@ https://www.reacterial.com/
 - Redux
 - Auth (NextAuth and Google API Oauth)
 - Jest: Unit Test
+- MongoDB Atlas
 
 ### TODO
 - Storybook
