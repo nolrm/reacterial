@@ -28,17 +28,54 @@ https://www.reacterial.com/
 First, run the development server:
 
 ```bash
-1. npm install
-2. npm run dev
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. pnpm install
+2. pnpm run dev
 ```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Database
 
 ```bash
 1. cd src/db
-2. npm install
-3. npm run reset
+2. pnpm install
+3. pnpm run reset
+```
+
+### Using NPM (Legacy)
+If you prefer npm, you can still use it:
+```bash
+1. npm install
+2. npm run dev
+```
+
+## 📚 Documentation
+
+Comprehensive documentation is available in the [`docs/`](./docs) directory:
+
+- **🎉 [Monorepo Implementation](./docs/MONOREPO_IMPLEMENTATION.md)** - Complete migration guide and new structure
+- **⭐ [Decision Matrix](./docs/DECISION_MATRIX.md)** - Choose the right architecture for your needs
+- **[Monorepo Architecture](./docs/MONOREPO_ARCHITECTURE.md)** - Build multiple apps with shared components
+- **[Component Organization Guide](./docs/COMPONENT_ORGANIZATION_GUIDE.md)** - UI component structure and best practices
+- **[PNPM Migration Summary](./docs/MIGRATION_SUMMARY.md)** - NPM to PNPM conversion details
+- **[Documentation Index](./docs/README.md)** - Full documentation overview
+
+## 🧪 Testing
+
+```bash
+# Run tests in watch mode
+pnpm test
+
+# Run tests in CI mode
+pnpm test:ci
+```
+
+## 📦 Building
+
+```bash
+# Format, lint, and build for production
+pnpm build
+
+# Start production server
+pnpm start
 ```

@@ -1,0 +1,10 @@
+packages:
+  # Applications
+  - 'apps/*'
+  
+  # Shared packages
+  - 'packages/*'
+  
+  # Database
+  - 'db'
+
