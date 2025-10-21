@@ -25,19 +25,44 @@ https://www.reacterial.com/
 
 ## Local development
 
-First, run the development server:
+### Step 1: Install Dependencies
+```bash
+pnpm install
+```
+
+### Step 2: Set Up Environment Variables
+Create `apps/admin/.env.local` file with your credentials:
 
 ```bash
-1. pnpm install
-2. pnpm run dev
+# Copy the example file
+cp apps/admin/.env.local.example apps/admin/.env.local
+
+# Edit with your MongoDB URI and secrets
+nano apps/admin/.env.local
+```
+
+**Required variables:**
+- `MONGODB_URI` - Your MongoDB connection string
+- `NEXTAUTH_SECRET` - Generate with: `openssl rand -base64 32`
+- `NEXTAUTH_URL` - http://localhost:3000 (for local dev)
+
+See [Environment Setup Guide](./docs/ENVIRONMENT_SETUP.md) for detailed instructions.
+
+### Step 3: Run Development Server
+```bash
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Default Credentials
+- **Email**: `admin@reacterial.com`
+- **Password**: `admin123`
+
 ## Database
 
 ```bash
-1. cd src/db
+1. cd db
 2. pnpm install
 3. pnpm run reset
 ```
@@ -54,6 +79,8 @@ If you prefer npm, you can still use it:
 Comprehensive documentation is available in the [`docs/`](./docs) directory:
 
 - **🎉 [Monorepo Implementation](./docs/MONOREPO_IMPLEMENTATION.md)** - Complete migration guide and new structure
+- **🚀 [Vercel Deployment](./docs/VERCEL_DEPLOYMENT.md)** - Deploy to Vercel (production guide)
+- **🔧 [Environment Setup](./docs/ENVIRONMENT_SETUP.md)** - Configure MongoDB and environment variables
 - **⭐ [Decision Matrix](./docs/DECISION_MATRIX.md)** - Choose the right architecture for your needs
 - **[Monorepo Architecture](./docs/MONOREPO_ARCHITECTURE.md)** - Build multiple apps with shared components
 - **[Component Organization Guide](./docs/COMPONENT_ORGANIZATION_GUIDE.md)** - UI component structure and best practices

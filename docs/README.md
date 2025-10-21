@@ -14,6 +14,21 @@ Welcome to the Reacterial documentation! This directory contains comprehensive g
   - New commands and workflows
   - Verification results
   - Next steps and examples
+
+- **🚀 [Vercel Deployment](./VERCEL_DEPLOYMENT.md)** - Deploy to production
+  - Vercel configuration for monorepo
+  - Environment variables setup
+  - MongoDB Atlas connection
+  - Custom domain configuration
+  - Continuous deployment workflow
+  - Troubleshooting guide
+
+- **🔧 [Environment Setup](./ENVIRONMENT_SETUP.md)** - Configure environment variables
+  - MongoDB connection setup
+  - NextAuth configuration
+  - Google OAuth setup (optional)
+  - Troubleshooting guide
+  - Security best practices
   
 - **[NPM to PNPM Migration](./MIGRATION_SUMMARY.md)** - Complete migration report from npm to pnpm
   - Package manager conversion details
@@ -48,6 +63,8 @@ Welcome to the Reacterial documentation! This directory contains comprehensive g
 docs/
 ├── README.md                          # This file - documentation index
 ├── MONOREPO_IMPLEMENTATION.md         # 🎉 Implementation complete! (START HERE)
+├── VERCEL_DEPLOYMENT.md               # 🚀 Production deployment guide
+├── ENVIRONMENT_SETUP.md               # 🔧 Environment variables setup
 ├── DECISION_MATRIX.md                 # Architecture decision guide
 ├── MIGRATION_SUMMARY.md               # NPM to PNPM migration report
 ├── MONOREPO_ARCHITECTURE.md           # Monorepo structure for multiple apps

@@ -2,37 +2,63 @@
 
 # dependencies
 **/node_modules/
-/.pnp
-.pnp.js
-.yarn/install-state.gz
+**/.pnp
+**/.pnp.js
+**/.yarn/install-state.gz
 
 # testing
-/coverage
+**/coverage
 
 # next.js
-/.next/
-/out/
+**/.next/
+**/out/
 
 # production
-/build
+**/build
+**/dist
 
 # misc
-.DS_Store
+**/.DS_Store
 *.pem
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
 # local env files
 .env*.local
+**/.env.local
+**/.env*.local
 
 # vercel
 .vercel
+**/.vercel
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+**/next-env.d.ts
 
+# IDEs
 .idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Monorepo specific
+apps/**/node_modules/
+packages/**/node_modules/
+apps/**/.next/
+apps/**/out/
+apps/**/build/
+packages/**/dist/
+
+# Package manager
+.pnpm-store/
+.pnpm-debug.log

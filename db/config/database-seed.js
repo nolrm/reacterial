@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const path = require('path');
 require('colors');
-require('dotenv').config({ path: path.join(__dirname, '../../../.env.local') });
+
+// Try to load from apps/admin/.env.local first, then fall back to root .env.local
+const envPath = path.join(__dirname, '../../apps/admin/.env.local');
+require('dotenv').config({ path: envPath });
 
 const connectDB = async () => {
   try {
