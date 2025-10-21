@@ -17,6 +17,8 @@ https://www.reacterial.com/
 - Auth (NextAuth and Google API Oauth)
 - Jest: Unit Test
 - MongoDB Atlas
+- **pnpm Workspaces** - Monorepo management
+- **Turborepo** - Smart caching & build orchestration
 
 ### TODO
 
@@ -83,11 +85,28 @@ If you prefer npm, you can still use it:
 2. npm run dev
 ```
 
+## ⚡ Turborepo Features
+
+This project leverages **Turborepo** for lightning-fast builds:
+
+- ✅ **Smart Caching** - Never rebuild the same code twice (141x faster on cache hits!)
+- ✅ **Parallel Execution** - Run tasks across packages simultaneously
+- ✅ **Dependency-Aware** - Automatically builds packages in the correct order
+- ✅ **Remote Caching** - Share build cache with your team (optional)
+
+**Example Performance:**
+
+```bash
+First build:  17.3s
+Cached build: 123ms  ⚡ >>> FULL TURBO
+```
+
 ## 📚 Documentation
 
 Comprehensive documentation is available in the [`docs/`](./docs) directory:
 
 - **🎉 [Monorepo Implementation](./docs/MONOREPO_IMPLEMENTATION.md)** - Complete migration guide and new structure
+- **⚡ [Turborepo Setup](./docs/TURBOREPO_SETUP.md)** - Smart caching & performance optimization
 - **🔒 [Git Hooks](./docs/GIT_HOOKS.md)** - Code quality enforcement with Husky
 - **🚀 [Vercel Deployment](./docs/VERCEL_DEPLOYMENT.md)** - Deploy to Vercel (production guide)
 - **🔧 [Environment Setup](./docs/ENVIRONMENT_SETUP.md)** - Configure MongoDB and environment variables

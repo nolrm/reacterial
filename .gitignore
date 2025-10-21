@@ -62,3 +62,7 @@ packages/**/dist/
 # Package manager
 .pnpm-store/
 .pnpm-debug.log
+
+# Turborepo
+.turbo
+**/.turbo

@@ -4,23 +4,24 @@
   "author": "Marlon M",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.9.0",
   "scripts": {
-    "dev": "pnpm --filter @reacterial/admin dev",
-    "dev:all": "pnpm --parallel dev",
-    "build": "pnpm --recursive build",
-    "build:admin": "pnpm --filter @reacterial/admin build",
+    "dev": "turbo run dev --filter=@reacterial/admin",
+    "dev:all": "turbo run dev",
+    "build": "turbo run build",
+    "build:admin": "turbo run build --filter=@reacterial/admin",
     "start": "pnpm --filter @reacterial/admin start",
-    "lint": "pnpm --recursive lint",
-    "lint:fix": "pnpm --recursive lint --fix",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
     "format": "prettier --write \"**/*.{js,ts,tsx,vue,css}\"",
     "format:check": "prettier --check \"**/*.{js,ts,tsx,vue,css}\"",
-    "test": "pnpm --recursive test",
-    "test:ci": "pnpm --recursive test:ci",
-    "clean": "pnpm --recursive exec rm -rf node_modules .next dist",
-    "type-check": "pnpm --recursive type-check",
+    "test": "turbo run test",
+    "test:ci": "turbo run test:ci",
+    "clean": "turbo run clean && rm -rf node_modules .turbo",
+    "type-check": "turbo run type-check",
     "prepare": "husky",
     "pre-commit": "lint-staged",
-    "pre-push": "pnpm run format:check && pnpm run lint && pnpm --filter @reacterial/admin test:ci"
+    "pre-push": "pnpm run format:check && turbo run lint test:ci --filter=@reacterial/admin"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -39,6 +40,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.5",
     "prettier": "^3.3.3",
+    "turbo": "^2.5.8",
     "typescript": "5.4.x"
   }
 }

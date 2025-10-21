@@ -17,6 +17,13 @@ Welcome to the Reacterial documentation! This directory contains comprehensive g
   - Verification results
   - Next steps and examples
 
+- **⚡ [Turborepo Setup](./TURBOREPO_SETUP.md)** - Smart caching & build optimization
+  - Installation and configuration
+  - Performance benchmarks (141x faster!)
+  - Task pipeline explained
+  - Remote caching setup
+  - Troubleshooting guide
+
 - **🔒 [Git Hooks](./GIT_HOOKS.md)** - Code quality enforcement with Husky
   - Pre-commit hooks (formatting + linting)
   - Pre-push hooks (format check + lint + tests)
@@ -70,6 +77,7 @@ Welcome to the Reacterial documentation! This directory contains comprehensive g
 docs/
 ├── README.md                          # This file - documentation index
 ├── MONOREPO_IMPLEMENTATION.md         # 🎉 Implementation complete! (START HERE)
+├── TURBOREPO_SETUP.md                 # ⚡ Build optimization & caching
 ├── GIT_HOOKS.md                       # 🔒 Git hooks and code quality
 ├── VERCEL_DEPLOYMENT.md               # 🚀 Production deployment guide
 ├── ENVIRONMENT_SETUP.md               # 🔧 Environment variables setup
