@@ -2,11 +2,12 @@
 
 Reacterial is a versatile boilerplate for building modern web applications like CRM systems, admin dashboards, and enterprise portals. Built with Next.js, React, Material-UI (MUI), and Redux for scalable state management.
 
-
 ## Deployed on Vercel
+
 https://www.reacterial.com/
 
 ## Stacks
+
 - Next.js
 - React
 - MUI
@@ -18,6 +19,7 @@ https://www.reacterial.com/
 - MongoDB Atlas
 
 ### TODO
+
 - Storybook
 - Playwright: UI Automated test
 - Presentable landing page
@@ -26,11 +28,13 @@ https://www.reacterial.com/
 ## Local development
 
 ### Step 1: Install Dependencies
+
 ```bash
 pnpm install
 ```
 
 ### Step 2: Set Up Environment Variables
+
 Create `apps/admin/.env.local` file with your credentials:
 
 ```bash
@@ -42,6 +46,7 @@ nano apps/admin/.env.local
 ```
 
 **Required variables:**
+
 - `MONGODB_URI` - Your MongoDB connection string
 - `NEXTAUTH_SECRET` - Generate with: `openssl rand -base64 32`
 - `NEXTAUTH_URL` - http://localhost:3000 (for local dev)
@@ -49,6 +54,7 @@ nano apps/admin/.env.local
 See [Environment Setup Guide](./docs/ENVIRONMENT_SETUP.md) for detailed instructions.
 
 ### Step 3: Run Development Server
+
 ```bash
 pnpm dev
 ```
@@ -56,6 +62,7 @@ pnpm dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ### Default Credentials
+
 - **Email**: `admin@reacterial.com`
 - **Password**: `admin123`
 
@@ -68,7 +75,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ```
 
 ### Using NPM (Legacy)
+
 If you prefer npm, you can still use it:
+
 ```bash
 1. npm install
 2. npm run dev
@@ -79,6 +88,7 @@ If you prefer npm, you can still use it:
 Comprehensive documentation is available in the [`docs/`](./docs) directory:
 
 - **🎉 [Monorepo Implementation](./docs/MONOREPO_IMPLEMENTATION.md)** - Complete migration guide and new structure
+- **🔒 [Git Hooks](./docs/GIT_HOOKS.md)** - Code quality enforcement with Husky
 - **🚀 [Vercel Deployment](./docs/VERCEL_DEPLOYMENT.md)** - Deploy to Vercel (production guide)
 - **🔧 [Environment Setup](./docs/ENVIRONMENT_SETUP.md)** - Configure MongoDB and environment variables
 - **⭐ [Decision Matrix](./docs/DECISION_MATRIX.md)** - Choose the right architecture for your needs

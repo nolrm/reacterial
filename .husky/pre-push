@@ -1,0 +1,33 @@
+#!/bin/sh
+
+echo "🔍 Running pre-push checks..."
+echo ""
+
+# Run format check
+echo "📝 Checking code formatting..."
+pnpm run format:check || {
+  echo "❌ Formatting check failed! Run 'pnpm format' to fix."
+  exit 1
+}
+echo "✅ Formatting check passed"
+echo ""
+
+# Run linting
+echo "🔍 Running linter..."
+pnpm run lint || {
+  echo "❌ Linting failed! Fix the errors or run 'pnpm lint:fix'."
+  exit 1
+}
+echo "✅ Linting passed"
+echo ""
+
+# Run tests
+echo "🧪 Running tests..."
+pnpm --filter @reacterial/admin test:ci || {
+  echo "❌ Tests failed! Fix the failing tests."
+  exit 1
+}
+echo "✅ Tests passed"
+echo ""
+
+echo "🎉 All pre-push checks passed! Pushing..."

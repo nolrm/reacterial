@@ -11,17 +11,33 @@
     "build:admin": "pnpm --filter @reacterial/admin build",
     "start": "pnpm --filter @reacterial/admin start",
     "lint": "pnpm --recursive lint",
+    "lint:fix": "pnpm --recursive lint --fix",
     "format": "prettier --write \"**/*.{js,ts,tsx,vue,css}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,tsx,vue,css}\"",
     "test": "pnpm --recursive test",
     "test:ci": "pnpm --recursive test:ci",
     "clean": "pnpm --recursive exec rm -rf node_modules .next dist",
-    "type-check": "pnpm --recursive type-check"
+    "type-check": "pnpm --recursive type-check",
+    "prepare": "husky",
+    "pre-commit": "lint-staged",
+    "pre-push": "pnpm run format:check && pnpm run lint && pnpm --filter @reacterial/admin test:ci"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,css,scss,md}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@types/node": "^20",
     "eslint": "^8",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.5",
     "prettier": "^3.3.3",
     "typescript": "5.4.x"
   }
