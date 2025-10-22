@@ -33,48 +33,44 @@ declare module 'next-auth' {
   }
 }
 
-async function findOrCreateUser(user: any, sessionToken: string) {
+async function findOrCreateUser(user: any) {
   try {
     await connectDB();
 
     // Check if user exists in our database
     let dbUser = await UserModel.findOne({ email: user.email });
-    console.log('dbUser', dbUser);
 
-    // If user doesn't exist, create a new one via the API
+    // If user doesn't exist, create a new one directly
     if (!dbUser && user.email) {
-      console.log('Creating....');
-      const response = await axios.post(
-        `${process.env.BASE_URL}/api/users/register`,
-        {
-          name: user.name,
-          email: user.email,
-          image:
-            user.image ||
-            `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || '')}&background=random`,
-          password: 'OAUTH_USER', // Special marker for OAuth users
-          role: 'admin', // Default role
-          address: '',
-          phone: '',
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${sessionToken}`, // Include the session token or other auth method
-          },
-        }
-      );
+      // ✅ Generate a secure random password for OAuth users
+      const crypto = require('crypto');
+      const randomPassword = 'OAUTH_' + crypto.randomBytes(32).toString('hex');
 
-      dbUser = response.data;
+      // ✅ Hash the password
+      const hashedPassword = await bcrypt.hash(randomPassword, 12);
+
+      // ✅ Create user with 'user' role (not 'admin')
+      dbUser = await UserModel.create({
+        name: user.name,
+        email: user.email,
+        image:
+          user.image ||
+          `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || '')}&background=random`,
+        password: hashedPassword,
+        role: 'user', // ✅ Default to 'user', not 'admin'
+        address: '',
+        phone: '',
+      });
     }
 
     return dbUser;
-  } catch (error) {
-    console.error('Error in findOrCreateUser:', error);
+  } catch (error: any) {
+    console.error('Error in findOrCreateUser:', error.message);
     throw error;
   }
 }
 
-export default NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -87,8 +83,6 @@ export default NextAuth({
           await connectDB();
 
           const user = await UserModel.findOne({ email: credentials?.email });
-
-          console.log('user', user);
 
           if (!user) {
             return null;
@@ -113,8 +107,8 @@ export default NextAuth({
             address: user.address,
             phone: user.phone,
           } as any;
-        } catch (error) {
-          console.error('Auth error:', error);
+        } catch (error: any) {
+          console.error('Auth error:', error.message);
           return null;
         }
       },
@@ -136,7 +130,6 @@ export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({ session, token }) {
-      console.log('async session');
       if (token && session.user) {
         session.user.id = token.id as string;
         session.user.name = token.name as string;
@@ -149,12 +142,10 @@ export default NextAuth({
       return session;
     },
     async jwt({ token, user, account }) {
-      console.log('async jwt token', token);
       // Initial sign in
       if (account && user) {
         try {
-          const sessionToken = token.accessToken as string; // Ensure it's a string
-          const dbUser = await findOrCreateUser(user, sessionToken);
+          const dbUser = await findOrCreateUser(user);
 
           if (dbUser) {
             // Save user details to token
@@ -166,14 +157,16 @@ export default NextAuth({
             token.address = dbUser.address;
             token.phone = dbUser.phone;
           }
-        } catch (error) {
-          console.error('Error in jwt callback:', error);
+        } catch (error: any) {
+          console.error('Error in jwt callback:', error.message);
         }
       }
       return token;
     },
   },
-});
+};
+
+export default NextAuth(authOptions);
 
 // Example Redux action to set user data
 export const setUser = (userData: Omit<UserState, 'isLoading'>) => ({
