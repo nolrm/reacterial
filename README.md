@@ -115,6 +115,7 @@ Comprehensive documentation is available in the [`docs/`](./docs) directory:
 - **[Component Organization Guide](./docs/COMPONENT_ORGANIZATION_GUIDE.md)** - UI component structure and best practices
 - **[PNPM Migration Summary](./docs/MIGRATION_SUMMARY.md)** - NPM to PNPM conversion details
 - **[Documentation Index](./docs/README.md)** - Full documentation overview
+- **[TypeScript Strict Config](./docs/TYPESCRIPT_STRICT_CONFIG.md)** - Strict type checking setup
 
 ## 🧪 Testing
 

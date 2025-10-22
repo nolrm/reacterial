@@ -1,4 +1,5 @@
-import NextAuth from 'next-auth';
+import NextAuth, { Session } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { User as UserModel } from '@/db/models';
@@ -127,9 +128,9 @@ export const authOptions = {
   // jwt: {
   //   // Configure JWT settings here if needed
   // },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET as string,
   callbacks: {
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       if (token && session.user) {
         session.user.id = token.id as string;
         session.user.name = token.name as string;
@@ -141,7 +142,15 @@ export const authOptions = {
       }
       return session;
     },
-    async jwt({ token, user, account }) {
+    async jwt({
+      token,
+      user,
+      account,
+    }: {
+      token: JWT;
+      user?: any;
+      account?: any;
+    }) {
       // Initial sign in
       if (account && user) {
         try {
@@ -150,12 +159,12 @@ export const authOptions = {
           if (dbUser) {
             // Save user details to token
             token.id = dbUser._id.toString();
-            token.name = dbUser.name;
-            token.email = dbUser.email;
-            token.role = dbUser.role;
-            token.image = dbUser.image;
-            token.address = dbUser.address;
-            token.phone = dbUser.phone;
+            token.name = dbUser.name || null;
+            token.email = dbUser.email || null;
+            token.role = dbUser.role || null;
+            token.image = dbUser.image || null;
+            token.address = dbUser.address || null;
+            token.phone = dbUser.phone || null;
           }
         } catch (error: any) {
           console.error('Error in jwt callback:', error.message);
