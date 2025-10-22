@@ -1,2 +1,3 @@
-export { default as ThemeProvider } from './ThemeProvider';
-export { default as CustomThemeProvider } from './ThemeProvider';
+// Theme package is currently empty
+// ThemeProvider moved to apps/admin (has Redux dependencies)
+// This package is reserved for future shared theme utilities

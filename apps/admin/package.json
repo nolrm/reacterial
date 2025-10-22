@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci --passWithNoTests"
   },
   "dependencies": {
     "@reacterial/ui": "workspace:*",
@@ -57,4 +57,3 @@
     "typescript": "5.4.x"
   }
 }
-

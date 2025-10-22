@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Header, Sidebar, MainContent } from '@reacterial/ui';
+import { MainContent } from '@reacterial/ui';
+import Header from '@/components/layout/Header';
+import Sidebar from '@/components/layout/Sidebar';
 import styles from './LayoutAdmin.module.css';
 import { Box, useTheme } from '@mui/material';
 

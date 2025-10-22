@@ -14,7 +14,7 @@ import { Menu as MenuIcon } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import { useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
-import RtProfileDropdown from '@/components/RtProfileDropdown';
+import RtProfileDropdown from './RtProfileDropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme, selectTheme } from '@/redux/store';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';

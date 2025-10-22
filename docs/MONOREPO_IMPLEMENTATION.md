@@ -75,6 +75,7 @@ reacterial/
 ## 🎯 What Was Changed
 
 ### 1. **Directory Restructure**
+
 - ✅ Created `apps/admin/` - moved your current app here
 - ✅ Created `packages/ui/` - extracted all RT components
 - ✅ Created `packages/auth/` - extracted authentication components
@@ -83,15 +84,18 @@ reacterial/
 - ✅ Moved `src/db/` to root `db/`
 
 ### 2. **Package Configuration**
+
 - ✅ Created `package.json` for each package
 - ✅ Updated root `package.json` with monorepo scripts
 - ✅ Updated `pnpm-workspace.yaml` to include all packages
 - ✅ Configured `next.config.mjs` with `transpilePackages`
 
 ### 3. **Import Updates**
+
 All imports across the codebase have been updated:
 
 **Before:**
+
 ```typescript
 import RtBarChart from '@/components/RtBarChart';
 import PageTitle from '@/components/PageTitle';
@@ -100,6 +104,7 @@ import CustomThemeProvider from '@/components/ThemeProvider';
 ```
 
 **After:**
+
 ```typescript
 import { RtBarChart, PageTitle } from '@reacterial/ui';
 import { withAuth } from '@reacterial/auth';
@@ -107,6 +112,7 @@ import { CustomThemeProvider } from '@reacterial/theme';
 ```
 
 ### 4. **Component Organization**
+
 Components are now organized by domain in `packages/ui/src/`:
 
 - **charts/** - Data visualization components
@@ -157,12 +163,14 @@ pnpm test                   # Run tests
 ## ✅ Verification Results
 
 ### ✓ Lint: Passed
+
 ```bash
 cd apps/admin && pnpm lint
 ✔ No ESLint warnings or errors
 ```
 
 ### ✓ Build: Passed
+
 ```bash
 cd apps/admin && pnpm build
 ✓ Compiled successfully
@@ -171,7 +179,9 @@ cd apps/admin && pnpm build
 ```
 
 ### ✓ Workspace Linking: Working
+
 All packages are correctly linked via `workspace:*` protocol:
+
 - `@reacterial/ui` ✓
 - `@reacterial/auth` ✓
 - `@reacterial/theme` ✓
@@ -182,11 +192,13 @@ All packages are correctly linked via `workspace:*` protocol:
 ## 🎉 Benefits Achieved
 
 ### 1. **Code Reusability**
+
 - ✅ All RT components are now in `@reacterial/ui`
 - ✅ Authentication logic shared via `@reacterial/auth`
 - ✅ Theme configuration shared via `@reacterial/theme`
 
 ### 2. **Easy App Creation**
+
 To add a new app (e.g., customer portal):
 
 ```bash
@@ -209,11 +221,13 @@ pnpm add next react react-dom
 ```
 
 ### 3. **Independent Development**
+
 - Each app can be developed independently
 - Each package can be versioned independently
 - Clear dependency boundaries
 
 ### 4. **Efficient Builds**
+
 - Shared node_modules via pnpm
 - Fast installs with hard links
 - Only changed packages rebuild
@@ -252,18 +266,21 @@ import { CustomThemeProvider, ThemeProvider } from '@reacterial/theme';
 ## 🔧 Next Steps
 
 ### Immediate
+
 1. ✅ Test the dev server: `pnpm dev`
 2. ✅ Verify all pages work correctly
 3. ✅ Test authentication flow
 4. ✅ Check responsive design
 
 ### Short Term
+
 1. Add unit tests to packages
 2. Add Storybook for UI package
 3. Document component APIs
 4. Create example app templates
 
 ### Long Term
+
 1. Add customer portal app
 2. Add mobile app
 3. Publish `@reacterial/ui` to npm (optional)
@@ -331,15 +348,18 @@ packages/utils/
 ## 🚨 Important Notes
 
 ### TypeScript Configuration
+
 - Each package has its own `tsconfig.json`
 - Admin app extends from root tsconfig
 - Packages use path aliases: `@reacterial/*`
 
 ### Next.js Configuration
+
 - `transpilePackages` configured to transpile workspace packages
 - This allows Next.js to process TypeScript from packages
 
 ### Git Workflow
+
 - Commit all packages together
 - Use conventional commits
 - Tag releases per-package if needed
@@ -353,6 +373,69 @@ packages/utils/
 - [Next.js Package Transpilation](https://nextjs.org/docs/app/api-reference/next-config-js/transpilePackages)
 - [Component Organization Guide](./COMPONENT_ORGANIZATION_GUIDE.md)
 - [Monorepo Architecture Guide](./MONOREPO_ARCHITECTURE.md)
+
+---
+
+## 🧹 Post-Migration Cleanup
+
+After the migration, duplicate files from the old structure were removed:
+
+### Removed Directories & Files
+
+**Root `src/` directory** - Complete duplicate removed
+
+- `src/app/`, `src/components/`, `src/pages/`, `src/layouts/`
+- `src/data/`, `src/redux/`, `src/service/`, `src/styles/`, `src/types/`
+- **Now using**: `apps/admin/src/`
+
+**Root `public/` directory** - Duplicate assets removed
+
+- `logo.svg`, `next.svg`, `reacterial.gif`, `vercel.svg`
+- **Now using**: `apps/admin/public/`
+
+**Old configuration files** - App-specific configs removed from root
+
+- `jest.config.js`, `jest.setup.js`, `next-env.d.ts`
+- `next.config.mjs`, `tsconfig.json`, `types.d.ts`
+- **Now using**: `apps/admin/` (app-specific configs)
+
+**Duplicate components in `apps/admin/src/components/`** - Already in shared packages
+
+- UI components: `RtBarChart`, `RtLineChart`, `RtPieChart`, `RtDataGrid`, `RtTopSummary`, `PageTitle`, `RtError` → Removed (using `@reacterial/ui`)
+- Auth component: `LoginForm`, `withAuth` → Removed (using `@reacterial/auth`)
+- **Kept**: `landing/` (app-specific landing page components)
+
+**App-specific components moved back from packages** - Had Redux/app dependencies
+
+- Layout components: `Header`, `Sidebar`, `RtProfileDropdown` → Moved from `@reacterial/ui` to `apps/admin/src/components/layout/`
+- Theme: `ThemeProvider` → Moved from `@reacterial/theme` to `apps/admin/src/components/`
+- Auth: `UserSessionHandler` → Moved from `@reacterial/auth` to `apps/admin/src/components/`
+- **Reason**: These components have dependencies on Redux store and app-specific data
+- **Truly shared**: Only `MainContent` remains in `@reacterial/ui` (generic, no dependencies)
+
+### Clean Root Structure
+
+Root directory now contains only workspace-level files:
+
+```
+reacterial/
+├── .eslintrc.js         # Shared ESLint config
+├── .gitignore           # Git ignore rules
+├── .npmrc               # pnpm configuration
+├── .prettierrc          # Prettier config
+├── package.json         # Root workspace config
+├── pnpm-workspace.yaml  # Workspace definition
+├── turbo.json           # Turborepo config
+├── vercel.json          # Deployment config
+├── README.md            # Project documentation
+│
+├── apps/                # Applications
+├── packages/            # Shared packages
+├── db/                  # Database scripts
+└── docs/                # Documentation
+```
+
+**Result**: 73+ duplicate files removed (57 from root structure + 16 duplicate components), cleaner structure, single source of truth for all files.
 
 ---
 
@@ -371,6 +454,8 @@ packages/utils/
 - [x] Verify lint passes
 - [x] Verify build passes
 - [x] Update documentation
+- [x] Remove duplicate files and old structure
+- [x] Clean up root directory
 
 ---
 
@@ -383,13 +468,14 @@ Your Reacterial project is now a **production-ready monorepo** with:
 ✅ Shared theme package  
 ✅ Scalable architecture for multiple apps  
 ✅ Efficient pnpm workspace setup  
-✅ Clean, organized codebase  
+✅ Clean, organized codebase
 
 **You're ready to build your next app!** 🚀
 
 ---
 
 **Migration Completed**: October 21, 2025  
+**Cleanup Completed**: October 22, 2025  
 **PNPM Version**: 10.9.0  
 **Next.js Version**: 14.2.33  
 **Project Version**: 0.1.0
@@ -399,8 +485,8 @@ Your Reacterial project is now a **production-ready monorepo** with:
 ## 💬 Questions?
 
 Refer to:
+
 - [Decision Matrix](./DECISION_MATRIX.md) - Architecture decisions
 - [Monorepo Architecture](./MONOREPO_ARCHITECTURE.md) - Detailed guide
 - [Component Organization](./COMPONENT_ORGANIZATION_GUIDE.md) - Component structure
 - [Migration Summary](./MIGRATION_SUMMARY.md) - NPM to PNPM migration
-

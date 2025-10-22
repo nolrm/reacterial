@@ -7,8 +7,9 @@ import { useEffect } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import type { AppProps } from 'next/app';
-import { withAuth, UserSessionHandler } from '@reacterial/auth';
-import { CustomThemeProvider } from '@reacterial/theme';
+import { withAuth } from '@reacterial/auth';
+import UserSessionHandler from '@/components/UserSessionHandler';
+import CustomThemeProvider from '@/components/ThemeProvider';
 import '../styles/styles.scss';
 
 function Auth({ children }: { children: JSX.Element }) {

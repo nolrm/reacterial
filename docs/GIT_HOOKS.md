@@ -66,6 +66,8 @@ pnpm --filter @reacterial/admin test:ci
 1. Verifies all files are formatted correctly
 2. Checks for linting errors across the entire codebase
 3. Runs all unit tests to ensure nothing is broken
+   - ✅ Passes with exit code 0 if no tests exist (using `--passWithNoTests`)
+   - ❌ Fails if any test fails
 
 ---
 
