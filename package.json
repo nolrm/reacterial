@@ -1,8 +1,8 @@
 {
   "name": "reacterial-monorepo",
-  "description": "Reacterial Monorepo - Build multiple apps with shared components. Includes admin dashboard, UI library, auth, and theme packages.",
-  "author": "Marlon M",
-  "version": "0.1.0",
+  "description": "Reacterial - Multi-purpose development platform: AI-Native Admin Starter, Modern Monorepo Learning Platform, and Internal Tools Accelerator. Built with Next.js 16, React, Material-UI, and Turborepo.",
+  "author": "Marlon Maniti",
+  "version": "0.2.0",
   "private": true,
   "packageManager": "pnpm@10.9.0",
   "scripts": {

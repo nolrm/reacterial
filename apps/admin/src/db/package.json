@@ -1,6 +1,8 @@
 {
   "name": "reacterial-db-init",
-  "version": "1.0.0",
+  "version": "0.2.0",
+  "description": "Reacterial Database Package - MongoDB models, scripts, and utilities for database initialization, seeding, and management.",
+  "author": "Marlon Maniti",
   "private": true,
   "scripts": {
     "init": "node scripts/init.js",

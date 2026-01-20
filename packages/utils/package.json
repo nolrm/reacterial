@@ -1,7 +1,7 @@
 {
   "name": "@reacterial/utils",
-  "version": "0.1.0",
-  "description": "Reacterial Utils - Shared utilities and helper functions",
+  "version": "0.2.0",
+  "description": "Reacterial Utils Package - Shared utility functions, custom React hooks, and helper methods for cross-package use.",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
@@ -18,7 +18,6 @@
   },
   "devDependencies": {
     "@types/react": "^18.3.11",
-    "typescript": "^5.4.5"
+    "typescript": "^5.6.0"
   }
 }
-

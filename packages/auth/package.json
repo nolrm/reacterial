@@ -1,7 +1,7 @@
 {
   "name": "@reacterial/auth",
-  "version": "0.1.0",
-  "description": "Reacterial Authentication - Shared authentication components and utilities",
+  "version": "0.2.0",
+  "description": "Reacterial Authentication Package - Shared authentication components, HOCs, and utilities for Next.js applications. Supports NextAuth integration.",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
@@ -20,7 +20,6 @@
   },
   "devDependencies": {
     "@types/react": "^18.3.11",
-    "typescript": "^5.4.5"
+    "typescript": "^5.6.0"
   }
 }
-

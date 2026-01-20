@@ -1,7 +1,7 @@
 {
   "name": "@reacterial/theme",
-  "version": "0.1.0",
-  "description": "Reacterial Theme - Shared theme configuration and provider",
+  "version": "0.2.0",
+  "description": "Reacterial Theme Package - Shared Material-UI theme configuration and provider. Supports light/dark mode and custom theme customization.",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
@@ -16,7 +16,6 @@
   },
   "devDependencies": {
     "@types/react": "^18.3.11",
-    "typescript": "^5.4.5"
+    "typescript": "^5.6.0"
   }
 }
-

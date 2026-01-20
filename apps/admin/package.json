@@ -1,8 +1,8 @@
 {
   "name": "@reacterial/admin",
-  "description": "Reacterial Admin Dashboard - Modern admin panel with data visualization and management tools",
-  "author": "Marlon M",
-  "version": "0.1.0",
+  "description": "Reacterial Admin Dashboard - AI-ready admin panel with data visualization, authentication, and management tools. Built with Next.js 16, React, Material-UI, and Redux.",
+  "author": "Marlon Maniti",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
