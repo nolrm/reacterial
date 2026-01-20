@@ -4,6 +4,14 @@ Welcome to the Reacterial documentation! This directory contains comprehensive g
 
 ## 📚 Documentation Index
 
+### Roadmap & Vision
+
+- **🗺️ [Roadmap](./ROADMAP.md)** - Planned features and development phases across all three project goals
+  - AI-Native Admin Starter roadmap
+  - Modern Monorepo Learning Platform enhancements
+  - Internal Tools Accelerator features
+  - Timeline and priorities
+
 ### Getting Started
 
 - **[Main README](../README.md)** - Project overview, stack, and quick start guide
@@ -76,6 +84,7 @@ Welcome to the Reacterial documentation! This directory contains comprehensive g
 ```
 docs/
 ├── README.md                          # This file - documentation index
+├── ROADMAP.md                         # 🗺️ Development roadmap and vision
 ├── MONOREPO_IMPLEMENTATION.md         # 🎉 Implementation complete! (START HERE)
 ├── TURBOREPO_SETUP.md                 # ⚡ Build optimization & caching
 ├── GIT_HOOKS.md                       # 🔒 Git hooks and code quality
@@ -85,7 +94,8 @@ docs/
 ├── DECISION_MATRIX.md                 # Architecture decision guide
 ├── MIGRATION_SUMMARY.md               # NPM to PNPM migration report
 ├── MONOREPO_ARCHITECTURE.md           # Monorepo structure for multiple apps
-└── COMPONENT_ORGANIZATION_GUIDE.md    # Component structure guide
+├── COMPONENT_ORGANIZATION_GUIDE.md   # Component structure guide
+└── TYPESCRIPT_STRICT_CONFIG.md        # TypeScript strict mode setup
 ```
 
 ## 🎯 Quick Links

@@ -1,6 +1,12 @@
 # Reacterial
 
-Reacterial is a versatile boilerplate for building modern web applications like CRM systems, admin dashboards, and enterprise portals. Built with Next.js, React, Material-UI (MUI), and Redux for scalable state management.
+Reacterial is a **multi-purpose development platform** designed for three core use cases:
+
+1. **🤖 AI-Native Admin Starter** - Batteries-included admin dashboard with AI integration patterns
+2. **📚 Modern Monorepo Learning Platform** - Reference implementation for pnpm workspaces, Turborepo, and Next.js 15
+3. **⚡ Internal Tools Accelerator** - Clone, configure, and ship internal dashboards in days
+
+Built with Next.js, React, Material-UI (MUI), Redux, and a scalable monorepo architecture.
 
 ## Deployed on Vercel
 
@@ -20,12 +26,50 @@ https://www.reacterial.com/
 - **pnpm Workspaces** - Monorepo management
 - **Turborepo** - Smart caching & build orchestration
 
-### TODO
+## 🎯 Project Goals & Status
 
-- Storybook
-- Playwright: UI Automated test
-- Presentable landing page
-- Theming: Light/Dark theme in UI
+### Goal 1: AI-Native Admin Starter 🤖
+
+**Status**: 📋 Planned  
+**Vision**: Complete admin starter with AI integration patterns (LLM-powered insights, natural language queries, automated summaries)
+
+**Current State**:
+
+- ✅ Admin dashboard foundation
+- ✅ Data visualization (charts, grids)
+- ✅ Authentication & authorization
+- 📋 AI integration examples (planned)
+- 📋 LLM provider abstraction layer (planned)
+
+### Goal 2: Modern Monorepo Learning Platform 📚
+
+**Status**: ✅ Implemented  
+**Vision**: Production-ready reference for teams learning modern monorepo patterns
+
+**Current State**:
+
+- ✅ pnpm workspaces setup
+- ✅ Turborepo integration
+- ✅ Shared packages (`@reacterial/ui`, `@reacterial/auth`, `@reacterial/theme`)
+- ✅ Comprehensive documentation
+- 📋 Interactive tutorials (planned)
+- 📋 Video walkthroughs (planned)
+
+### Goal 3: Internal Tools Accelerator ⚡
+
+**Status**: 🚧 In Progress  
+**Vision**: Clone this repo, wire your data models, and have a working internal tool in a weekend
+
+**Current State**:
+
+- ✅ Monorepo structure
+- ✅ Shared UI components
+- ✅ Database models & scripts
+- ✅ Authentication system
+- 🚧 CRUD scaffolding generator (in progress)
+- 📋 One-command setup script (planned)
+
+See [Roadmap](./docs/ROADMAP.md) for detailed development phases and timeline.
 
 ## Local development
 
@@ -105,17 +149,32 @@ Cached build: 123ms  ⚡ >>> FULL TURBO
 
 Comprehensive documentation is available in the [`docs/`](./docs) directory:
 
+### Roadmap & Vision
+
+- **🗺️ [Roadmap](./docs/ROADMAP.md)** - Planned features and development phases across all three goals
+
+### Getting Started
+
 - **🎉 [Monorepo Implementation](./docs/MONOREPO_IMPLEMENTATION.md)** - Complete migration guide and new structure
+- **🔧 [Environment Setup](./docs/ENVIRONMENT_SETUP.md)** - Configure MongoDB and environment variables
+- **⭐ [Decision Matrix](./docs/DECISION_MATRIX.md)** - Choose the right architecture for your needs
+
+### Architecture & Best Practices
+
+- **[Monorepo Architecture](./docs/MONOREPO_ARCHITECTURE.md)** - Build multiple apps with shared components
+- **[Component Organization Guide](./docs/COMPONENT_ORGANIZATION_GUIDE.md)** - UI component structure and best practices
+- **[TypeScript Strict Config](./docs/TYPESCRIPT_STRICT_CONFIG.md)** - Strict type checking setup
+
+### Development & Deployment
+
 - **⚡ [Turborepo Setup](./docs/TURBOREPO_SETUP.md)** - Smart caching & performance optimization
 - **🔒 [Git Hooks](./docs/GIT_HOOKS.md)** - Code quality enforcement with Husky
 - **🚀 [Vercel Deployment](./docs/VERCEL_DEPLOYMENT.md)** - Deploy to Vercel (production guide)
-- **🔧 [Environment Setup](./docs/ENVIRONMENT_SETUP.md)** - Configure MongoDB and environment variables
-- **⭐ [Decision Matrix](./docs/DECISION_MATRIX.md)** - Choose the right architecture for your needs
-- **[Monorepo Architecture](./docs/MONOREPO_ARCHITECTURE.md)** - Build multiple apps with shared components
-- **[Component Organization Guide](./docs/COMPONENT_ORGANIZATION_GUIDE.md)** - UI component structure and best practices
 - **[PNPM Migration Summary](./docs/MIGRATION_SUMMARY.md)** - NPM to PNPM conversion details
+
+### Reference
+
 - **[Documentation Index](./docs/README.md)** - Full documentation overview
-- **[TypeScript Strict Config](./docs/TYPESCRIPT_STRICT_CONFIG.md)** - Strict type checking setup
 
 ## 🧪 Testing
 

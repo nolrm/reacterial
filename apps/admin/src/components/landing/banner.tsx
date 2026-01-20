@@ -31,7 +31,7 @@ export default function Banner() {
             This project is a modern web application built with Next.js, React,
             and Material-UI (MUI), and is deployed on Vercel.
           </Typography>
-          <Link href="/login" passHref>
+          <Link href="/login">
             <Button variant="contained" color="primary" sx={{ mt: 2 }}>
               Demo
             </Button>
@@ -46,9 +46,10 @@ export default function Banner() {
           <Image
             src="/reacterial.gif"
             alt="Reacterial Demo"
-            layout="responsive"
             width={1200}
             height={500}
+            style={{ width: '100%', height: 'auto' }}
+            priority
           />
         </Box>
       </Container>
