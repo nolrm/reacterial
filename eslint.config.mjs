@@ -1,5 +1,7 @@
 // ESLint 9 flat config for Next.js 16
-// Minimal config to avoid compatibility layer issues
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsparser from '@typescript-eslint/parser';
+
 export default [
   {
     ignores: [
@@ -7,13 +9,14 @@ export default [
       '**/.next/**',
       '**/dist/**',
       '**/build/**',
-      '**/*.config.js',
-      '**/*.config.mjs',
       '**/coverage/**',
       '**/.turbo/**',
+      '**/*.config.js',
+      '**/*.config.mjs',
     ],
   },
   {
+    files: ['**/*.js', '**/*.jsx'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -30,6 +33,37 @@ export default [
       },
     },
     rules: {
+      'no-unused-vars': 'off',
+      'no-console': 'off',
+    },
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: tsparser,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+      globals: {
+        JSX: 'readonly',
+        console: 'readonly',
+        process: 'readonly',
+        Buffer: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        exports: 'readonly',
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tseslint,
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
       'no-unused-vars': 'off',
       'no-console': 'off',
     },
