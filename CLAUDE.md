@@ -1,0 +1,88 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+Reacterial is a pnpm monorepo (v0.2.0) built with Next.js 16, Material-UI, Redux Toolkit, and Turborepo. It serves as an AI-native admin starter, monorepo learning platform, and internal tools accelerator.
+
+## Commands
+
+```bash
+# Development
+pnpm dev              # Start admin app dev server (port 3000)
+pnpm dev:all          # Start all packages in dev mode
+
+# Build
+pnpm build            # Production build (all packages via Turborepo)
+pnpm build:admin      # Build admin app only
+
+# Testing (Jest + React Testing Library, jsdom env)
+pnpm test             # Watch mode
+pnpm test:ci          # CI mode (passWithNoTests)
+# Run a single test file:
+pnpm --filter @reacterial/admin jest path/to/test.test.tsx
+
+# Linting & Formatting
+pnpm lint             # ESLint 9 (flat config) across monorepo
+pnpm lint:fix         # Auto-fix lint issues
+pnpm format           # Prettier write
+pnpm format:check     # Prettier check
+
+# Type Checking
+pnpm type-check       # TypeScript strict mode check
+
+# Database (from db/ directory)
+pnpm --filter reacterial-db-init seed    # Seed sample data
+pnpm --filter reacterial-db-init reset   # Full DB reset
+
+# Cleanup
+pnpm clean            # Remove node_modules, .turbo, build artifacts
+```
+
+## Architecture
+
+### Monorepo Structure
+
+```
+apps/admin/          # @reacterial/admin - Next.js 16 application (private)
+packages/ui/         # @reacterial/ui - Shared MUI component library
+packages/auth/       # @reacterial/auth - Auth utilities (withAuth HOC)
+packages/theme/      # @reacterial/theme - Theme config (reserved)
+packages/utils/      # @reacterial/utils - Shared hooks & helpers
+db/                  # reacterial-db-init - MongoDB models & seeds
+```
+
+All `@reacterial/*` packages are transpiled via `next.config.mjs` (`transpilePackages`) and linked through `workspace:*` protocol. Turborepo orchestrates builds with dependency-aware ordering and caching.
+
+### Admin App (`apps/admin/src/`)
+
+- **Routing**: Uses Next.js Pages Router (`pages/`), NOT App Router. The `app/` directory only holds the root layout and favicon.
+- **API Routes**: `pages/api/auth/[...nextauth].ts` (NextAuth), `pages/api/users/` (registration, user CRUD)
+- **Auth**: NextAuth v4 with Credentials + Google OAuth providers. Protected pages use `withAuth` HOC from `@reacterial/auth`.
+- **State**: Redux Toolkit with Redux Persist (localStorage). Slices: `userSlice` (user data), `themeSlice` (light/dark mode).
+- **Database**: MongoDB via Mongoose. Models defined in `db/models/`. Connection config reads from `apps/admin/.env.local`.
+- **Layout**: `LayoutAdmin` wraps protected pages with sidebar navigation and theme provider.
+
+### UI Package (`packages/ui/`)
+
+Components prefixed with `Rt`: `RtBarChart`, `RtLineChart`, `RtPieChart`, `RtDataGrid`, `RtTopSummary`, `RtError`, `PageTitle`, `MainContent`. All built on MUI.
+
+## Key Conventions
+
+- **Package manager**: pnpm (required, v10.9.0). Do not use npm or yarn.
+- **TypeScript**: Strict mode fully enabled across all packages (`noImplicitAny`, `strictNullChecks`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`).
+- **ESLint**: v9 flat config (`eslint.config.mjs` at root).
+- **Prettier**: Single quotes, semicolons, 2-space indent, 80 char width, trailing commas (es5).
+- **Git hooks**: Husky pre-commit runs lint-staged (Prettier + ESLint on staged files). Pre-push runs format check, lint, and tests.
+- **Path alias**: `@/*` maps to `apps/admin/src/*` in the admin app.
+- **Filtering**: Use `--filter` with Turborepo/pnpm to target specific packages (e.g., `--filter @reacterial/admin`).
+
+## Environment Variables
+
+Required in `apps/admin/.env.local`:
+
+- `MONGODB_URI` - MongoDB connection string
+- `NEXTAUTH_SECRET` - Session secret
+- `NEXTAUTH_URL` - Base URL (http://localhost:3000 for dev)
+- `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` - Optional, for Google OAuth
