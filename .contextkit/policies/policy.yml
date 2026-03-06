@@ -1,0 +1,20 @@
+# ContextKit Policy Configuration
+
+## Enforcement Levels
+
+- **off**: No enforcement (informational only)
+- **warn**: Show warnings but don't block
+- **block**: Block commits/actions if policy violated
+
+## Policy Rules
+
+enforcement:
+  testing:
+    numbered_cases: warn  # off | warn | block
+    coverage_threshold: 80  # warn if below
+  code_style:
+    typescript_strict: warn
+    naming_conventions: warn
+  standards:
+    freshness_days: 90  # warn if older
+    required_files: block

@@ -19,7 +19,7 @@
     "test:ci": "turbo run test:ci",
     "clean": "turbo run clean && rm -rf node_modules .turbo",
     "type-check": "turbo run type-check",
-    "prepare": "husky",
+    "prepare": "husky && git config core.hooksPath .contextkit/hooks",
     "pre-commit": "lint-staged",
     "pre-push": "pnpm run format:check && turbo run lint test:ci --filter=@reacterial/admin"
   },

@@ -1,0 +1,25 @@
+---
+description: ContextKit testing standards
+globs: "**/*.test.*, **/*.spec.*, **/__tests__/**"
+alwaysApply: false
+---
+
+# Testing Standards
+
+Reference: @.contextkit/standards/testing.md
+
+## Required Pattern: Numbered Test Cases
+
+All test cases MUST use numbered descriptions:
+
+```typescript
+describe("ComponentName", () => {
+  it("1. renders basic component", () => { /* ... */ });
+  it("2. handles user interactions", () => { /* ... */ });
+  it("3. displays correct content", () => { /* ... */ });
+});
+```
+
+## Templates
+
+- @.contextkit/templates/test.md — Test template

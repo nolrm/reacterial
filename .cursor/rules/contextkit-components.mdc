@@ -1,0 +1,20 @@
+---
+description: ContextKit component standards
+globs: "**/components/**"
+alwaysApply: false
+---
+
+# Component Standards
+
+Reference: @.contextkit/standards/code-style.md
+
+## Templates
+
+- @.contextkit/templates/component.md — Component template
+- @.contextkit/templates/story.md — Story/demo template
+- @.contextkit/templates/hook.md — Custom hook template
+
+## Commands
+
+- @.contextkit/commands/create-component.md — Create component workflow
+- @.contextkit/commands/spec.md — Write a component spec before coding

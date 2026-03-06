@@ -1,0 +1,33 @@
+# ContextKit Configuration
+version: "latest"
+project_name: "reacterial"
+project_type: "node"
+
+# Features
+features:
+  testing: true
+  documentation: true
+  code_review: true
+  linting: true
+  type_safety: true
+  pre_push_hook: true
+  commit_msg_hook: true
+
+# Paths (customize for your project)
+paths:
+  components: "src/components"
+  tests: "src/__tests__"
+  stories: "src/stories"
+  docs: "docs"
+
+# Commands
+commands:
+  analyze: "@.contextkit/commands/analyze.md"
+  review: "@.contextkit/commands/review.md"
+  fix: "@.contextkit/commands/fix.md"
+  refactor: "@.contextkit/commands/refactor.md"
+  run_tests: "@.contextkit/commands/run-tests.md"
+  add_docs: "@.contextkit/commands/add-documentation.md"
+  quality_check: "@.contextkit/commands/quality-check.md"
+  create_component: "@.contextkit/commands/create-component.md"
+  create_feature: "@.contextkit/commands/create-feature.md"

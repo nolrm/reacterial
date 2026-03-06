@@ -1,0 +1,25 @@
+---
+description: ContextKit project standards
+globs: "**/*.{ts,tsx,js,jsx,py,rs,go}"
+alwaysApply: true
+---
+
+# ContextKit Standards
+
+This project uses ContextKit for structured development standards.
+
+## References
+
+- @.contextkit/standards/code-style.md — Coding conventions
+- @.contextkit/standards/architecture.md — Architecture patterns
+- @.contextkit/standards/ai-guidelines.md — AI behavior rules
+- @.contextkit/standards/glossary.md — Project terminology
+- @.contextkit/product/mission-lite.md — Product context
+
+## Workflow
+
+1. Check standards before generating code
+2. Follow project patterns and conventions
+3. Include proper testing (numbered test cases)
+4. Ensure type safety
+5. Run quality checks

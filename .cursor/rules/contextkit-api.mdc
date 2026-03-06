@@ -1,0 +1,17 @@
+---
+description: ContextKit API and services standards
+globs: "**/api/**, **/services/**"
+alwaysApply: false
+---
+
+# API & Services Standards
+
+Reference: @.contextkit/standards/architecture.md
+
+## Templates
+
+- @.contextkit/templates/api.md — API service template
+
+## Commands
+
+- @.contextkit/commands/create-feature.md — Create feature workflow

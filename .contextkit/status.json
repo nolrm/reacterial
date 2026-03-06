@@ -1,0 +1,20 @@
+{
+  "version": "0.12.15",
+  "installed_at": "2026-03-04T08:19:58.779Z",
+  "last_updated": "2026-03-04T08:19:58.779Z",
+  "analyze": {
+    "run": false,
+    "last_run": null,
+    "customizations": [],
+    "project_type": null,
+    "package_manager": null
+  },
+  "features": {
+    "pre_push_hook": true,
+    "commit_msg_hook": true,
+    "standards": true,
+    "templates": true
+  },
+  "project_type": "node",
+  "package_manager": "pnpm"
+}
