@@ -1,55 +1,93 @@
 # Technical Decisions
 
-<!-- Architecture Decision Records (ADRs) -->
-
 ## Architecture Decisions
 
-### [DECISION_NAME] ([DATE])
+### Next.js Pages Router over App Router (2024)
 
-**Decision:** [DESCRIPTION]
-
-**Rationale:**
-- [REASON_1]
-- [REASON_2]
-
-**Alternatives Considered:** [ALTERNATIVE_1], [ALTERNATIVE_2]
-
-**Status:** ✅ Implemented | 🚧 In Progress | 📋 Planned
-
-## Technology Decisions
-
-### [TECHNOLOGY_CHOICE] ([DATE])
-
-**Decision:** [DESCRIPTION]
+**Decision:** Use Pages Router (`pages/`) for the admin app, not App Router.
 
 **Rationale:**
-- [REASON_1]
-- [REASON_2]
+- Simpler mental model for page-level auth via `withAuth` HOC
+- `getServerSideProps` provides straightforward server-side redirect on login page
+- App Router adds complexity (server components, `use client` boundaries) without clear benefit for an admin dashboard
+- Pages Router is stable and well-supported in Next.js 16
 
-**Alternatives Considered:** [ALTERNATIVE_1], [ALTERNATIVE_2]
+**Alternatives Considered:** App Router with `middleware.ts` for auth
 
-**Status:** ✅ Implemented | 🚧 In Progress | 📋 Planned
+**Status:** Implemented
 
-## Code Quality Decisions
+---
 
-### [QUALITY_DECISION] ([DATE])
+### Turborepo for Monorepo Orchestration
 
-**Decision:** [DESCRIPTION]
+**Decision:** Use Turborepo to orchestrate builds, linting, and tests across packages.
 
 **Rationale:**
-- [REASON_1]
-- [REASON_2]
+- Task-level caching avoids redundant rebuilds
+- Dependency-aware task ordering (build packages before admin app)
+- Simple `turbo.json` config with minimal overhead
+- Strong pnpm integration
 
-**Status:** ✅ Implemented | 🚧 In Progress | 📋 Planned
+**Alternatives Considered:** Nx, Lerna, manual scripts
+
+**Status:** Implemented
+
+---
+
+### `transpilePackages` Instead of Package Builds
+
+**Decision:** Workspace packages (`@reacterial/ui`, etc.) are transpiled by Next.js directly. No `tsc` build step in packages.
+
+**Rationale:**
+- Packages point `main` to `./src/index.ts` (source directly)
+- Next.js handles compilation via `transpilePackages` in `next.config.mjs`
+- Eliminates need for watch builds during development
+- Simplifies CI (no package build step before admin build)
+
+**Alternatives Considered:** Building each package to `dist/` with `tsc`
+
+**Status:** Implemented
+
+---
+
+### Redux Toolkit + Redux Persist
+
+**Decision:** Use Redux Toolkit for global state with Redux Persist for localStorage persistence.
+
+**Rationale:**
+- User session data (from NextAuth) needs to be available synchronously before the session hook resolves
+- Theme preference should survive page reload without flash
+- RTK provides standardized slice/action patterns
+
+**Alternatives Considered:** Zustand, React Context, SWR cache only
+
+**Status:** Implemented
+
+---
+
+### NextAuth v4 with Credentials + Google OAuth
+
+**Decision:** Use NextAuth v4 with dual providers.
+
+**Rationale:**
+- Credentials for demo/development with email+password
+- Google OAuth for production-ready social login
+- `findOrCreateUser` pattern handles first-time OAuth users
+- Role-based access (user/admin) baked into session via JWT callbacks
+
+**Status:** Implemented
+
+---
 
 ## Future Decisions to Make
 
-### [FUTURE_DECISION] ([TIMELINE])
+### App Router Migration
 
-**Decision:** [DESCRIPTION]
+**Decision:** Evaluate migrating admin app to App Router.
 
 **Options:**
-- [OPTION_1]
-- [OPTION_2]
+- Keep Pages Router (stable, no migration cost)
+- Migrate incrementally (coexist via `app/` directory)
+- Full migration to App Router
 
-**Factors:** [CONSIDERATION_1], [CONSIDERATION_2]
+**Factors:** Team familiarity, RSC benefits for data fetching, middleware-based auth

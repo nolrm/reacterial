@@ -93,7 +93,7 @@ Required in `apps/admin/.env.local`:
 This project uses [ContextKit](https://github.com/nolrm/contextkit) for AI development standards.
 
 ## ContextKit
-Version: 0.12.20
+Version: 0.13.2
 
 ## Project Standards
 

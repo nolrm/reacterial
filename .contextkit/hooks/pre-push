@@ -12,6 +12,13 @@ GATE=0
 PASSED=0
 SKIPPED=0
 
+on_gate_failure() {
+  echo ""
+  echo "  ❌ Quality Gates FAILED — push blocked."
+  echo ""
+}
+trap on_gate_failure ERR
+
 run_gate() {
   GATE=$((GATE + 1))
   local label="$1"
@@ -58,6 +65,14 @@ detect_project_type() {
 # ── Framework-Specific Gates ────────────────
 
 run_node_gates() {
+  # Monorepo (Turborepo + pnpm) — use project-specific commands
+  if [ -f "turbo.json" ] && [ -f "pnpm-lock.yaml" ]; then
+    run_gate "Prettier format check" pnpm run format:check
+    run_gate "ESLint" pnpm run lint
+    run_gate "Tests" pnpm --filter @reacterial/admin test:ci
+    return
+  fi
+
   # Determine package manager
   if [ -f "pnpm-lock.yaml" ]; then
     PM="pnpm"

@@ -1,4 +1,5 @@
 # ContextKit Configuration
+format_version: 1
 version: "latest"
 project_name: "reacterial"
 project_type: "node"
