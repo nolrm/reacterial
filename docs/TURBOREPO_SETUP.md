@@ -139,9 +139,8 @@ Replace root `package.json` scripts:
     "format": "prettier --write \"**/*.{js,ts,tsx,vue,css}\"",
     "format:check": "prettier --check \"**/*.{js,ts,tsx,vue,css}\"",
     "clean": "turbo run clean && rm -rf node_modules",
-    "prepare": "husky",
-    "pre-commit": "lint-staged",
-    "pre-push": "turbo run format:check lint test:ci --filter=@reacterial/admin"
+    "prepare": "git config core.hooksPath .contextkit/hooks",
+    "pre-push": "pnpm run format && turbo run lint test:ci --filter=@reacterial/admin"
   }
 }
 ```

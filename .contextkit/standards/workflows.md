@@ -11,13 +11,10 @@ Hot reload is enabled. Workspace packages are transpiled live — no rebuild nee
 
 ## Before Committing
 
-Git hooks run automatically via Husky:
-
-**Pre-commit** (lint-staged):
-- Prettier write on `*.{js,jsx,ts,tsx,json,css,scss,md}`
-- ESLint fix on `*.{js,jsx,ts,tsx}`
+Git hooks run automatically via ContextKit hooks (`.contextkit/hooks/`):
 
 **Pre-push**:
+
 - `pnpm run format` — auto-formats all files; if any files change, push is blocked (commit the reformatted files)
 - `pnpm run lint` — lints the entire codebase
 - `pnpm --filter @reacterial/admin test:ci` — runs unit tests in CI mode

@@ -19,18 +19,8 @@
     "test:ci": "turbo run test:ci",
     "clean": "turbo run clean && rm -rf node_modules .turbo",
     "type-check": "turbo run type-check",
-    "prepare": "husky && git config core.hooksPath .contextkit/hooks",
-    "pre-commit": "lint-staged",
-    "pre-push": "pnpm run format:check && turbo run lint test:ci --filter=@reacterial/admin"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.{json,css,scss,md}": [
-      "prettier --write"
-    ]
+    "prepare": "git config core.hooksPath .contextkit/hooks",
+    "pre-push": "pnpm run format && turbo run lint test:ci --filter=@reacterial/admin"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
@@ -40,8 +30,6 @@
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.5.4",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.5",
     "prettier": "^3.3.3",
     "turbo": "^2.5.8",
     "typescript": "^5.6.0"

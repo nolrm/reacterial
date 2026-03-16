@@ -168,7 +168,7 @@ Comprehensive documentation is available in the [`docs/`](./docs) directory:
 ### Development & Deployment
 
 - **⚡ [Turborepo Setup](./docs/TURBOREPO_SETUP.md)** - Smart caching & performance optimization
-- **🔒 [Git Hooks](./docs/GIT_HOOKS.md)** - Code quality enforcement with Husky
+- **🔒 [Git Hooks](./docs/GIT_HOOKS.md)** - Code quality enforcement with ContextKit hooks
 - **🚀 [Vercel Deployment](./docs/VERCEL_DEPLOYMENT.md)** - Deploy to Vercel (production guide)
 - **[PNPM Migration Summary](./docs/MIGRATION_SUMMARY.md)** - NPM to PNPM conversion details
 

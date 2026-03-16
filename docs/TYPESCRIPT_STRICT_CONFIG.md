@@ -112,15 +112,6 @@ pnpm type-check
 pnpm build
 ```
 
-### **Pre-commit Hook**
-
-The pre-commit hook automatically runs type checking:
-
-```bash
-git commit -m "feat: new feature"
-# ✅ Runs: format → lint → type-check
-```
-
 ### **Pre-push Hook**
 
 The pre-push hook ensures production readiness:

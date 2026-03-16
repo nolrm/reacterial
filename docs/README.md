@@ -32,9 +32,9 @@ Welcome to the Reacterial documentation! This directory contains comprehensive g
   - Remote caching setup
   - Troubleshooting guide
 
-- **🔒 [Git Hooks](./GIT_HOOKS.md)** - Code quality enforcement with Husky
-  - Pre-commit hooks (formatting + linting)
-  - Pre-push hooks (format check + lint + tests)
+- **🔒 [Git Hooks](./GIT_HOOKS.md)** - Code quality enforcement with ContextKit hooks
+  - Pre-push hooks (format write + lint + tests)
+  - Commit-msg hook (conventional format validation)
   - Configuration and setup
   - Troubleshooting guide
   - Best practices

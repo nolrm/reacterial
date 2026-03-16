@@ -13,7 +13,7 @@
 - **Redux store:** userSlice + themeSlice with Redux Persist
 - **Shared UI library:** @reacterial/ui with Rt-prefixed components
 - **ESLint 9:** Flat config with TypeScript strict rules
-- **Git hooks:** Husky pre-commit (lint-staged) + pre-push (format + lint + test)
+- **Git hooks:** ContextKit hooks — pre-push (format + lint + test) + commit-msg (conventional format)
 - **ContextKit:** AI development standards installed
 
 ### In Progress
