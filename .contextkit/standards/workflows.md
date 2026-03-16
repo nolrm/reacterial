@@ -25,13 +25,23 @@ If hooks fail, fix the issue before re-committing. Never use `--no-verify`.
 
 ## Adding a New Page
 
+Existing admin pages: `index` (dashboard), `products`, `profile`, `settings`, `charts`, `invoice`.
+
 1. Create `apps/admin/src/pages/admin/page-name.tsx`
 2. Wrap the default export with `withAuth`:
    ```tsx
    export default withAuth(PageName);
    ```
-3. Use `LayoutAdmin` for the page shell
-4. Add navigation link in the Sidebar component
+3. Use `LayoutAdmin` for the page shell:
+   ```tsx
+   return (
+     <LayoutAdmin>
+       <PageTitle title="Page Name" />
+       <MainContent>...</MainContent>
+     </LayoutAdmin>
+   );
+   ```
+4. Add navigation link in `apps/admin/src/components/layout/Sidebar` component
 
 ## Adding a New Shared Component
 

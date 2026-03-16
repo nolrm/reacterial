@@ -79,3 +79,14 @@ For single-file components, `index.ts` is optional; export directly from the fil
 - Keep slices focused: one domain concern per slice
 - Use `createSlice` with `reducers` — no hand-rolled reducers
 - Persist only what needs to survive page reload (user, theme)
+
+## Known Deviations & Exceptions
+
+These patterns exist in the current codebase and are acceptable but should not be propagated to new code:
+
+- **`RtDataGrid`** uses `items: any[]` — acceptable for the generic wrapper, but new feature-specific data components should use proper typed props.
+- **`database.js`** in `apps/admin/src/db/config/` is JavaScript — not TypeScript. This is a known tech debt item. Do not create new `.js` files in `apps/` or `packages/`.
+- **`db/` package** (seeds/models) is entirely JavaScript. TypeScript migration is on the roadmap.
+- **Inline `style={{}}`** is used in `RtDataGrid` for the container `div` dimensions. New components should use MUI `Box` with `sx` instead.
+- **`LoginForm`** extracts form field values manually via `event.currentTarget.<name>`. New forms should use `react-hook-form` when added to the project.
+- **`themeSlice`** is defined inline inside `store.ts` rather than its own file — this is intentional since it is small and tightly coupled to store setup.

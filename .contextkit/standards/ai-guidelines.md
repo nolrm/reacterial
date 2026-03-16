@@ -63,3 +63,28 @@
 - Do not use `fetch` directly in components — use the service layer (`service/`)
 - Do not hardcode colors or spacing — use theme values
 - Do not create helpers that duplicate lodash or native JS capabilities
+- Do not create new `.js` files in `apps/` or `packages/` — TypeScript only
+- Do not import from `db/` (root db package) in API routes — use `apps/admin/src/db/config/database.js` for `connectDB()`
+- Do not read from `packages/theme` or `packages/utils` and expect implementations — they are currently empty/reserved
+
+## Known Codebase Issues (Do Not Propagate)
+
+When editing existing code, be aware of these known issues. Do not replicate them in new code:
+
+- `RtDataGrid` has `items: any[]` — existing components can stay as-is, but new ones must be typed
+- `database.js` is JavaScript — leave it as JS unless explicitly asked to migrate
+- `LoginForm` uses manual `event.currentTarget` form extraction — do not add more forms this way; wait for react-hook-form adoption
+- Inline `style={{}}` on container divs in `RtDataGrid` — use `Box` with `sx` in new components
+
+## Package Status
+
+- `@reacterial/theme` — reserved/empty. Do not add code here unless instructed.
+- `@reacterial/utils` — reserved/empty. Add shared hooks/helpers here when instructed.
+- `db/` root package — only for seeds/init scripts. Not linked to the admin app at runtime.
+
+## Form Handling
+
+No form library is currently installed. Until `react-hook-form` or similar is added:
+- Use controlled components with `useState` for simple forms
+- Use `event.currentTarget` extraction pattern (already in LoginForm) for uncontrolled forms
+- Validate in the API route, not the form component

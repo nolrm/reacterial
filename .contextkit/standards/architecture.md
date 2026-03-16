@@ -51,9 +51,12 @@ pages/               # Next.js Pages Router (NOT App Router)
 ├── index.tsx        # Landing page (public)
 ├── login.tsx        # Login (public, GSSP auth redirect)
 ├── admin/           # Protected pages (wrapped with withAuth)
-│   ├── index.tsx    # Dashboard
-│   ├── products.tsx # Products list
-│   └── users.tsx    # User management
+│   ├── index.tsx    # Dashboard (summary stats + charts)
+│   ├── products.tsx # Products list (dummyjson.com via productService)
+│   ├── profile.tsx  # Current user profile
+│   ├── settings.tsx # App/user settings
+│   ├── charts.tsx   # Chart showcases
+│   └── invoice.tsx  # Invoice display
 └── api/             # API routes
     ├── auth/[...nextauth].ts
     └── users/
@@ -63,24 +66,28 @@ pages/               # Next.js Pages Router (NOT App Router)
 
 components/
 ├── landing/         # Landing page sections
-├── layout/          # Header, Sidebar
+├── layout/          # Header, Sidebar, RtProfileDropdown
 ├── ThemeProvider.tsx
-└── UserSessionHandler.tsx
+└── UserSessionHandler.tsx  # Syncs NextAuth session → Redux store (no UI)
 
 layouts/
 └── LayoutAdmin.tsx  # Sidebar + header shell for all admin pages
 
 redux/
-├── store.ts         # configureStore + Redux Persist
+├── store.ts         # configureStore + Redux Persist + themeSlice (inline)
 └── userSlice.ts     # User state (persisted)
 
 service/
-└── productService.ts  # External API calls (dummyjson.com)
+└── productService.ts  # External API calls (dummyjson.com) — demo only
 
-db/                  # Mongoose connection + models (linked from root db/)
-types/               # Shared TypeScript types
-styles/              # Global CSS / SCSS
+db/config/
+└── database.js      # Mongoose singleton (JavaScript, not TypeScript — tech debt)
+
+types/               # Shared TypeScript types (theme.d.ts, next-auth.d.ts)
+styles/              # Global SCSS
 ```
+
+**Note on DB connection location**: `connectDB()` is defined in `apps/admin/src/db/config/database.js`. This file is plain JavaScript. The root `db/` package contains a separate Mongoose connection + seed scripts used only for initial data setup. Do not confuse the two.
 
 ### Authentication Flow
 

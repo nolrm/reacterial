@@ -5,8 +5,17 @@
 - **Framework**: Jest 29 + React Testing Library 16
 - **Environment**: jsdom (`jest-environment-jsdom`)
 - **Assertion library**: `@testing-library/jest-dom` (extended matchers)
+- **Config**: `apps/admin/jest.config.js` uses `next/jest` factory (`createJestConfig`)
+- **Setup file**: `apps/admin/jest.setup.js` (runs `@testing-library/jest-dom`)
 - **Run**: `pnpm test` (watch) | `pnpm test:ci` (CI, passWithNoTests)
 - **Single file**: `pnpm --filter @reacterial/admin jest path/to/test.test.tsx`
+
+## Existing Tests
+
+Currently only one component has tests:
+- `packages/ui/src/ui/RtError/RtError.test.tsx` — 2 test cases, uses `test()` not `it()`
+
+Both `it()` and `test()` are acceptable. Numbered descriptions are required for both.
 
 ## Required: Numbered Test Cases
 
