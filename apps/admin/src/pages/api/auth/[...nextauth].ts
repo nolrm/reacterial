@@ -4,6 +4,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { User as UserModel } from '@/db/models';
 import bcrypt from 'bcryptjs';
+import { randomBytes } from 'crypto';
 import connectDB from '@/db/config/database';
 import { UserState } from '@/redux/userSlice';
 import axios from 'axios';
@@ -34,7 +35,11 @@ declare module 'next-auth' {
   }
 }
 
-async function findOrCreateUser(user: any) {
+async function findOrCreateUser(user: {
+  email?: string | null;
+  name?: string | null;
+  image?: string | null;
+}) {
   try {
     await connectDB();
 
@@ -44,8 +49,7 @@ async function findOrCreateUser(user: any) {
     // If user doesn't exist, create a new one directly
     if (!dbUser && user.email) {
       // ✅ Generate a secure random password for OAuth users
-      const crypto = require('crypto');
-      const randomPassword = 'OAUTH_' + crypto.randomBytes(32).toString('hex');
+      const randomPassword = 'OAUTH_' + randomBytes(32).toString('hex');
 
       // ✅ Hash the password
       const hashedPassword = await bcrypt.hash(randomPassword, 12);

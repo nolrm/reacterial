@@ -45,29 +45,20 @@ pnpm run pre-commit
 
 ### Pre-Push Hook
 
-**Location**: `.husky/pre-push`
+**Location**: `.contextkit/hooks/pre-push` (active via `git config core.hooksPath .contextkit/hooks`)
 
-```bash
-#!/bin/sh
-echo "🔍 Running pre-push checks..."
-
-# 1. Format check
-pnpm run format:check
-
-# 2. Linting
-pnpm run lint
-
-# 3. Tests
-pnpm --filter @reacterial/admin test:ci
-```
+> Note: `.husky/pre-push` exists but is superseded by ContextKit hooks. The active hook path is set by the `prepare` script in root `package.json`.
 
 **What it does**:
 
-1. Verifies all files are formatted correctly
-2. Checks for linting errors across the entire codebase
-3. Runs all unit tests to ensure nothing is broken
+1. Runs Prettier (`pnpm run format`) — auto-formats all files
+2. Checks for uncommitted changes — if Prettier reformatted anything, the push is blocked with a prompt to stage and commit the changes
+3. Checks for linting errors (`pnpm run lint`)
+4. Runs all unit tests in CI mode (`pnpm --filter @reacterial/admin test:ci`)
    - ✅ Passes with exit code 0 if no tests exist (using `--passWithNoTests`)
    - ❌ Fails if any test fails
+
+> **E2E tests are intentionally excluded from pre-push.** Run manually when needed: `pnpm --filter @reacterial/admin e2e`
 
 ---
 
@@ -97,7 +88,7 @@ git push
 
 **What happens:**
 
-1. Husky intercepts the push
+1. ContextKit hook intercepts the push
 2. **Step 1**: Checks code formatting
    - ❌ Fails if any file isn't formatted
 3. **Step 2**: Runs linter on all code
@@ -260,16 +251,9 @@ git push --no-verify
 pnpm run pre-commit
 ```
 
-### .husky/pre-push
+### .contextkit/hooks/pre-push
 
-```bash
-#!/bin/sh
-echo "🔍 Running pre-push checks..."
-pnpm run format:check || exit 1
-pnpm run lint || exit 1
-pnpm --filter @reacterial/admin test:ci || exit 1
-echo "🎉 All checks passed!"
-```
+The active pre-push hook. Runs format check → lint → unit tests for the admin app. E2E tests are excluded (run manually with `pnpm --filter @reacterial/admin e2e`).
 
 ---
 
@@ -356,17 +340,24 @@ git push
 
 ### Hooks not running
 
-**Check Husky is installed:**
+**Check the active hooks path:**
 
 ```bash
-ls -la .husky/
+git config core.hooksPath
+# Should output: .contextkit/hooks
+```
+
+**Check hook files exist and are executable:**
+
+```bash
+ls -la .contextkit/hooks/
 # Should see pre-commit and pre-push files
 ```
 
-**Reinstall Husky:**
+**Reinstall (re-runs prepare script):**
 
 ```bash
-pnpm exec husky init
+pnpm install
 ```
 
 ### "command not found: pnpm" in hooks
@@ -416,8 +407,9 @@ git push --no-verify
 
 ### Configuration
 
-- `.husky/pre-commit` - Pre-commit hook script
-- `.husky/pre-push` - Pre-push hook script
+- `.contextkit/hooks/pre-commit` - Active pre-commit hook (via `core.hooksPath`)
+- `.contextkit/hooks/pre-push` - Active pre-push hook (via `core.hooksPath`)
+- `.husky/pre-commit`, `.husky/pre-push` - Husky hooks (superseded by ContextKit)
 - `package.json` - Scripts and lint-staged config
 
 ---
@@ -446,7 +438,7 @@ git push --no-verify
 
 ### Add new check to pre-push
 
-Edit `.husky/pre-push`:
+Edit `.contextkit/hooks/pre-push`:
 
 ```bash
 # Add new check
@@ -509,6 +501,7 @@ These hooks complement your CI/CD pipeline:
 
 ---
 
-**Last Updated**: October 21, 2025  
-**Husky Version**: 9.1.7  
+**Last Updated**: March 17, 2026
+**Husky Version**: 9.1.7 (installed, superseded by ContextKit hooks)
 **Lint-Staged Version**: 16.2.5
+**Active Hooks Path**: `.contextkit/hooks` (set via `git config core.hooksPath`)

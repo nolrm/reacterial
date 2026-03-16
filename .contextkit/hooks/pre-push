@@ -67,7 +67,13 @@ detect_project_type() {
 run_node_gates() {
   # Monorepo (Turborepo + pnpm) — use project-specific commands
   if [ -f "turbo.json" ] && [ -f "pnpm-lock.yaml" ]; then
-    run_gate "Prettier format check" pnpm run format:check
+    run_gate "Prettier format" pnpm run format
+    if ! git diff --exit-code --quiet; then
+      echo ""
+      echo "  ❌ Prettier reformatted files — stage and commit them before pushing."
+      echo ""
+      exit 1
+    fi
     run_gate "ESLint" pnpm run lint
     run_gate "Tests" pnpm --filter @reacterial/admin test:ci
     return

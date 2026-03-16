@@ -45,7 +45,7 @@
 ### Low Priority
 
 - **Storybook:** No component playground — Storybook would help document @reacterial/ui
-- **E2E tests:** No Playwright/Cypress tests yet
+- **E2E tests:** ~~No Playwright/Cypress tests yet~~ Playwright smoke tests added (`apps/admin/e2e/smoke.spec.ts`) — 5 scenarios covering login, dashboard, profile, and auth guard
 
 ## Success Metrics
 
@@ -66,7 +66,7 @@
 
 - Full test coverage across all packages
 - Storybook for @reacterial/ui component documentation
-- E2E tests with Playwright
+- ✅ E2E smoke tests with Playwright (done — expand coverage + add CI/CD integration)
 - Deployment guide (Vercel + MongoDB Atlas)
 
 ### Q4 2025: AI Features

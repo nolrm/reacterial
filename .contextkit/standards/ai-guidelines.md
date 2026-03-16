@@ -1,5 +1,28 @@
 # AI Guidelines
 
+## Core Principles
+
+### Keep It Simple
+- Implement code in the fewest lines possible
+- Avoid over-engineering solutions
+- Choose straightforward approaches over clever ones
+
+### Optimize for Readability
+- Prioritize code clarity over micro-optimizations
+- Write self-documenting code with clear variable names
+- Add comments for "why" not "what" — never for "what"
+
+### DRY (Don't Repeat Yourself)
+- Extract repeated business logic to utility functions
+- Extract repeated UI markup to reusable components in `@reacterial/ui`
+- Don't abstract prematurely — wait for the second repetition
+
+### Choose Libraries Wisely
+When adding a dependency, prefer:
+- The most popular and actively maintained option
+- Libraries already used in the monorepo over new additions
+- Zero dependencies over heavy alternatives for small utilities
+
 ## Framework Awareness
 
 - This project uses **Next.js Pages Router** — do NOT use App Router patterns (`use client`, `use server`, `layout.tsx` for feature pages, etc.)
@@ -51,9 +74,10 @@
 
 ## Testing
 
-- Always use numbered test descriptions: `it('1. renders...')`
+- Always use numbered test descriptions: `it('1. renders...')` — **this is the most commonly forgotten rule**
 - Mock `next-auth/react` and `next/router` in component tests
 - Do not test MUI internals — test component behavior from the user's perspective
+- Check existing patterns before writing new tests — follow the structure in `RtError.test.tsx`
 
 ## What NOT to Do
 
@@ -66,6 +90,18 @@
 - Do not create new `.js` files in `apps/` or `packages/` — TypeScript only
 - Do not import from `db/` (root db package) in API routes — use `apps/admin/src/db/config/database.js` for `connectDB()`
 - Do not read from `packages/theme` or `packages/utils` and expect implementations — they are currently empty/reserved
+
+## Standards Compliance — Known AI Failure Modes
+
+These are issues that come up repeatedly and must be actively avoided:
+
+| Issue | Priority | Notes |
+|-------|----------|-------|
+| Skipping numbered test descriptions | HIGH | Apply without being reminded |
+| Using App Router patterns in a Pages Router project | HIGH | `use client`, Route Handlers, etc. |
+| Creating `.js` files in `apps/` or `packages/` | MEDIUM | TypeScript only |
+| Using `as` type assertions instead of proper types | MEDIUM | Use type guards instead |
+| Using `fetch` in components instead of service layer | MEDIUM | Always go through `service/` |
 
 ## Known Codebase Issues (Do Not Propagate)
 

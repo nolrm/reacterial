@@ -66,3 +66,13 @@ packages/**/dist/
 # Turborepo
 .turbo
 **/.turbo
+
+# ContextKit squad working files
+.contextkit/squad/
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.auth/
+apps/**/test-results/
+apps/**/playwright-report/

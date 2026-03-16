@@ -18,8 +18,9 @@ Git hooks run automatically via Husky:
 - ESLint fix on `*.{js,jsx,ts,tsx}`
 
 **Pre-push**:
-- `pnpm run format:check` — fails if formatting is off
-- `turbo run lint test:ci --filter=@reacterial/admin`
+- `pnpm run format` — auto-formats all files; if any files change, push is blocked (commit the reformatted files)
+- `pnpm run lint` — lints the entire codebase
+- `pnpm --filter @reacterial/admin test:ci` — runs unit tests in CI mode
 
 If hooks fail, fix the issue before re-committing. Never use `--no-verify`.
 
@@ -75,6 +76,16 @@ pnpm test:ci                                           # CI (no watch)
 pnpm --filter @reacterial/admin jest RtError           # Single file
 ```
 
+## Running E2E Smoke Tests
+
+Requires MongoDB running with seed data (`pnpm --filter reacterial-db-init seed`) and `.env.local` configured.
+
+```bash
+pnpm --filter @reacterial/admin e2e       # Run all Playwright smoke tests
+```
+
+The runner auto-starts the dev server if one isn't already running on port 3000. Tests live in `apps/admin/e2e/smoke.spec.ts`. See `apps/admin/e2e/README.md` for full setup.
+
 ## Type Checking
 
 ```bash
@@ -118,3 +129,19 @@ pnpm build:admin    # Admin app only
 ```
 
 Turborepo caches build outputs. Use `pnpm clean` to clear caches if builds behave unexpectedly.
+
+## AI Collaboration Workflow
+
+For non-trivial tasks, follow this flow:
+
+1. **Context Analysis** — understand the requirement; read relevant existing files before writing any code
+2. **Approach Planning** — outline the implementation strategy; identify which packages/files are affected
+3. **Confirm** — align on the approach before executing, especially for changes that touch multiple files
+4. **Execution** — implement following the project standards
+5. **Quality Check** — verify TypeScript compiles, tests pass, no lint errors
+
+### After Implementation
+
+- Review the generated code against standards
+- Run `pnpm type-check` if TypeScript changes were made
+- Run the relevant test file before pushing

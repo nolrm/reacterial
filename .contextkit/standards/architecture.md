@@ -1,5 +1,14 @@
 # Architecture
 
+## Component Creation Priority
+
+When building UI, follow this order — don't skip ahead:
+
+1. **Check `@reacterial/ui` first** — does an `Rt`-prefixed component already exist that fits?
+2. **Create in `@reacterial/ui`** — if the component is reusable across pages, it belongs in the shared library with the `Rt` prefix
+3. **Create in `apps/admin/src/components/`** — if it's specific to one page or feature
+4. **Use MUI directly** — only for truly one-off, non-reusable layouts
+
 ## Documentation Levels
 
 All documentation follows a 3-level hierarchy. Each level answers a different question.

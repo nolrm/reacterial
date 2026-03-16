@@ -6,6 +6,7 @@ import {
   ClientSafeProvider,
   signIn,
 } from 'next-auth/react';
+import type { Session } from 'next-auth';
 import { Button, Container, Typography, Box, Paper } from '@mui/material';
 import { RtError } from '@reacterial/ui';
 import { LoginForm } from '@reacterial/auth';
@@ -19,7 +20,7 @@ const containerStyle = {
 
 interface SignInProps {
   providers: Record<string, ClientSafeProvider> | null;
-  session: any;
+  session: Session | null;
 }
 
 export const getServerSideProps: GetServerSideProps<SignInProps> = async (

@@ -61,9 +61,6 @@ const ProfilePage: React.FC = () => {
 
   const handleSave = async () => {
     try {
-      console.log('profileData', profileData);
-      console.log('user', user);
-
       const response = await fetch(`/api/users/${user.id}`, {
         method: 'PUT',
         headers: {
@@ -76,7 +73,6 @@ const ProfilePage: React.FC = () => {
       if (response.ok) {
         const updatedUser = await response.json();
         setProfileData(updatedUser);
-        console.log('Profile updated successfully:', updatedUser);
       } else {
         console.error('Failed to update profile');
       }

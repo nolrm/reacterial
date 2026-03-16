@@ -43,22 +43,48 @@ Numbers make failing tests instantly identifiable in CI output and bug reports.
   ```
 - For pages and API routes, place tests in `__tests__/` adjacent to the file
 
+## Test Structure — AAA Pattern
+
+Every test should follow **Arrange → Act → Assert**:
+
+```typescript
+it('2. calls onDelete when delete button is clicked', async () => {
+  // Arrange
+  const user = userEvent.setup();
+  const onDelete = jest.fn();
+  render(<UserCard userId="1" onDelete={onDelete} />);
+
+  // Act
+  await user.click(screen.getByRole('button', { name: /delete/i }));
+
+  // Assert
+  expect(onDelete).toHaveBeenCalledWith('1');
+});
+```
+
 ## Patterns
 
-### Component Tests
+### Component Tests — Use `defaultProps`
+
+Define `defaultProps` at the top of each describe block so individual tests only override what they need:
 
 ```typescript
 import { render, screen } from '@testing-library/react';
 import { ComponentName } from './ComponentName';
 
 describe('ComponentName', () => {
+  const defaultProps = {
+    title: 'Test Title',
+    onAction: jest.fn(),
+  };
+
   it('1. renders the component', () => {
-    render(<ComponentName prop="value" />);
-    expect(screen.getByText('expected text')).toBeInTheDocument();
+    render(<ComponentName {...defaultProps} />);
+    expect(screen.getByText('Test Title')).toBeInTheDocument();
   });
 
   it('2. does not render when condition is false', () => {
-    render(<ComponentName message={null} />);
+    render(<ComponentName {...defaultProps} message={null} />);
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
 });
@@ -93,6 +119,42 @@ it('3. submits form on button click', async () => {
   await user.type(screen.getByLabelText('Email'), 'test@example.com');
   await user.click(screen.getByRole('button', { name: /sign in/i }));
   expect(screen.getByText('Success')).toBeInTheDocument();
+});
+```
+
+### Mock Factories
+
+Use factory functions for test data so individual tests can override only what they care about:
+
+```typescript
+const createMockUser = (overrides = {}) => ({
+  id: 'user-1',
+  name: 'Test User',
+  email: 'test@example.com',
+  role: 'user' as const,
+  image: '',
+  phone: '',
+  address: '',
+  ...overrides,
+});
+
+const mockUser = createMockUser();
+const mockAdmin = createMockUser({ role: 'admin' });
+```
+
+### Error Handling Tests
+
+Always cover the failure path for components that can error:
+
+```typescript
+it('4. shows error state when message is provided', () => {
+  render(<ComponentName {...defaultProps} errorMessage="Something went wrong" />);
+  expect(screen.getByRole('alert')).toHaveTextContent('Something went wrong');
+});
+
+it('5. handles null/undefined props gracefully', () => {
+  render(<ComponentName {...defaultProps} items={[]} />);
+  expect(screen.getByText('No results found')).toBeInTheDocument();
 });
 ```
 
@@ -134,3 +196,21 @@ jest.mock('next-auth/react', () => ({
 - Auth package: aim for 80%+ coverage
 - Admin pages: aim for 60%+ coverage
 - API routes: aim for 70%+ coverage
+
+## Performance
+
+- Keep individual tests under 100ms
+- Use `jest.useFakeTimers()` for time-based behavior
+- Mock heavy operations and external API calls
+
+## Code Review Checklist
+
+Before submitting tests, verify:
+
+- [ ] All test descriptions start with a number (`1.`, `2.`, `3.`)
+- [ ] `defaultProps` defined at the top of `describe` block
+- [ ] Tests are isolated — no shared mutable state between tests
+- [ ] Error and null/undefined prop cases are covered
+- [ ] Role-based queries used (`getByRole`) over text/testid where possible
+- [ ] `jest.mock()` calls are at the top of the file, before imports
+- [ ] No implementation details tested (internal state, private methods)

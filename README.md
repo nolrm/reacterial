@@ -179,12 +179,26 @@ Comprehensive documentation is available in the [`docs/`](./docs) directory:
 ## 🧪 Testing
 
 ```bash
-# Run tests in watch mode
+# Run unit tests in watch mode
 pnpm test
 
-# Run tests in CI mode
+# Run unit tests in CI mode
 pnpm test:ci
 ```
+
+### E2E Smoke Tests (Playwright)
+
+Requires MongoDB running with seed data and `.env.local` configured.
+
+```bash
+# Seed the database first (once)
+pnpm --filter reacterial-db-init seed
+
+# Run Playwright smoke tests (auto-starts dev server if needed)
+pnpm --filter @reacterial/admin e2e
+```
+
+Covers: landing page, login flow, dashboard, profile page, and auth guard redirect. See [`apps/admin/e2e/README.md`](./apps/admin/e2e/README.md) for full setup.
 
 ## 📦 Building
 
