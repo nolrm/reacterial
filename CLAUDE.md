@@ -66,7 +66,7 @@ All `@reacterial/*` packages are transpiled via `next.config.mjs` (`transpilePac
 
 ### UI Package (`packages/ui/`)
 
-Components prefixed with `Rt`: `RtBarChart`, `RtLineChart`, `RtPieChart`, `RtDataGrid`, `RtTopSummary`, `RtError`, `PageTitle`, `MainContent`. All built on MUI.
+Components: `BarChart`, `LineChart`, `PieChart`, `DataGrid`, `TopSummary`, `ErrorMessage`, `ProfileDropdown`, `PageTitle`, `MainContent`. All built on MUI. No prefix convention — plain PascalCase.
 
 ## Key Conventions
 

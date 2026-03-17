@@ -1,7 +1,7 @@
 import React from 'react';
 import LayoutAdmin from '@/layouts/LayoutAdmin';
 import Typography from '@mui/material/Typography';
-import { RtBarChart, RtLineChart } from '@reacterial/ui';
+import { BarChart, LineChart } from '@reacterial/ui';
 
 const chartBarSeries = [
   { data: [35, 44, 24, 34] },
@@ -18,8 +18,8 @@ const ChartsPage: React.FC = () => {
       <Typography variant="h4" component="h1" gutterBottom>
         Charts
       </Typography>
-      <RtBarChart series={chartBarSeries} xAxis={chartBarXAxis} />
-      <RtLineChart />
+      <BarChart series={chartBarSeries} xAxis={chartBarXAxis} />
+      <LineChart />
     </LayoutAdmin>
   );
 };

@@ -28,10 +28,10 @@ reacterial/
 │   ├── ui/                     # 🎨 Shared UI components
 │   │   ├── package.json        # @reacterial/ui
 │   │   └── src/
-│       │   ├── charts/         # RtBarChart, RtLineChart, RtPieChart
-│       │   ├── data-display/   # RtDataGrid, RtTopSummary
-│       │   ├── layout/         # Header, Sidebar, MainContent, RtProfileDropdown
-│       │   ├── ui/             # PageTitle, RtError
+│       │   ├── charts/         # BarChart, LineChart, PieChart
+│       │   ├── data-display/   # DataGrid, TopSummary
+│       │   ├── layout/         # Header, Sidebar, MainContent, ProfileDropdown
+│       │   ├── ui/             # PageTitle, ErrorMessage
 │       │   └── index.ts        # Barrel exports
 │   │
 │   ├── auth/                   # 🔐 Authentication package
@@ -97,7 +97,7 @@ All imports across the codebase have been updated:
 **Before:**
 
 ```typescript
-import RtBarChart from '@/components/RtBarChart';
+import BarChart from '@/components/BarChart';
 import PageTitle from '@/components/PageTitle';
 import withAuth from '@/components/login/withAuth';
 import CustomThemeProvider from '@/components/ThemeProvider';
@@ -106,7 +106,7 @@ import CustomThemeProvider from '@/components/ThemeProvider';
 **After:**
 
 ```typescript
-import { RtBarChart, PageTitle } from '@reacterial/ui';
+import { BarChart, PageTitle } from '@reacterial/ui';
 import { withAuth } from '@reacterial/auth';
 import { CustomThemeProvider } from '@reacterial/theme';
 ```
@@ -118,7 +118,7 @@ Components are now organized by domain in `packages/ui/src/`:
 - **charts/** - Data visualization components
 - **data-display/** - Data presentation components
 - **layout/** - Layout components (Header, Sidebar, etc.)
-- **ui/** - Basic UI primitives (PageTitle, RtError)
+- **ui/** - Basic UI primitives (PageTitle, ErrorMessage)
 
 ---
 
@@ -240,13 +240,13 @@ pnpm add next react react-dom
 
 ```typescript
 // Main export
-import { RtBarChart, RtDataGrid, PageTitle, Header } from '@reacterial/ui';
+import { BarChart, DataGrid, PageTitle, Header } from '@reacterial/ui';
 
 // Specific category exports
-import { RtBarChart, RtLineChart, RtPieChart } from '@reacterial/ui/charts';
-import { RtDataGrid, RtTopSummary } from '@reacterial/ui/data-display';
+import { BarChart, LineChart, PieChart } from '@reacterial/ui/charts';
+import { DataGrid, TopSummary } from '@reacterial/ui/data-display';
 import { Header, Sidebar, MainContent } from '@reacterial/ui/layout';
-import { PageTitle, RtError } from '@reacterial/ui/ui';
+import { PageTitle, ErrorMessage } from '@reacterial/ui/ui';
 ```
 
 ### @reacterial/auth
@@ -401,13 +401,13 @@ After the migration, duplicate files from the old structure were removed:
 
 **Duplicate components in `apps/admin/src/components/`** - Already in shared packages
 
-- UI components: `RtBarChart`, `RtLineChart`, `RtPieChart`, `RtDataGrid`, `RtTopSummary`, `PageTitle`, `RtError` → Removed (using `@reacterial/ui`)
+- UI components: `BarChart`, `LineChart`, `PieChart`, `DataGrid`, `TopSummary`, `PageTitle`, `ErrorMessage` → Removed (using `@reacterial/ui`)
 - Auth component: `LoginForm`, `withAuth` → Removed (using `@reacterial/auth`)
 - **Kept**: `landing/` (app-specific landing page components)
 
 **App-specific components moved back from packages** - Had Redux/app dependencies
 
-- Layout components: `Header`, `Sidebar`, `RtProfileDropdown` → Moved from `@reacterial/ui` to `apps/admin/src/components/layout/`
+- Layout components: `Header`, `Sidebar`, `ProfileDropdown` → Moved from `@reacterial/ui` to `apps/admin/src/components/layout/`
 - Theme: `ThemeProvider` → Moved from `@reacterial/theme` to `apps/admin/src/components/`
 - Auth: `UserSessionHandler` → Moved from `@reacterial/auth` to `apps/admin/src/components/`
 - **Reason**: These components have dependencies on Redux store and app-specific data

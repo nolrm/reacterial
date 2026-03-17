@@ -8,7 +8,7 @@ import {
 } from 'next-auth/react';
 import type { Session } from 'next-auth';
 import { Button, Container, Typography, Box, Paper } from '@mui/material';
-import { RtError } from '@reacterial/ui';
+import { ErrorMessage } from '@reacterial/ui';
 import { LoginForm } from '@reacterial/auth';
 
 const containerStyle = {
@@ -69,7 +69,7 @@ const LoginPage = ({ providers }: SignInProps) => {
             </div>
           </Typography>
 
-          <RtError message={error} />
+          <ErrorMessage message={error} />
 
           {providers &&
             Object.values(providers).map((provider) =>

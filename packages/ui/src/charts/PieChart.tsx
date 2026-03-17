@@ -1,5 +1,5 @@
 import React from 'react';
-import { PieChart } from '@mui/x-charts';
+import { PieChart as MuiPieChart } from '@mui/x-charts';
 
 interface SeriesData {
   id: number;
@@ -7,19 +7,19 @@ interface SeriesData {
   label: string;
 }
 
-interface RtPieChartProps {
+interface PieChartProps {
   series: SeriesData[];
   width?: number;
   height?: number;
 }
 
-const RtPieChart: React.FC<RtPieChartProps> = ({
+const PieChart: React.FC<PieChartProps> = ({
   series,
   width = 400,
   height = 200,
 }) => {
   return (
-    <PieChart
+    <MuiPieChart
       series={[{ data: series }]}
       width={width}
       height={height}
@@ -34,4 +34,4 @@ const RtPieChart: React.FC<RtPieChartProps> = ({
   );
 };
 
-export default RtPieChart;
+export default PieChart;

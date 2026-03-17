@@ -3,7 +3,7 @@ import LayoutAdmin from '@/layouts/LayoutAdmin';
 import Typography from '@mui/material/Typography';
 import { Card, CardContent, Grid, Paper } from '@mui/material';
 import styles from './index.module.css';
-import { RtBarChart, RtPieChart, PageTitle } from '@reacterial/ui';
+import { BarChart, PieChart, PageTitle } from '@reacterial/ui';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { useTheme } from '@mui/material';
@@ -77,7 +77,7 @@ const DashboardPage: React.FC = () => {
                 transition: 'background-color 0.2s ease-in-out',
               }}
             >
-              <RtBarChart series={barData} xAxis={barXAxis} />
+              <BarChart series={barData} xAxis={barXAxis} />
             </Paper>
           </Grid>
 
@@ -90,7 +90,7 @@ const DashboardPage: React.FC = () => {
                 transition: 'background-color 0.2s ease-in-out',
               }}
             >
-              <RtPieChart series={pieData} />
+              <PieChart series={pieData} />
             </Paper>
           </Grid>
         </Grid>

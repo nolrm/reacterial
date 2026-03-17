@@ -1,16 +1,16 @@
 import React from 'react';
-import { BarChart } from '@mui/x-charts/BarChart';
+import { BarChart as MuiBarChart } from '@mui/x-charts/BarChart';
 
-interface RtBarChartProps {
+interface BarChartProps {
   series: { data: number[] }[];
   xAxis: string[];
 }
 
-const RtBarChart: React.FC<RtBarChartProps> = ({ series, xAxis }) => {
+const BarChart: React.FC<BarChartProps> = ({ series, xAxis }) => {
   const xAxisObj = [{ data: xAxis, scaleType: 'band' as const }];
 
   return (
-    <BarChart
+    <MuiBarChart
       series={series}
       height={290}
       xAxis={xAxisObj}
@@ -19,4 +19,4 @@ const RtBarChart: React.FC<RtBarChartProps> = ({ series, xAxis }) => {
   );
 };
 
-export default RtBarChart;
+export default BarChart;

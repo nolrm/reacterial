@@ -5,13 +5,13 @@
 ### Current RT/Global Components
 ```
 src/components/
-├── RtBarChart.tsx          # Chart: Bar visualization
-├── RtLineChart.tsx         # Chart: Line visualization  
-├── RtPieChart.tsx          # Chart: Pie visualization
-├── RtDataGrid.tsx          # Data: Grid/table component
-├── RtError/                # UI: Error display
-├── RtTopSummary.tsx        # Data: Summary metrics card
-├── RtProfileDropdown.tsx   # Layout: User profile menu
+├── BarChart.tsx          # Chart: Bar visualization
+├── LineChart.tsx         # Chart: Line visualization  
+├── PieChart.tsx          # Chart: Pie visualization
+├── DataGrid.tsx          # Data: Grid/table component
+├── ErrorMessage/                # UI: Error display
+├── TopSummary.tsx        # Data: Summary metrics card
+├── ProfileDropdown.tsx   # Layout: User profile menu
 ├── PageTitle.tsx           # UI: Page heading component
 ├── ThemeProvider.tsx       # Provider: Theme management
 ├── blocks/                 # Layout: Header, Sidebar, MainContent
@@ -33,36 +33,36 @@ src/
 │   │   │   ├── PageTitle.tsx
 │   │   │   ├── PageTitle.test.tsx
 │   │   │   └── index.ts
-│   │   ├── RtError/
-│   │   │   ├── RtError.tsx
-│   │   │   ├── RtError.test.tsx
+│   │   ├── ErrorMessage/
+│   │   │   ├── ErrorMessage.tsx
+│   │   │   ├── ErrorMessage.test.tsx
 │   │   │   └── index.ts
 │   │   └── index.ts                 # Barrel export: export * from './PageTitle'
 │   │
 │   ├── charts/                      # 📊 Data Visualization
-│   │   ├── RtBarChart/
-│   │   │   ├── RtBarChart.tsx
-│   │   │   ├── RtBarChart.stories.tsx  (future Storybook)
-│   │   │   ├── RtBarChart.test.tsx
+│   │   ├── BarChart/
+│   │   │   ├── BarChart.tsx
+│   │   │   ├── BarChart.stories.tsx  (future Storybook)
+│   │   │   ├── BarChart.test.tsx
 │   │   │   └── index.ts
-│   │   ├── RtLineChart/
-│   │   │   ├── RtLineChart.tsx
-│   │   │   ├── RtLineChart.test.tsx
+│   │   ├── LineChart/
+│   │   │   ├── LineChart.tsx
+│   │   │   ├── LineChart.test.tsx
 │   │   │   └── index.ts
-│   │   ├── RtPieChart/
-│   │   │   ├── RtPieChart.tsx
-│   │   │   ├── RtPieChart.test.tsx
+│   │   ├── PieChart/
+│   │   │   ├── PieChart.tsx
+│   │   │   ├── PieChart.test.tsx
 │   │   │   └── index.ts
 │   │   └── index.ts                 # Export all charts
 │   │
 │   ├── data-display/                # 🗂️ Data Presentation
-│   │   ├── RtDataGrid/
-│   │   │   ├── RtDataGrid.tsx
-│   │   │   ├── RtDataGrid.test.tsx
+│   │   ├── DataGrid/
+│   │   │   ├── DataGrid.tsx
+│   │   │   ├── DataGrid.test.tsx
 │   │   │   └── index.ts
-│   │   ├── RtTopSummary/
-│   │   │   ├── RtTopSummary.tsx
-│   │   │   ├── RtTopSummary.test.tsx
+│   │   ├── TopSummary/
+│   │   │   ├── TopSummary.tsx
+│   │   │   ├── TopSummary.test.tsx
 │   │   │   └── index.ts
 │   │   └── index.ts
 │   │
@@ -78,9 +78,9 @@ src/
 │   │   ├── MainContent/
 │   │   │   ├── MainContent.tsx
 │   │   │   └── index.ts
-│   │   ├── RtProfileDropdown/
-│   │   │   ├── RtProfileDropdown.tsx
-│   │   │   ├── RtProfileDropdown.test.tsx
+│   │   ├── ProfileDropdown/
+│   │   │   ├── ProfileDropdown.tsx
+│   │   │   ├── ProfileDropdown.test.tsx
 │   │   │   └── index.ts
 │   │   └── index.ts
 │   │
@@ -124,8 +124,8 @@ src/
 
 ### Before (Current)
 ```typescript
-import RtBarChart from '@/components/RtBarChart';
-import RtDataGrid from '@/components/RtDataGrid';
+import BarChart from '@/components/BarChart';
+import DataGrid from '@/components/DataGrid';
 import PageTitle from '@/components/PageTitle';
 import Header from '@/components/blocks/Header';
 import LoginForm from '@/components/login/LoginForm';
@@ -134,15 +134,15 @@ import LoginForm from '@/components/login/LoginForm';
 ### After (Organized)
 ```typescript
 // Option 1: Direct imports
-import { RtBarChart } from '@/components/charts';
-import { RtDataGrid } from '@/components/data-display';
+import { BarChart } from '@/components/charts';
+import { DataGrid } from '@/components/data-display';
 import { PageTitle } from '@/components/ui';
 import { Header } from '@/components/layout';
 import { LoginForm } from '@/components/auth';
 
 // Option 2: Grouped imports
-import { RtBarChart, RtLineChart, RtPieChart } from '@/components/charts';
-import { RtDataGrid, RtTopSummary } from '@/components/data-display';
+import { BarChart, LineChart, PieChart } from '@/components/charts';
+import { DataGrid, TopSummary } from '@/components/data-display';
 ```
 
 ---
@@ -195,11 +195,11 @@ import { RtDataGrid, RtTopSummary } from '@/components/data-display';
 ### Alternative 1: Flat RT Library
 ```
 src/components/rt-ui/
-  ├── RtBarChart/
-  ├── RtLineChart/
-  ├── RtPieChart/
-  ├── RtDataGrid/
-  ├── RtError/
+  ├── BarChart/
+  ├── LineChart/
+  ├── PieChart/
+  ├── DataGrid/
+  ├── ErrorMessage/
   └── index.ts
 ```
 **Best for**: Projects planning to publish components as npm package
@@ -207,9 +207,9 @@ src/components/rt-ui/
 ### Alternative 2: Atomic Design
 ```
 src/components/
-  ├── atoms/       # PageTitle, RtError
-  ├── molecules/   # RtBarChart, RtLineChart
-  ├── organisms/   # RtDataGrid, Header
+  ├── atoms/       # PageTitle, ErrorMessage
+  ├── molecules/   # BarChart, LineChart
+  ├── organisms/   # DataGrid, Header
   └── templates/   # LayoutAdmin
 ```
 **Best for**: Design-system-first projects with Figma integration
@@ -219,23 +219,23 @@ src/components/
 ## Naming Conventions
 
 ### Component Files
-- **PascalCase**: `RtBarChart.tsx`, `PageTitle.tsx`
-- **Match folder name**: Folder `RtBarChart/` contains `RtBarChart.tsx`
+- **PascalCase**: `BarChart.tsx`, `PageTitle.tsx`
+- **Match folder name**: Folder `BarChart/` contains `BarChart.tsx`
 
 ### Index Files
 ```typescript
-// components/charts/RtBarChart/index.ts
-export { default } from './RtBarChart';
-export * from './RtBarChart';
+// components/charts/BarChart/index.ts
+export { default } from './BarChart';
+export * from './BarChart';
 
 // components/charts/index.ts
-export { default as RtBarChart } from './RtBarChart';
-export { default as RtLineChart } from './RtLineChart';
-export { default as RtPieChart } from './RtPieChart';
+export { default as BarChart } from './BarChart';
+export { default as LineChart } from './LineChart';
+export { default as PieChart } from './PieChart';
 ```
 
 ### Test Files
-- **Co-located**: `RtBarChart.test.tsx` next to `RtBarChart.tsx`
+- **Co-located**: `BarChart.test.tsx` next to `BarChart.tsx`
 - **Naming**: Component name + `.test.tsx`
 
 ---

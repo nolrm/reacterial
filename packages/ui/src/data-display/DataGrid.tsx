@@ -1,14 +1,14 @@
 import React from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid as MuiDataGrid, GridColDef } from '@mui/x-data-grid';
 import { CircularProgress } from '@mui/material';
 
-interface RtDataGridProps {
+interface DataGridProps {
   items: any[];
   loading: boolean;
   columns: GridColDef[];
 }
 
-const RtDataGrid: React.FC<RtDataGridProps> = ({ items, loading, columns }) => {
+const DataGrid: React.FC<DataGridProps> = ({ items, loading, columns }) => {
   return (
     <div style={{ height: 600, width: '100%' }}>
       {loading ? (
@@ -27,10 +27,10 @@ const RtDataGrid: React.FC<RtDataGridProps> = ({ items, loading, columns }) => {
           No results found
         </div>
       ) : (
-        <DataGrid rows={items} columns={columns} />
+        <MuiDataGrid rows={items} columns={columns} />
       )}
     </div>
   );
 };
 
-export default RtDataGrid;
+export default DataGrid;

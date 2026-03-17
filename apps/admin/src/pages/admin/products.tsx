@@ -6,7 +6,7 @@ import {
   searchProducts,
   Product,
 } from '@/service/productService';
-import { RtDataGrid } from '@reacterial/ui';
+import { DataGrid } from '@reacterial/ui';
 import { GridColDef } from '@mui/x-data-grid';
 
 const ProductList = (): JSX.Element => {
@@ -61,7 +61,7 @@ const ProductList = (): JSX.Element => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <RtDataGrid items={items} loading={loading} columns={columns} />
+        <DataGrid items={items} loading={loading} columns={columns} />
       </Container>
     </LayoutAdmin>
   );

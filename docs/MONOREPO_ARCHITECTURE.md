@@ -33,10 +33,10 @@ reacterial/
 │   │   ├── package.json
 │   │   ├── tsconfig.json
 │   │   └── src/
-│   │       ├── charts/             # RtBarChart, RtLineChart, RtPieChart
-│   │       ├── data-display/       # RtDataGrid, RtTopSummary
+│   │       ├── charts/             # BarChart, LineChart, PieChart
+│   │       ├── data-display/       # DataGrid, TopSummary
 │   │       ├── layout/             # Header, Sidebar, etc.
-│   │       ├── ui/                 # PageTitle, RtError
+│   │       ├── ui/                 # PageTitle, ErrorMessage
 │   │       └── index.ts            # Barrel exports
 │   │
 │   ├── auth/                       # Authentication package
@@ -114,7 +114,7 @@ export * from './ui';
 **Usage in apps:**
 ```typescript
 // apps/admin/src/pages/admin/index.tsx
-import { RtBarChart, RtPieChart } from '@reacterial/ui';
+import { BarChart, PieChart } from '@reacterial/ui';
 import { PageTitle } from '@reacterial/ui';
 ```
 
@@ -296,7 +296,7 @@ pnpm add next react react-dom
 
 ```typescript
 // apps/customer-portal/src/pages/dashboard.tsx
-import { RtBarChart, PageTitle } from '@reacterial/ui';
+import { BarChart, PageTitle } from '@reacterial/ui';
 import { useAuth } from '@reacterial/auth';
 import { theme } from '@reacterial/theme';
 
@@ -306,7 +306,7 @@ export default function Dashboard() {
   return (
     <div>
       <PageTitle>Customer Dashboard</PageTitle>
-      <RtBarChart series={data} xAxis={labels} />
+      <BarChart series={data} xAxis={labels} />
     </div>
   );
 }
@@ -375,7 +375,7 @@ pnpm add @reacterial/auth@workspace:*
 ### Step 6: Update Imports
 ```bash
 # Find and replace imports across the codebase
-# From: '@/components/RtBarChart'
+# From: '@/components/BarChart'
 # To: '@reacterial/ui'
 ```
 

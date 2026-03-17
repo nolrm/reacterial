@@ -5,22 +5,56 @@ import {
   Typography,
   IconButton,
   Box,
-  Avatar,
-  Menu,
-  MenuItem,
   Tooltip,
 } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
+import {
+  AccountCircle,
+  Settings,
+  AttachMoney,
+  Help,
+  PriceCheck,
+} from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
-import { useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
-import RtProfileDropdown from './RtProfileDropdown';
+import { ProfileDropdown } from '@reacterial/ui';
+import type { ProfileMenuItem } from '@reacterial/ui';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme, selectTheme } from '@/redux/store';
+import type { RootState } from '@/redux/store';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import NightlightRoundIcon from '@mui/icons-material/NightlightRound';
 
 const drawerWidth: number = 240;
+
+const menuGroups: ProfileMenuItem[][] = [
+  [
+    {
+      label: 'My Profile',
+      href: '/admin/profile',
+      icon: <AccountCircle sx={{ mr: 2 }} />,
+    },
+    {
+      label: 'Settings',
+      href: '/admin/settings',
+      icon: <Settings sx={{ mr: 2 }} />,
+    },
+    {
+      label: 'Invoice',
+      href: '/admin/invoice',
+      icon: <AttachMoney sx={{ mr: 2 }} />,
+      badge: 3,
+    },
+  ],
+  [
+    { label: 'FAQ', href: '/admin/faq', icon: <Help sx={{ mr: 2 }} /> },
+    {
+      label: 'Pricing',
+      href: '/admin/pricing',
+      icon: <PriceCheck sx={{ mr: 2 }} />,
+    },
+  ],
+];
 
 const Header: React.FC<{
   isDrawerOpen: boolean;
@@ -28,16 +62,11 @@ const Header: React.FC<{
   anchorEl: null | HTMLElement;
   handleMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
   handleMenuClose: () => void;
-}> = ({
-  isDrawerOpen,
-  toggleDrawer,
-  anchorEl,
-  handleMenuOpen,
-  handleMenuClose,
-}) => {
+}> = ({ isDrawerOpen, toggleDrawer }) => {
   const dispatch = useDispatch();
   const themeMode = useSelector(selectTheme);
   const theme = useTheme();
+  const user = useSelector((state: RootState) => state.user);
 
   return (
     <AppBar
@@ -87,7 +116,11 @@ const Header: React.FC<{
             </IconButton>
           </Tooltip>
           <Box>
-            <RtProfileDropdown />
+            <ProfileDropdown
+              user={user}
+              onSignOut={() => signOut()}
+              menuGroups={menuGroups}
+            />
           </Box>
         </Box>
       </Toolbar>

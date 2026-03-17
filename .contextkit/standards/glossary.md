@@ -23,10 +23,10 @@
 **UserSessionHandler** - A render-null component (`apps/admin/src/components/UserSessionHandler.tsx`) that syncs the NextAuth session into the Redux store on every status change.
 
 ### Components
-**Rt prefix** - Naming prefix for all shared UI components in `@reacterial/ui` (e.g. `RtBarChart`, `RtDataGrid`, `RtError`). Indicates a project-specific MUI wrapper.
-**RtDataGrid** - Wrapper around MUI X DataGrid with built-in loading spinner and empty-state rendering.
-**RtTopSummary** - Summary card component (used on dashboard).
-**RtError** - MUI Alert wrapper that renders nothing when `message` is null. The only fully tested component.
+**DataGrid** - Wrapper around MUI X DataGrid with built-in loading spinner and empty-state rendering.
+**TopSummary** - Summary card component (used on invoice page).
+**ErrorMessage** - MUI Alert wrapper that renders nothing when `message` is null. The only fully tested component.
+**ProfileDropdown** - User avatar button + dropdown menu. Accepts `user`, `onSignOut`, and `menuGroups` as props — decoupled from Redux/NextAuth.
 **PageTitle** - Shared heading component for admin pages.
 **MainContent** - Layout wrapper for the main scrollable area inside LayoutAdmin.
 **LayoutAdmin** - The shell layout for all protected admin pages: sidebar + header + main content area. Located at `apps/admin/src/layouts/LayoutAdmin.tsx`.
@@ -58,7 +58,7 @@
 
 ## How to Use
 
-In Claude Code: Use terms naturally — e.g. `"Add a new Rt-prefixed component"`, `"Create a new admin page"`, `"Add a Redux slice for notifications"`
+In Claude Code: Use terms naturally — e.g. `"Add a new shared component to @reacterial/ui"`, `"Create a new admin page"`, `"Add a Redux slice for notifications"`
 
 ---
 

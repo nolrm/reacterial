@@ -13,7 +13,7 @@
 ## Existing Tests
 
 Currently only one component has tests:
-- `packages/ui/src/ui/RtError/RtError.test.tsx` — 2 test cases, uses `test()` not `it()`
+- `packages/ui/src/ui/ErrorMessage/ErrorMessage.test.tsx` — 2 test cases, uses `test()` not `it()`
 
 Both `it()` and `test()` are acceptable. Numbered descriptions are required for both.
 
@@ -36,9 +36,9 @@ Numbers make failing tests instantly identifiable in CI output and bug reports.
 
 - **Colocate** tests next to the component they test:
   ```
-  RtError/
-  ├── RtError.tsx
-  ├── RtError.test.tsx   ← here
+  ErrorMessage/
+  ├── ErrorMessage.tsx
+  ├── ErrorMessage.test.tsx   ← here
   └── index.ts
   ```
 - For pages and API routes, place tests in `__tests__/` adjacent to the file

@@ -23,7 +23,7 @@ import {
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import invoices from '@/data/invoices';
-import { RtTopSummary } from '@reacterial/ui';
+import { TopSummary } from '@reacterial/ui';
 
 // Helper function to apply badge colors based on status
 const getStatusBadgeColor = (status: string) => {
@@ -74,7 +74,7 @@ const InvoiceList: React.FC = () => {
           Invoice List
         </Typography>
 
-        <RtTopSummary></RtTopSummary>
+        <TopSummary></TopSummary>
 
         <Box component={Paper}>
           {/* Search Bar and Filter */}

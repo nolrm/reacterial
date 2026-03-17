@@ -1,2 +1,2 @@
-export { default as RtDataGrid } from './RtDataGrid';
-export { default as RtTopSummary } from './RtTopSummary';
+export { default as DataGrid } from './DataGrid';
+export { default as TopSummary } from './TopSummary';

@@ -95,10 +95,10 @@ A comprehensive guide has been created in [`COMPONENT_ORGANIZATION_GUIDE.md`](./
 **Recommended Structure**: Domain-Driven Organization
 ```
 components/
-├── ui/              # PageTitle, RtError
-├── charts/          # RtBarChart, RtLineChart, RtPieChart  
-├── data-display/    # RtDataGrid, RtTopSummary
-├── layout/          # Header, Sidebar, MainContent, RtProfileDropdown
+├── ui/              # PageTitle, ErrorMessage
+├── charts/          # BarChart, LineChart, PieChart  
+├── data-display/    # DataGrid, TopSummary
+├── layout/          # Header, Sidebar, MainContent, ProfileDropdown
 ├── auth/            # LoginForm, UserSessionHandler, withAuth
 ├── landing/         # Banner, Footer, LandingHeader
 └── providers/       # ThemeProvider

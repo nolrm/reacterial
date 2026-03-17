@@ -12,7 +12,7 @@ import PagesIcon from '@mui/icons-material/Pages';
 import WalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import MoneyIcon from '@mui/icons-material/AttachMoney';
 
-const RtTopSummary: React.FC = () => {
+const TopSummary: React.FC = () => {
   return (
     <Card sx={{ mb: 6 }}>
       <CardContent sx={{ padding: '24px' }}>
@@ -125,4 +125,4 @@ const RtTopSummary: React.FC = () => {
   );
 };
 
-export default RtTopSummary;
+export default TopSummary;

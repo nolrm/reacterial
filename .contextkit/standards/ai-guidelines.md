@@ -46,7 +46,7 @@ When adding a dependency, prefer:
 
 ## Code Generation Rules
 
-- Follow the `Rt` prefix convention for any new shared UI components
+- New shared UI components go in `@reacterial/ui` — PascalCase, no prefix (e.g. `DataTable`, `StatusBadge`)
 - New Redux slices: use `createSlice`, export actions and typed selector
 - New API routes: check auth with `getServerSession` first, handle all HTTP methods explicitly
 - New pages: wrap default export with `withAuth` for protected routes
@@ -77,7 +77,7 @@ When adding a dependency, prefer:
 - Always use numbered test descriptions: `it('1. renders...')` — **this is the most commonly forgotten rule**
 - Mock `next-auth/react` and `next/router` in component tests
 - Do not test MUI internals — test component behavior from the user's perspective
-- Check existing patterns before writing new tests — follow the structure in `RtError.test.tsx`
+- Check existing patterns before writing new tests — follow the structure in `ErrorMessage.test.tsx`
 
 ## What NOT to Do
 
@@ -107,10 +107,10 @@ These are issues that come up repeatedly and must be actively avoided:
 
 When editing existing code, be aware of these known issues. Do not replicate them in new code:
 
-- `RtDataGrid` has `items: any[]` — existing components can stay as-is, but new ones must be typed
+- `DataGrid` has `items: any[]` — existing components can stay as-is, but new ones must be typed
 - `database.js` is JavaScript — leave it as JS unless explicitly asked to migrate
 - `LoginForm` uses manual `event.currentTarget` form extraction — do not add more forms this way; wait for react-hook-form adoption
-- Inline `style={{}}` on container divs in `RtDataGrid` — use `Box` with `sx` in new components
+- Inline `style={{}}` on container divs in `DataGrid` — use `Box` with `sx` in new components
 
 ## Package Status
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  LineChart,
+  LineChart as MuiLineChart,
   lineElementClasses,
   markElementClasses,
 } from '@mui/x-charts/LineChart';
@@ -17,9 +17,9 @@ const xLabels = [
   'Page G',
 ];
 
-const RtLineChart: React.FC = () => {
+const LineChart: React.FC = () => {
   return (
-    <LineChart
+    <MuiLineChart
       width={500}
       height={300}
       series={[
@@ -49,4 +49,4 @@ const RtLineChart: React.FC = () => {
   );
 };
 
-export default RtLineChart;
+export default LineChart;

@@ -29,8 +29,8 @@ This document helps you decide between different architectural approaches for or
 reacterial/
 ├── src/
 │   ├── components/
-│   │   ├── RtBarChart.tsx
-│   │   ├── RtDataGrid.tsx
+│   │   ├── BarChart.tsx
+│   │   ├── DataGrid.tsx
 │   │   ├── blocks/
 │   │   └── login/
 │   ├── pages/
@@ -195,7 +195,7 @@ pnpm add @reacterial/auth@workspace:*
 pnpm add @reacterial/theme@workspace:*
 
 # 3. Start using components (immediately)
-import { RtBarChart, PageTitle } from '@reacterial/ui';
+import { BarChart, PageTitle } from '@reacterial/ui';
 import { useAuth } from '@reacterial/auth';
 ```
 

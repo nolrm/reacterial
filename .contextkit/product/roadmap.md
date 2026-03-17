@@ -7,18 +7,18 @@
 - **Monorepo structure:** pnpm workspaces + Turborepo with 4 packages + admin app
 - **Authentication:** NextAuth v4 with Credentials + Google OAuth, role-based (user/admin)
 - **User management:** CRUD API routes, admin-only registration, role management
-- **Data visualization:** RtBarChart, RtLineChart, RtPieChart (MUI X Charts wrappers)
-- **Data grid:** RtDataGrid with search/filter support (MUI X DataGrid wrapper)
+- **Data visualization:** BarChart, LineChart, PieChart (MUI X Charts wrappers)
+- **Data grid:** DataGrid with search/filter support (MUI X DataGrid wrapper)
 - **Theme system:** Light/dark mode toggle persisted in Redux
 - **Redux store:** userSlice + themeSlice with Redux Persist
-- **Shared UI library:** @reacterial/ui with Rt-prefixed components
+- **Shared UI library:** @reacterial/ui (`BarChart`, `LineChart`, `PieChart`, `DataGrid`, `TopSummary`, `ErrorMessage`, `ProfileDropdown`, `PageTitle`, `MainContent`)
 - **ESLint 9:** Flat config with TypeScript strict rules
 - **Git hooks:** ContextKit hooks — pre-push (format + lint + test) + commit-msg (conventional format)
 - **ContextKit:** AI development standards installed
 
 ### In Progress
 
-- **Test coverage:** Expanding test suite beyond RtError component
+- **Test coverage:** Expanding test suite beyond ErrorMessage component
 - **Documentation:** ContextKit standards being populated
 
 ### Upcoming Features
@@ -33,7 +33,7 @@
 
 ### High Priority
 
-- **Test coverage:** Most components lack tests — only RtError has coverage
+- **Test coverage:** Most components lack tests — only ErrorMessage has coverage
 - **Type safety in db/:** Root `db/` package uses JavaScript — migrate to TypeScript
 
 ### Medium Priority

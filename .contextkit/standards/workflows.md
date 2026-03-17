@@ -47,7 +47,7 @@ Existing admin pages: `index` (dashboard), `products`, `profile`, `settings`, `c
 2. Create `packages/ui/src/<category>/ComponentName/ComponentName.test.tsx`
 3. Create `packages/ui/src/<category>/ComponentName/index.ts` re-export
 4. Add to `packages/ui/src/<category>/index.ts` barrel
-5. Prefix with `Rt` if it's a data/chart/display component
+5. Name with plain PascalCase — no prefix required
 
 ## Adding a New API Route
 
@@ -70,7 +70,7 @@ Existing admin pages: `index` (dashboard), `products`, `profile`, `settings`, `c
 ```bash
 pnpm test                                              # Watch mode (all)
 pnpm test:ci                                           # CI (no watch)
-pnpm --filter @reacterial/admin jest RtError           # Single file
+pnpm --filter @reacterial/admin jest ErrorMessage           # Single file
 ```
 
 ## Running E2E Smoke Tests

@@ -226,8 +226,8 @@ pnpm build  # Rebuilds fresh
 ### Scenario: Change UI Component
 
 ```bash
-# 1. Edit RtBarChart in packages/ui
-vim packages/ui/src/charts/RtBarChart.tsx
+# 1. Edit BarChart in packages/ui
+vim packages/ui/src/charts/BarChart.tsx
 
 # 2. Run build
 pnpm build

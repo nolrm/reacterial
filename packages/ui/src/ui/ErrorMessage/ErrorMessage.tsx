@@ -1,10 +1,11 @@
 import React from 'react';
 import { Alert } from '@mui/material';
-interface RtErrorProps {
+
+interface ErrorMessageProps {
   message: string | null;
 }
 
-const RtError: React.FC<RtErrorProps> = ({ message }) => {
+const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
   return message ? (
     <Alert severity="error" sx={{ mt: 2 }}>
       {message}
@@ -12,4 +13,4 @@ const RtError: React.FC<RtErrorProps> = ({ message }) => {
   ) : null;
 };
 
-export default RtError;
+export default ErrorMessage;

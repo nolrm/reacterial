@@ -6,7 +6,8 @@
       "Bash(pnpm type-check:*)",
       "Bash(pnpm:*)",
       "Bash(cd:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(sed:*)"
     ]
   }
 }

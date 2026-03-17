@@ -4,8 +4,8 @@
 
 When building UI, follow this order — don't skip ahead:
 
-1. **Check `@reacterial/ui` first** — does an `Rt`-prefixed component already exist that fits?
-2. **Create in `@reacterial/ui`** — if the component is reusable across pages, it belongs in the shared library with the `Rt` prefix
+1. **Check `@reacterial/ui` first** — does a component already exist that fits?
+2. **Create in `@reacterial/ui`** — if the component is reusable across pages, it belongs in the shared library
 3. **Create in `apps/admin/src/components/`** — if it's specific to one page or feature
 4. **Use MUI directly** — only for truly one-off, non-reusable layouts
 
@@ -75,7 +75,7 @@ pages/               # Next.js Pages Router (NOT App Router)
 
 components/
 ├── landing/         # Landing page sections
-├── layout/          # Header, Sidebar, RtProfileDropdown
+├── layout/          # Header, Sidebar, ProfileDropdown
 ├── ThemeProvider.tsx
 └── UserSessionHandler.tsx  # Syncs NextAuth session → Redux store (no UI)
 
@@ -111,7 +111,7 @@ All /admin/* pages → withAuth HOC → useSession → redirect if unauthenticat
 ### Data Flow
 
 ```
-External API (dummyjson.com) → productService.ts → page component → RtDataGrid
+External API (dummyjson.com) → productService.ts → page component → DataGrid
 MongoDB ← Mongoose models ← API routes ← axios from page components
 Redux store ← UserSessionHandler ← NextAuth session ← _app.tsx
 ```
@@ -131,12 +131,12 @@ Components exported from `@reacterial/ui`:
 
 | Category | Components |
 |----------|------------|
-| Charts | `RtBarChart`, `RtLineChart`, `RtPieChart` |
-| Data Display | `RtDataGrid`, `RtTopSummary` |
+| Charts | `BarChart`, `LineChart`, `PieChart` |
+| Data Display | `DataGrid`, `TopSummary` |
 | Layout | `MainContent` |
-| UI Primitives | `PageTitle`, `RtError` |
+| UI Primitives | `PageTitle`, `ErrorMessage`, `ProfileDropdown` |
 
-All `Rt`-prefixed components wrap MUI components with project-specific defaults.
+All components in `@reacterial/ui` wrap MUI components with project-specific defaults.
 
 ### Routing Convention
 
