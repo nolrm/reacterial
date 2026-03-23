@@ -1,10 +1,11 @@
 # Reacterial
 
-Reacterial is a **multi-purpose development platform** designed for three core use cases:
+Reacterial is a **multi-purpose development platform** designed for four core use cases:
 
 1. **🤖 AI-Native Admin Starter** - Batteries-included admin dashboard with AI integration patterns
 2. **📚 Modern Monorepo Learning Platform** - Reference implementation for pnpm workspaces, Turborepo, and Next.js 15
 3. **⚡ Internal Tools Accelerator** - Clone, configure, and ship internal dashboards in days
+4. **🎨 Component Design System** - Living Storybook for `@reacterial/ui` — explore and develop components without running the full app
 
 Built with Next.js, React, Material-UI (MUI), Redux, and a scalable monorepo architecture.
 
@@ -68,6 +69,21 @@ https://www.reacterial.com/
 - ✅ Authentication system
 - 🚧 CRUD scaffolding generator (in progress)
 - 📋 One-command setup script (planned)
+
+### Goal 4: Component Design System 🎨
+
+**Status**: 📋 Planned
+**Vision**: A living Storybook for `@reacterial/ui` — browse, develop, and test components without spinning up the full app (no MongoDB, no auth required)
+
+**Current State**:
+
+- ✅ Shared UI library (`@reacterial/ui`) with 9 components
+- ✅ Components decoupled from app-specific concerns (Redux, NextAuth)
+- 📋 Storybook setup in `packages/ui/` (planned)
+- 📋 Stories for all components with autodocs (planned)
+- 📋 Light/dark mode toggle in Storybook toolbar (planned)
+
+See [Storybook & Design System Plan](./docs/STORYBOOK_DESIGN_SYSTEM.md) for the full implementation plan.
 
 See [Roadmap](./docs/ROADMAP.md) for detailed development phases and timeline.
 

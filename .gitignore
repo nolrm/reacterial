@@ -70,6 +70,9 @@ packages/**/dist/
 # ContextKit squad working files
 .contextkit/squad/
 
+# Storybook
+**/storybook-static/
+
 # Playwright
 test-results/
 playwright-report/

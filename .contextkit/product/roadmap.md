@@ -44,7 +44,6 @@
 
 ### Low Priority
 
-- **Storybook:** No component playground — Storybook would help document @reacterial/ui
 - **E2E tests:** ~~No Playwright/Cypress tests yet~~ Playwright smoke tests added (`apps/admin/e2e/smoke.spec.ts`) — 5 scenarios covering login, dashboard, profile, and auth guard
 
 ## Success Metrics
@@ -65,11 +64,21 @@
 ### Q3 2025: Production-Ready Platform
 
 - Full test coverage across all packages
-- Storybook for @reacterial/ui component documentation
 - ✅ E2E smoke tests with Playwright (done — expand coverage + add CI/CD integration)
 - Deployment guide (Vercel + MongoDB Atlas)
 
-### Q4 2025: AI Features
+### Q3 2026: Component Design System
+
+**Goal**: Living Storybook for `@reacterial/ui` — develop and explore components without running the full app.
+
+- Storybook installed in `packages/ui/` with MUI theme decorator
+- Stories for all 9 components with `autodocs`
+- Light/dark mode toggle in Storybook toolbar
+- `pnpm storybook` works from monorepo root — no DB or auth required
+
+See [Storybook & Design System Plan](../docs/STORYBOOK_DESIGN_SYSTEM.md) for full implementation details.
+
+### Q4 2026: AI Features
 
 - AI-powered data insights on dashboard
 - Natural language search for data grids

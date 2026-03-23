@@ -6,11 +6,19 @@ Welcome to the Reacterial documentation! This directory contains comprehensive g
 
 ### Roadmap & Vision
 
-- **🗺️ [Roadmap](./ROADMAP.md)** - Planned features and development phases across all three project goals
+- **🗺️ [Roadmap](./ROADMAP.md)** - Planned features and development phases across all four project goals
   - AI-Native Admin Starter roadmap
   - Modern Monorepo Learning Platform enhancements
   - Internal Tools Accelerator features
+  - Component Design System
   - Timeline and priorities
+
+- **🎨 [Storybook & Design System](./STORYBOOK_DESIGN_SYSTEM.md)** - Comprehensive plan for the `@reacterial/ui` component design system
+  - Architecture and file structure
+  - Phase-by-phase implementation plan
+  - Story patterns and examples
+  - Dark mode support
+  - CI integration (future)
 
 ### Getting Started
 
@@ -95,7 +103,8 @@ docs/
 ├── MIGRATION_SUMMARY.md               # NPM to PNPM migration report
 ├── MONOREPO_ARCHITECTURE.md           # Monorepo structure for multiple apps
 ├── COMPONENT_ORGANIZATION_GUIDE.md   # Component structure guide
-└── TYPESCRIPT_STRICT_CONFIG.md        # TypeScript strict mode setup
+├── TYPESCRIPT_STRICT_CONFIG.md        # TypeScript strict mode setup
+└── STORYBOOK_DESIGN_SYSTEM.md         # 🎨 Component design system plan
 ```
 
 ## 🎯 Quick Links
@@ -134,5 +143,5 @@ When adding new documentation:
 
 ---
 
-**Last Updated**: October 21, 2025  
-**Project Version**: 0.1.0
+**Last Updated**: March 18, 2026
+**Project Version**: 0.2.0
