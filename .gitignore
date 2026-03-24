@@ -72,6 +72,7 @@ packages/**/dist/
 
 # Storybook
 **/storybook-static/
+apps/admin/public/storybook/
 
 # Playwright
 test-results/

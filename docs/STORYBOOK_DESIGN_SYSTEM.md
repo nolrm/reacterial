@@ -49,16 +49,19 @@ packages/ui/
 │   │   ├── DataGrid.stories.tsx
 │   │   ├── TopSummary.tsx
 │   │   └── TopSummary.stories.tsx
-│   └── ui/
-│       ├── ErrorMessage/
-│       │   ├── ErrorMessage.tsx
-│       │   ├── ErrorMessage.stories.tsx
-│       │   └── ErrorMessage.test.tsx
-│       ├── ProfileDropdown/
-│       │   ├── ProfileDropdown.tsx
-│       │   └── ProfileDropdown.stories.tsx
-│       └── PageTitle.tsx
-│           └── PageTitle.stories.tsx  (future)
+│   ├── ui/
+│   │   ├── ErrorMessage/
+│   │   │   ├── ErrorMessage.tsx
+│   │   │   ├── ErrorMessage.stories.tsx
+│   │   │   └── ErrorMessage.test.tsx
+│   │   ├── ProfileDropdown/
+│   │   │   ├── ProfileDropdown.tsx
+│   │   │   └── ProfileDropdown.stories.tsx
+│   │   ├── PageTitle.tsx
+│   │   └── PageTitle.stories.tsx
+│   └── layout/
+│       ├── MainContent.tsx
+│       └── MainContent.stories.tsx
 └── package.json
 ```
 
@@ -139,7 +142,7 @@ export default preview;
 
 ---
 
-### Phase 2: Write Stories (per component)
+### Phase 2: Write Stories ✅ (complete)
 
 Each story file follows the same pattern:
 
@@ -177,17 +180,17 @@ export const MultiSeries: Story = {
 
 **Story coverage plan:**
 
-| Component | Stories to write | Priority |
-|-----------|-----------------|----------|
-| `ErrorMessage` | Default (with message), Empty (null message) | High — already tested |
-| `ProfileDropdown` | Default user, No avatar, Empty menu groups | High — complex props |
-| `BarChart` | Single series, Multi series | High |
-| `PieChart` | Default, Custom size | High |
-| `LineChart` | Default | Medium |
-| `DataGrid` | Loading state, Empty state, With data | High |
-| `TopSummary` | Default | Medium |
-| `PageTitle` | Default | Low |
-| `MainContent` | Default | Low |
+| Component | Stories | Status |
+|-----------|---------|--------|
+| `ErrorMessage` | WithMessage, NoMessage | ✅ Done |
+| `ProfileDropdown` | Default, NoAvatar, NoMenuGroups | ✅ Done |
+| `BarChart` | SingleSeries, MultiSeries | ✅ Done |
+| `PieChart` | Default, CustomSize | ✅ Done |
+| `LineChart` | Default | ✅ Done |
+| `DataGrid` | WithData, EmptyState, LoadingState | ✅ Done |
+| `TopSummary` | Default | ✅ Done |
+| `PageTitle` | WithDivider, WithoutDivider | ✅ Done |
+| `MainContent` | DrawerOpen, DrawerClosed | ✅ Done |
 
 ---
 
@@ -250,10 +253,10 @@ Opens at http://localhost:6006
 ## Success Criteria
 
 - [ ] Storybook boots with `pnpm storybook` — no app, no DB required
-- [ ] All 9 `@reacterial/ui` components have at least one story
-- [ ] `autodocs` generates API documentation from TypeScript props
+- [x] All 9 `@reacterial/ui` components have at least one story
+- [x] `autodocs` generates API documentation from TypeScript props
 - [ ] Light/dark mode toggle works in the Storybook toolbar
-- [ ] `build-storybook` produces a static build in `packages/ui/storybook-static/`
+- [x] `build-storybook` produces a static build in `packages/ui/storybook-static/`
 - [x] `.gitignore` covers `storybook-static/`
 
 ---

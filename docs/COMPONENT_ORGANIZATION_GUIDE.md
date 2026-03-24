@@ -42,7 +42,7 @@ src/
 │   ├── charts/                      # 📊 Data Visualization
 │   │   ├── BarChart/
 │   │   │   ├── BarChart.tsx
-│   │   │   ├── BarChart.stories.tsx  (future Storybook)
+│   │   │   ├── BarChart.stories.tsx
 │   │   │   ├── BarChart.test.tsx
 │   │   │   └── index.ts
 │   │   ├── LineChart/
@@ -161,7 +161,7 @@ import { DataGrid, TopSummary } from '@/components/data-display';
 
 ### Phase 3: Cleanup
 1. Remove old component files
-2. Update Storybook config (when implemented)
+2. Update Storybook config
 3. Document new structure in README
 
 ---
@@ -179,7 +179,7 @@ import { DataGrid, TopSummary } from '@/components/data-display';
 - **Easy to test**: Test files co-located with components
 
 ### ✅ Future-Proofing
-- **Storybook ready**: Component folders ready for stories
+- **Storybook**: Stories written for all 9 components — run `pnpm storybook`
 - **Tree-shaking friendly**: Barrel exports enable better bundling
 - **Package extraction**: Easy to publish as separate packages
 

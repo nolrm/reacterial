@@ -1,10 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd apps/admin && pnpm build",
+  "buildCommand": "pnpm vercel-build",
   "devCommand": "cd apps/admin && pnpm dev",
   "installCommand": "pnpm install",
   "framework": "nextjs",
   "outputDirectory": "apps/admin/.next",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD apps/admin/"
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD apps/admin/ packages/ui/src/"
 }
 

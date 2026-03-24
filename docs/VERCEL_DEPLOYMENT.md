@@ -31,9 +31,9 @@ In the import screen, configure:
 
 ```
 Framework Preset: Next.js
-Root Directory: apps/admin
-Build Command: pnpm build (leave default)
-Output Directory: .next (leave default)
+Root Directory: . (monorepo root — leave blank)
+Build Command: pnpm vercel-build
+Output Directory: apps/admin/.next
 Install Command: pnpm install
 ```
 
@@ -186,19 +186,19 @@ The `vercel.json` in your root directory:
 
 ```json
 {
-  "buildCommand": "cd apps/admin && pnpm build",
+  "buildCommand": "pnpm vercel-build",
   "devCommand": "cd apps/admin && pnpm dev",
   "installCommand": "pnpm install",
   "framework": "nextjs",
   "outputDirectory": "apps/admin/.next",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD apps/admin/"
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD apps/admin/ packages/ui/src/"
 }
 ```
 
 This tells Vercel:
-- Which app to build (`apps/admin`)
-- Where the build output is
-- Only rebuild if `apps/admin/` changes
+- `pnpm vercel-build` builds Storybook, copies it to `apps/admin/public/storybook/`, then builds the Next.js app — making Storybook available at `/storybook/`
+- Where the build output is (`apps/admin/.next`)
+- Rebuild when either `apps/admin/` or `packages/ui/src/` changes
 
 ---
 

@@ -71,8 +71,8 @@
 
 **Goal**: Living Storybook for `@reacterial/ui` — develop and explore components without running the full app.
 
-- Storybook installed in `packages/ui/` with MUI theme decorator
-- Stories for all 9 components with `autodocs`
+- ✅ Storybook installed in `packages/ui/` with MUI theme decorator
+- ✅ Stories for all 9 components with `autodocs`
 - Light/dark mode toggle in Storybook toolbar
 - `pnpm storybook` works from monorepo root — no DB or auth required
 

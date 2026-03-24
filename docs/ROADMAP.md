@@ -189,10 +189,10 @@ This roadmap outlines the planned features and improvements across all three pro
   - Automated API docs from TypeScript
   - Interactive API explorer
   - Code examples for each endpoint
-- 📋 Component Storybook
-  - Visual component library
-  - Interactive component playground
-  - Usage examples and variants
+- ✅ Component Storybook
+  - Stories for all 9 `@reacterial/ui` components with `autodocs`
+  - Served at `/storybook/` via Next.js `public/` on deploy
+  - Light/dark mode toggle in toolbar (Phase 3 — pending)
 - 📋 Architecture decision records (ADRs)
   - Document major architectural decisions
   - Trade-off analysis

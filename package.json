@@ -21,6 +21,7 @@
     "type-check": "turbo run type-check",
     "storybook": "pnpm --filter @reacterial/ui storybook",
     "build-storybook": "turbo run build-storybook --filter=@reacterial/ui",
+    "vercel-build": "pnpm build-storybook && cp -r packages/ui/storybook-static apps/admin/public/storybook && cd apps/admin && pnpm build",
     "prepare": "git config core.hooksPath .contextkit/hooks",
     "pre-push": "pnpm run format && turbo run lint test:ci --filter=@reacterial/admin"
   },
